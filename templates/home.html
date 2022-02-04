@@ -23,7 +23,7 @@
     <div id = "map" style = "width: 100%; height: 100%">
   </div>
 
-  <ons-bottom-toolbar>
+  <ons-bottom-toolbar style="z-index:1000;">
     <ons-row style="line-height:40px;">
       <ons-col width="100%">
         <ons-toolbar-button id="share-btn" onclick="fn.share()">
@@ -34,7 +34,7 @@
    </ons-row>
   </ons-bottom-toolbar>
 
-  <ons-speed-dial position="bottom right" direction="up">
+  <ons-speed-dial position="bottom right" direction="up" style="z-index:1100;">
     <ons-fab>
       <ons-icon icon="md-share"></ons-icon>
     </ons-fab>
@@ -49,7 +49,7 @@
     </ons-speed-dial-item>
   </ons-speed-dial>
 
-  <div class="topcorner toolbar--material" style="height:22px;line-height:22px;vertical-align:middle;text-align:left;">
+  <div class="topcorner toolbar--material" style="height:22px;line-height:22px;vertical-align:middle;text-align:left;z-index:1050;">
 
     <img alt="ONE" width="22px" draggable="false" src="img/harmony-one-icon.svg"> 0,00000 | ONE: 0,00000 | ONE: 0,00000 
   </div>
