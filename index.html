@@ -5,7 +5,6 @@
       <title>Billboards</title>
 
       <!-- Required libs -->
-      <script src=""></script>
       <script src="onsenui/js/onsenui.js"></script>
   
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -105,13 +104,13 @@
         <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
           <ons-page>
             <ons-list>
-              <ons-list-item onclick="fn.load('home.html')" tappable>
+              <ons-list-item onclick="fn.load('templates/home.html')" tappable>
                 Home
               </ons-list-item>
-              <ons-list-item onclick="fn.load('settings.html')" tappable>
+              <ons-list-item onclick="fn.load('templates/settings.html')" tappable>
                 Settings
               </ons-list-item>
-              <ons-list-item onclick="fn.load('about.html')" tappable>
+              <ons-list-item onclick="fn.load('templates/about.html')" tappable>
                 About
               </ons-list-item>
             </ons-list>
@@ -121,20 +120,20 @@
         <ons-splitter-side id="search" side="right" width="220px" collapse swipeable>
           <ons-page>
             <ons-list>
-              <ons-list-item onclick="fn.load('home.html')" tappable>
+              <ons-list-item onclick="fn.load('templates/home.html')" tappable>
                 Home
               </ons-list-item>
-              <ons-list-item onclick="fn.load('settings.html')" tappable>
+              <ons-list-item onclick="fn.load('templates/settings.html')" tappable>
                 Settings
               </ons-list-item>
-              <ons-list-item onclick="fn.load('about.html')" tappable>
+              <ons-list-item onclick="fn.load('templates/about.html')" tappable>
                 About
               </ons-list-item>
             </ons-list>
           </ons-page>
         </ons-splitter-side>
 
-        <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
+        <ons-splitter-content id="content" page="templates/home.html"></ons-splitter-content>
       </ons-splitter>
         
        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
