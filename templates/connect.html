@@ -1,8 +1,7 @@
   <ons-action-sheet id="sheet" cancelable title="Wallet Connections">
   
-    <!--ons-action-sheet-button icon="md-square-o" onclick="app.hideFromTemplate()">Label</ons-action-sheet-button-->
-    <ons-action-sheet-button icon="md-square-o" disabled onclick="alert(2)">MetaMask (Harmony Network localnode)</ons-action-sheet-button>
-    <ons-action-sheet-button icon="md-square-o" onclick="alert(1)" modifier="destructive">MetaMask (Harmony Network webnode)</ons-action-sheet-button>
+    <ons-action-sheet-button icon="fa-network-wired" onclick="alert(1)" modifier="destructive"><b>MetaMask (Harmony Network RPC Web Node)</b></ons-action-sheet-button>
+    <ons-action-sheet-button icon="fa-ethernet" disabled onclick="alert(2)">MetaMask (Harmony Network RPC Local Node)</ons-action-sheet-button>    
     <ons-action-sheet-button icon="md-close" onclick="dapp.hideConnection()">Cancel</ons-action-sheet-button>
     
   </ons-action-sheet>
