@@ -1,3 +1,7 @@
+// object to insert global functions of the dapp
+var dapp = {};
+
+// localforage configuration
 localforage.config({    
     name: 'billboardsDAO',
     description: 'billboardsDAO database'  
@@ -20,8 +24,19 @@ lat;long
 
 */
 
+// onsenui configuration
+ons.ready(function () {
+  ons.createElement('templates/connect.html', { append: true })
+    .then(function (sheet) {
+      dapp.showFromTemplate = sheet.show.bind(sheet);
+      dapp.hideFromTemplate = sheet.hide.bind(sheet);
+    });
+});
+
+
 
 // from https://docs.harmony.one/home/developers/wallets/metamask/using-metamask-with-harmony-smart-contracts
+// metamask configuration
 
 import detectEthereumProvider from "@metamask/detect-provider";
 
