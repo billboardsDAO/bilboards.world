@@ -26,11 +26,13 @@ lat;long
 
 // onsenui configuration
 ons.ready(function () {
+    
   ons.createElement('templates/connect.html', { append: true })
     .then(function (sheet) {
       dapp.showFromTemplate = sheet.show.bind(sheet);
       dapp.hideFromTemplate = sheet.hide.bind(sheet);
     });
+    
 });
 
 
