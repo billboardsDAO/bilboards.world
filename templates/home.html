@@ -2,18 +2,18 @@
 
   <ons-toolbar>
     <div class="left">
-      <ons-toolbar-button onclick="fn.open_menu()">
+      <ons-toolbar-button onclick="window.dapp.open_menu()">
         <ons-icon icon="fa-ellipsis-v"></ons-icon><ons-if platform="windows other">&nbsp;Menu</ons-if>
       </ons-toolbar-button>
     </div>
     <div class="center" style="text-align:center;">
       World Billboards
-      <ons-toolbar-button id="share-btn" onclick="fn.share()">
+      <ons-toolbar-button id="share-btn" onclick="window.dapp.share()">
         <ons-icon icon="fa-share"></ons-icon>
       </ons-toolbar-button>
     </div>
     <div class="right">
-      <ons-toolbar-button onclick="fn.open_search()">
+      <ons-toolbar-button onclick="window.dapp.open_search()">
         <ons-if platform="windows other">Search&nbsp;</ons-if><ons-icon icon="md-search"></ons-icon>
       </ons-toolbar-button>
     </div>
