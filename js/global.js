@@ -24,33 +24,44 @@ lat;long
 
 */
 
+// interval
+window.dapp.global = () -> {
+    
+    
+    
+}
+window.dapp.globalIterval = undefined;
+
+
 // onsenui configuration
-ons.ready(function () {
+ons.ready(() -> {
     
   ons.createElement('templates/connect.html', { append: true })
-    .then(function (sheet) {
+    .then((sheet) -> {
       window.dapp.showConnection = sheet.show.bind(sheet);
       window.dapp.hideConnection = sheet.hide.bind(sheet);
     });   
     
+    window.dapp.globalInterval = setInterval(window.dapp.global, 1000);
+
 });
 
 
-  window.dapp.open_menu = function() {
+  window.dapp.open_menu = () -> {
     document.getElementById('menu').open();
   };
 
-  window.dapp.open_search = function() {
+  window.dapp.open_search = () -> {
     document.getElementById('search').open();
   };
 
-  window.dapp.load = function(page) {
+  window.dapp.load = (page) -> {
     var content = document.getElementById('content');
     var menu = document.getElementById('menu');
     content.load(page).then(menu.close.bind(menu));
   };
 
-  window.dapp.share = function(){
+  window.dapp.share = () -> {
 
       try {
         navigator.share({
@@ -62,7 +73,7 @@ ons.ready(function () {
 
   }
           
-document.addEventListener('init', function(event) {   
+document.addEventListener('init', (event) -> {   
 
     var page = event.target;
 
