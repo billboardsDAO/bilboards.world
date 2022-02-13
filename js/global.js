@@ -61,12 +61,10 @@ ons.ready(function() {
     
     window.dapp.globalInterval = setInterval(window.dapp.global, 1000);
     
-    try {
-        const value = await localforage.getItem('theme');
+    localforage.getItem('theme').then(function(value) {
         if(value == null) localforage.setItem('theme', false); 
-        alert(value);
         window.dapp.switch_theme(document.querySelector('#theme-switcher').checked = value, true);
-    } catch (err) {}
+    });
     
 });
 
