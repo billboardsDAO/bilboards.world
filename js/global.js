@@ -61,9 +61,9 @@ ons.ready(function() {
     
     window.dapp.globalInterval = setInterval(window.dapp.global, 1000);
     
-    if(localforage.getItem('theme') == null) localforage.setItem('theme', false); 
-    alert(localforage.getItem('theme'));
-    window.dapp.switch_theme(document.querySelector('#theme-switcher').checked = localforage.getItem('theme'), true);
+    if(await localforage.getItem('theme') == null) localforage.setItem('theme', false); 
+    alert(await localforage.getItem('theme'));
+    window.dapp.switch_theme(document.querySelector('#theme-switcher').checked = await localforage.getItem('theme'), true);
     
 });
 
