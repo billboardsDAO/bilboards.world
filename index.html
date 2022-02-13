@@ -35,7 +35,7 @@
                 Trade Boards Token
               </ons-list-item>
              </ons-list> 
-             <ons-list modifier="inset" style="margin-top: 5px;">
+             <ons-list modifier="inset" style="margin-top: 5px;display: none;" id="wallet-menu-connected">
               <ons-list-header>Connected Wallet</ons-list-header>
               <ons-list-item onclick="window.dapp.load('templates/settings.html')" tappable>
                 My Billboards
@@ -46,7 +46,13 @@
               <ons-list-item onclick="window.dapp.load('templates/about.html')" tappable>
                 Disconnect Wallet
               </ons-list-item> 
-             </ons-list>            
+             </ons-list>
+             <ons-list modifier="inset" style="margin-top: 5px;" id="wallet-menu-disconnected">
+              <ons-list-header>Connect Wallet</ons-list-header>
+              <ons-list-item onclick="window.dapp.load('templates/settings.html')" tappable>
+                Connect with MetaMask
+              </ons-list-item>
+             </ons-list>    
             <ons-list  modifier="inset" style="margin-top: 5px;">    
               <ons-list-header>Links</ons-list-header>              
               <ons-list-item onclick="window.dapp.load('templates/about.html')" tappable>
