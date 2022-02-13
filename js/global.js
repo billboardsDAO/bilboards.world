@@ -34,10 +34,10 @@ window.dapp.globalIterval = undefined;
 
 
 // onsenui configuration
-ons.ready(() -> {
+ons.ready(function() {
     
   ons.createElement('templates/connect.html', { append: true })
-    .then((sheet) -> {
+    .then(function(sheet) {
       window.dapp.showConnection = sheet.show.bind(sheet);
       window.dapp.hideConnection = sheet.hide.bind(sheet);
     });   
@@ -47,21 +47,21 @@ ons.ready(() -> {
 });
 
 
-  window.dapp.open_menu = () -> {
+  window.dapp.open_menu = function() {
     document.getElementById('menu').open();
   };
 
-  window.dapp.open_search = () -> {
+  window.dapp.open_search = function() {
     document.getElementById('search').open();
   };
 
-  window.dapp.load = (page) -> {
+  window.dapp.load = function(page) {
     var content = document.getElementById('content');
     var menu = document.getElementById('menu');
     content.load(page).then(menu.close.bind(menu));
   };
 
-  window.dapp.share = () -> {
+  window.dapp.share = function() {
 
       try {
         navigator.share({
@@ -73,7 +73,7 @@ ons.ready(() -> {
 
   }
           
-document.addEventListener('init', (event) -> {   
+document.addEventListener('init', function(event) {   
 
     var page = event.target;
 
