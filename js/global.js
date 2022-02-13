@@ -32,6 +32,21 @@ window.dapp.global = function() {
 };
 window.dapp.globalIterval = undefined;
 
+window.dapp.switch_theme = function(checked) {    
+    
+    var oldlink = document.getElementsByTagName("link").item(0);
+
+    var newlink = document.createElement("link");
+    newlink.setAttribute("rel", "stylesheet");
+    newlink.setAttribute("type", "text/css");
+    newlink.setAttribute("href", "onsenui/extras/themes/"+(checked?'night':'day')+".css");
+
+    setTimeout(function(ol){document.getElementsByTagName("head").item(0).removeChild(ol);},50,oldlink);
+    document.getElementsByTagName("head").item(0).appendChild(newlink);
+    
+    localforage.setItem('theme', checked);
+
+}
 
 // onsenui configuration
 ons.ready(function() {
@@ -43,21 +58,12 @@ ons.ready(function() {
     });   
     
     window.dapp.globalInterval = setInterval(window.dapp.global, 1000);
+    
+    if (localforage.getItem('theme') === false) window.dapp.switch_theme(false); else window.dapp.switch_theme(true);
 
 });
 
-window.dapp.switch_theme = function(checked) {    
-    
-        var oldlink = document.getElementsByTagName("link").item(0);
-    
-        var newlink = document.createElement("link");
-        newlink.setAttribute("rel", "stylesheet");
-        newlink.setAttribute("type", "text/css");
-        newlink.setAttribute("href", "onsenui/extras/themes/"+(checked?'night':'day')+".css");
 
-        setTimeout(function(ol){document.getElementsByTagName("head").item(0).removeChild(ol);},50,oldlink);
-        document.getElementsByTagName("head").item(0).appendChild(newlink);
-}
 
   window.dapp.open_menu = function() {
     document.getElementById('menu').open();
