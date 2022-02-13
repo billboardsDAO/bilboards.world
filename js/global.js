@@ -59,6 +59,8 @@ ons.ready(function() {
     
     window.dapp.globalInterval = setInterval(window.dapp.global, 1000);
     
+    alert(localforage.getItem('theme') === true);
+    
     if (localforage.getItem('theme') === true) window.dapp.switch_theme(true, true); else window.dapp.switch_theme(false, true);
 
 });
