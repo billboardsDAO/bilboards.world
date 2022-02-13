@@ -25,11 +25,11 @@ lat;long
 */
 
 // interval
-window.dapp.global = () -> {
+window.dapp.global = function() {
     
     
     
-}
+};
 window.dapp.globalIterval = undefined;
 
 
