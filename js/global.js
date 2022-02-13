@@ -33,7 +33,7 @@ window.dapp.global = function() {
 window.dapp.globalIterval = undefined;
 
 window.dapp.switch_theme = function(checked, startup) {    
-    alert("chamou");
+
     var oldlink = document.getElementsByTagName("link").item(0);
 
     var newlink = document.createElement("link");
