@@ -63,7 +63,8 @@ ons.ready(function() {
     
     if(localforage.getItem('theme') == null) localforage.setItem('theme', true);    
     window.dapp.switch_theme(localforage.getItem('theme'), true);
-
+    document.querySelector('#theme-switcher').checked = localforage.getItem('theme');   
+    
 });
 
 
