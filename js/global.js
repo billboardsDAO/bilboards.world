@@ -45,7 +45,7 @@ window.dapp.switch_theme = function(checked, startup) {
     
     if (!startup) {
         setTimeout(function(ol){document.getElementsByTagName("head").item(0).removeChild(ol)},50,oldlink);
-        if (!startup) localforage.setItem('theme', checked);
+        localforage.setItem('theme', checked);
     }
 
 }
