@@ -27,8 +27,15 @@
         <ons-splitter-side id="menu" side="left" width="220px" collapse>
           <ons-page>
             <img src="https://monaca.io/img/logos/download_image_onsenui_01.png" alt="Onsen UI" style="width: 100%">
-              
              <ons-list modifier="inset">
+              <ons-list-item onclick="window.dapp.load('templates/about.html')" tappable>
+                NFTs Marketplace
+              </ons-list-item>
+              <ons-list-item onclick="window.dapp.load('templates/about.html')" tappable>
+                Trade Boards Token
+              </ons-list-item>
+             </ons-list> 
+             <ons-list modifier="inset" style="margin-top: 5px;">
               <ons-list-header>Connected Wallet</ons-list-header>
               <ons-list-item onclick="window.dapp.load('templates/settings.html')" tappable>
                 My Billboards
@@ -39,16 +46,7 @@
               <ons-list-item onclick="window.dapp.load('templates/about.html')" tappable>
                 Disconnect Wallet
               </ons-list-item> 
-             </ons-list>
-             <ons-list modifier="inset" style="margin-top: 5px;">
-              <ons-list-header>World Billboards</ons-list-header>
-              <ons-list-item onclick="window.dapp.load('templates/about.html')" tappable>
-                NFTs Marketplace
-              </ons-list-item>
-              <ons-list-item onclick="window.dapp.load('templates/about.html')" tappable>
-                Trade Boards Token
-              </ons-list-item>
-             </ons-list>             
+             </ons-list>            
             <ons-list  modifier="inset" style="margin-top: 5px;">    
               <ons-list-header>Links</ons-list-header>              
               <ons-list-item onclick="window.dapp.load('templates/about.html')" tappable>
