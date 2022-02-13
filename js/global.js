@@ -46,6 +46,18 @@ ons.ready(function() {
 
 });
 
+window.dapp.switch_theme = function(event) {    
+    
+        var oldlink = document.getElementsByTagName("link").item(0);
+    
+        var newlink = document.createElement("link");
+        newlink.setAttribute("rel", "stylesheet");
+        newlink.setAttribute("type", "text/css");
+        newlink.setAttribute("href", "onsenui/extras/themes/"+(event.value?'night':'day')+".css");
+
+        setTimeout(function(ol){document.getElementsByTagName("head").item(0).removeChild(ol);},50,oldlink);
+        document.getElementsByTagName("head").item(0).appendChild(newlink);
+}
 
   window.dapp.open_menu = function() {
     document.getElementById('menu').open();
