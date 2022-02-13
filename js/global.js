@@ -32,7 +32,7 @@ window.dapp.global = function() {
 };
 window.dapp.globalIterval = undefined;
 
-window.dapp.switch_theme = function(checked) {    
+window.dapp.switch_theme = function(checked, startup) {    
     
     var oldlink = document.getElementsByTagName("link").item(0);
 
@@ -40,8 +40,8 @@ window.dapp.switch_theme = function(checked) {
     newlink.setAttribute("rel", "stylesheet");
     newlink.setAttribute("type", "text/css");
     newlink.setAttribute("href", "onsenui/extras/themes/"+(checked?'night':'day')+".css");
-
-    setTimeout(function(ol){document.getElementsByTagName("head").item(0).removeChild(ol);},50,oldlink);
+    
+    if (!startup) setTimeout(function(ol){document.getElementsByTagName("head").item(0).removeChild(ol);},50,oldlink);
     document.getElementsByTagName("head").item(0).appendChild(newlink);
     
     localforage.setItem('theme', checked);
@@ -59,7 +59,7 @@ ons.ready(function() {
     
     window.dapp.globalInterval = setInterval(window.dapp.global, 1000);
     
-    if (localforage.getItem('theme') === false) window.dapp.switch_theme(false); else window.dapp.switch_theme(true);
+    if (localforage.getItem('theme') === true) window.dapp.switch_theme(true, true); else window.dapp.switch_theme(false, true);
 
 });
 
