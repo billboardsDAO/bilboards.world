@@ -123,7 +123,7 @@ document.addEventListener('init', function(event) {
         if (!navigator.share) page.querySelector('#share-btn').style.display = "none";            
     }
     
-    alert(page.id);
+    //alert(page.id);
 
 });
 
