@@ -78,19 +78,19 @@
       
         <ons-splitter-side id="search" side="right" width="220px" collapse>
           <ons-page>
-            <ons-list>
-              <ons-list-item onclick="window.dapp.load('templates/global.html')" tappable>
-                Home
-              </ons-list-item>
-              <ons-list-item onclick="window.dapp.load('templates/settings.html')" tappable>
-                Settings
-              </ons-list-item>
-              <ons-list-item onclick="window.dapp.load('templates/about.html')" tappable>
-                About
-              </ons-list-item>
-            </ons-list>
+            <ons-list>          
               
-            
+                <ons-list-header>Search Locations</ons-list-header>
+                <ons-list-item>
+                  <ons-input id="location" modifier="underbar" placeholder="Name or Coordinates" float></ons-input>
+                </ons-list-item>
+                <ons-list-item>Search</ons-list-item>
+                
+                <ons-list-item>Try my Location</ons-list-item>
+
+              </ons-list>
+              
+              <br/>
               
               <ons-list modifier="inset">
                 <ons-list-header>Billboard Events</ons-list-header>
