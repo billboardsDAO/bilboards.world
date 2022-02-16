@@ -162,6 +162,16 @@
               </div>
             </ons-list-item>
                   
+                  
+                  <ons-list-item modifier="longdivider" tappable>
+              <div class="left">
+                <img class="list-item__thumbnail" src="https://placekitten.com/g/40/40">
+              </div>
+              <div class="center">
+                <span class="list-item__title">Cutest kitty</span><span class="list-item__subtitle">On the Internet</span>
+              </div>
+            </ons-list-item>
+                  
               </ons-list>
               
               
@@ -171,9 +181,33 @@
         <ons-splitter-content id="content" page="templates/global.html"></ons-splitter-content>
       </ons-splitter>
         
+<ons-dialog id="trade-boards-token">
+ <ons-list>          
+              
+    <ons-list-header>Trade Boards Token</ons-list-header> 
+                    
+    <ons-list-item>
+      <div class="left">
+        <ons-icon icon="fa-alert" class="list-item__icon"></ons-icon>
+      </div>
+      <div class="center">
+        Watch your wallet!
+      </div>
+    </ons-list-item>
+     
+     <ons-list-item tappable onclick="window.open('https://viper.exchange/', '_blank').focus();">ViperSwap Exchange</ons-list-item>
+     
+     <ons-list-item tappable onclick="document.getElementById('trade-boards-token').hide();">Cancel</ons-list-item>
+
+</ons-list>
+        
+        
+  </ons-dialog>
+        
        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-   crossorigin=""></script>
+   crossorigin=""></script>       
+        
         
          <script src="./js/metamask.js" type="module"></script>
          <script src="./js/global.js"></script>
