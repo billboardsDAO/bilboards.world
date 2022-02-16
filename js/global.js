@@ -122,6 +122,8 @@ document.addEventListener('init', function(event) {
     if (page.querySelector('#share-btn')) {
         if (!navigator.share) page.querySelector('#share-btn').style.display = "none";            
     }
+    
+    alert(page.id);
 
 });
 
