@@ -5,4 +5,11 @@
   </ons-toolbar>
 
   <p>This is the second page.</p>
+  
+  <script>
+    document.querySelector('ons-back-button').onClick = function(event) {
+      window.dapp.load('templates/global.html')
+    };    
+  </script>
+  
 </ons-page>
