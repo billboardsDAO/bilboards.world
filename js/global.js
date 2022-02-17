@@ -98,7 +98,7 @@ ons.ready(function() {
   }
 
 window.dapp.showCaution = function(){
-    ons.notification.toast('Before performing token trading on the exchanges suggested below, check the BOARDS token address corresponds to ONE1233454411545488815111', { timeout: 5000, animation: 'fall' });    
+    ons.notification.toast('Before performing token trading, check the BOARDS token address corresponds to ONE1233454411545488815111', { timeout: 5000, animation: 'fall' });    
 };
           
 document.addEventListener('init', function(event) {   
