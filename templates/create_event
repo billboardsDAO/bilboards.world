@@ -1,0 +1,73 @@
+<ons-page id="Create-Event">
+  <ons-toolbar>
+    <div class="left"><ons-back-button>Back</ons-back-button></div>
+    <div class="center">Create Event</div>
+  </ons-toolbar>
+
+  <ons-list>
+  
+  <p>
+    Past the link to the Wikipedia article relating to the event you want to create:
+   </p>
+   
+   <ons-input id="event-media" modifier="underbar" placeholder="Wikipedia Article Link" float></ons-input>
+  
+  <p>
+    How many coins do you want to invest in your event?
+   </p>
+   
+    <ons-list-item tappable>
+      <label class="left">
+        <ons-radio name="color" input-id="radio-1" checked></ons-radio>
+      </label>
+      <label for="radio-1" class="center">
+        Minimum possible per hour
+      </label>
+    </ons-list-item>
+    <ons-list-item tappable>
+      <label class="left">
+        <ons-radio name="color" input-id="radio-2" onclick="other_value();"></ons-radio>
+      </label>
+      <label for="radio-2" class="center" id="other-value">
+        Other value
+      </label>
+    </ons-list-item>
+
+    <p>
+    How many hours do you want to invest in your event?
+   </p>
+   
+   <ons-range style="width: 100%;" min="3" max="36" value="3" id="event-token"></ons-range>
+    
+    <ons-button modifier="large">SUBMIT EVENT</ons-button>
+  
+  </ons-list>
+  
+  <script>
+    document.querySelector('ons-back-button').onClick = function(event) {
+      window.dapp.load('templates/global.html')
+    };    
+    
+    function other_value() {
+    
+     localforage.getItem('cfactor').then(function(value) {
+        if(typeof(value) == "number") {
+           ons.notification.prompt({
+            message: 'What is your name?',
+            inputType: 'number',
+            defaultValue: value
+           }).then(function(v) {
+              if (v<value) ons.notification.alert('Value must be greater than or equal to ' + value);
+              else document.getElementById("other-value").innerHTML = "Other value:&nbsp;" + v;
+          });
+        } else {
+          ons.notification.alert('Current value out of date, use the first option.');
+          document.getElementById("radio-1").checked = true;
+        }
+    });
+      
+    }
+    
+  </script>
+  
+</ons-page>
