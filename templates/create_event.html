@@ -68,6 +68,7 @@
            ons.notification.prompt({
             message: 'Enter how many BOARDS token you want to invest per hour in your event:',
             inputType: 'number',
+             title: 'Enter value',
             defaultValue: value
            }).then(function(v) {
               if (v<value) ons.notification.alert('Value must be greater than or equal to ' + value);
