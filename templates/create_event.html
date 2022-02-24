@@ -4,18 +4,18 @@
     <div class="center">Create Event</div>
   </ons-toolbar>
 
-  <ons-list>
-  
+  <ons-card>
   <p>
     Past the link to the Wikipedia article relating to the event you want to create:
    </p>
    
    <ons-input id="event-media" modifier="underbar" placeholder="Wikipedia Article Link" float></ons-input>
   
-  <p>
+    <p>
     How many coins do you want to invest in your event?
    </p>
-   
+    
+     <ons-list>
     <ons-list-item tappable>
       <label class="left">
         <ons-radio name="color" input-id="radio-1" checked></ons-radio>
@@ -32,7 +32,7 @@
         Other value
       </label>
     </ons-list-item>
-
+</ons-list>
     <p>
     How many hours do you want to invest in your event?
    </p>
@@ -41,7 +41,8 @@
     
     <ons-button modifier="large">SUBMIT EVENT</ons-button>
   
-  </ons-list>
+    </ons-card>
+  
   
   <script>
     document.querySelector('ons-back-button').onClick = function(event) {
