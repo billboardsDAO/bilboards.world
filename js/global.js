@@ -79,6 +79,14 @@ ons.ready(function() {
     document.getElementById('search').open();
   };
 
+  window.dapp.hide_menu = function() {
+    document.getElementById('menu').hide();
+  };
+
+  window.dapp.hide_search = function() {
+    document.getElementById('search').hide();
+  };
+
   window.dapp.load = function(page) {
     var content = document.getElementById('content');
     var menu = document.getElementById('menu');
