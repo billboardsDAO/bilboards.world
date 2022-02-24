@@ -66,7 +66,7 @@
      localforage.getItem('cfactor').then(function(value) {
         if(typeof(value) == "number") {
            ons.notification.prompt({
-            message: 'What is your name?',
+            message: 'Enter how many BOARDS token you want to invest per hour in your event:',
             inputType: 'number',
             defaultValue: value
            }).then(function(v) {
