@@ -90,8 +90,10 @@
              placeholder: value,
             defaultValue: value
            }).then(function(v) {
-              if (v<value) ons.notification.alert('Value must be greater than or equal to ' + value);
-              else document.getElementById("other-value").innerHTML = v + "&nbsp;BOARDS/hour";
+              if (v<value) {
+                ons.notification.alert('Value must be greater than or equal to ' + value);
+                document.getElementById("radio-1").checked = true;
+              } else document.getElementById("other-value").innerHTML = v + "&nbsp;BOARDS/hour";
           });
         } else {
           ons.notification.alert('Current value out of date.');
