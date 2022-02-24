@@ -22,7 +22,7 @@
         <ons-radio name="mv-1" input-id="radio-1" checked></ons-radio>
       </label>
       <label for="radio-1" class="center">
-        Minimum possible per hour
+        Minimum possible/hour
       </label>
     </ons-list-item>
     <ons-list-item tappable>
@@ -30,7 +30,7 @@
         <ons-radio name="mv-1" input-id="radio-2" onclick="other_value();"></ons-radio>
       </label>
       <label for="radio-2" class="center" id="other-value">
-        Other value
+        Other value per hour
       </label>
     </ons-list-item>
 </ons-list>
@@ -71,7 +71,7 @@
             defaultValue: value
            }).then(function(v) {
               if (v<value) ons.notification.alert('Value must be greater than or equal to ' + value);
-              else document.getElementById("other-value").innerHTML = v + "BOARDS per hour";
+              else document.getElementById("other-value").innerHTML = v + "&nbsp;BOARDS/hour";
           });
         } else {
           ons.notification.alert('Current value out of date.');
