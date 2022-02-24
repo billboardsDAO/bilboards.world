@@ -92,9 +92,7 @@
            }).then(function(v) {
               if (v<value) ons.notification.alert('Value must be greater than or equal to ' + value);
               else document.getElementById("other-value").innerHTML = v + "&nbsp;BOARDS/hour";
-          }).catch(function(ex){
-             alert(2);
-           });
+          });
         } else {
           ons.notification.alert('Current value out of date.');
           document.getElementById("radio-1").checked = true;
