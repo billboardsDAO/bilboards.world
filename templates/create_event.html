@@ -14,7 +14,7 @@
   <ons-list>
     
     <p>
-      How many <b>BOARDS token</b> do you want to invest in your event?
+      How many <b>BOARDS token</b> do you want to invest in your event <b>per hour</b>?
     </p>   
 
     <ons-list-item tappable>
@@ -71,7 +71,7 @@
             defaultValue: value
            }).then(function(v) {
               if (v<value) ons.notification.alert('Value must be greater than or equal to ' + value);
-              else document.getElementById("other-value").innerHTML = "Other value:&nbsp;" + v;
+              else document.getElementById("other-value").innerHTML = v + "BOARDS per hour";
           });
         } else {
           ons.notification.alert('Current value out of date.');
