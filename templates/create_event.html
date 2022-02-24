@@ -44,7 +44,7 @@
       <ons-col>
         <ons-range style="width: 100%;" min="3" max="36" value="3" id="event-token" onchange='span_hours()'></ons-range>
       </ons-col>
-      <ons-col width="40px" style="text-align: center; line-height: 31px;">        
+      <ons-col width="80px" style="text-align: center; line-height: 31px;">        
         <span id='hours'>3 hours</span>        
       </ons-col>
     </ons-row>
@@ -77,15 +77,15 @@
           ons.notification.alert('Current value out of date.');
           document.getElementById("radio-1").checked = true;
         }
-    });
+    });    
       
-      function span_hours(){
+    }
+    
+     function span_hours(){
         
          document.getElementById("hours").innerHTML = document.getElementById("event-token").value + 'hours';
         
       }
-      
-    }
     
   </script>
   
