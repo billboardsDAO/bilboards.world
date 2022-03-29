@@ -85,9 +85,9 @@ ons.ready(function() {
   window.GrpcWebProvider = herajs.GrpcWebProvider;
     
    window.aergo = new AergoClient({}, new GrpcWebProvider({
-    url: "https://testnet-api-http.aergo.io:7845"
+    url: "https://testnet-api-http.aergo.io"
    }));
-    
+
   ons.createElement('templates/connect.html', { append: true })
     .then(function(sheet) {
       window.dapp.showConnection = sheet.show.bind(sheet);
