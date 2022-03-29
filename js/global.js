@@ -26,10 +26,34 @@ lat;long
 
 // interval
 window.dapp.global = function() {
+      
+    if (document.getElementById("progress-bar")) {
+        // progress-bar está visivel   
+    }
+    
+    if (document.getElementById("bottom")) {
+        
+        let btn = document.querySelector("ons-bottom-toolbar>ons-row>ons-col>ons-toolbar-button"); // button    
+        let span = document.querySelector("ons-bottom-toolbar>ons-row>ons-col>span"); // information
+        
+        
+        
+        
+    }
+    
+    if (document.getElementById("claimable")) {
+        // claimable está visivel   
+    }
+    
+    
     
     
     
 };
+
+
+
+
 window.dapp.globalInterval = undefined;
 
 window.dapp.switch_theme = function(checked, startup) {    
