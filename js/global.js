@@ -81,8 +81,12 @@ window.dapp.switch_theme = function(checked, startup) {
 // onsenui configuration
 ons.ready(function() {
     
-  window.dapp.aergo = new AergoClient();
+  window.AergoClient = herajs.AergoClient;
+  window.GrpcWebProvider = herajs.GrpcWebProvider;
     
+   window.aergo = new AergoClient({}, new GrpcWebProvider({
+    url: "http://testnet-api-http.aergo.io:7845"
+   }));
     
   ons.createElement('templates/connect.html', { append: true })
     .then(function(sheet) {
@@ -90,7 +94,7 @@ ons.ready(function() {
       window.dapp.hideConnection = sheet.hide.bind(sheet);
     });   
     
-    window.dapp.globalInterval = setInterval(window.dapp.global, 1000);
+    window.dapp.globalInterval = setInterval(window.dapp.global, 2000);
     
     localforage.getItem('theme').then(function(value) {
         if(value == null) localforage.setItem('theme', false); 
