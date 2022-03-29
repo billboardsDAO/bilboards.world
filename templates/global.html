@@ -24,13 +24,15 @@
     <div id = "map" style = "width: 100%; height: 99%;">
   </div>
    
-  <ons-bottom-toolbar style="z-index:1000;">
+  <ons-bottom-toolbar style="z-index:1000;" id="bottom">
     <ons-row style="line-height:40px;">
       <ons-col width="100%">
-        <ons-toolbar-button id="connect-btn" onclick="dapp.showConnection()">
+        <ons-toolbar-button onclick="dapp.showConnection()">
           Aergo Connect
         </ons-toolbar-button>
-        Syncroning data...        
+        <span>
+           Syncroning data...
+         <span>
       </ons-col>            
    </ons-row>
   </ons-bottom-toolbar>
@@ -47,8 +49,7 @@
     </ons-speed-dial-item>
   </ons-speed-dial> 
 
-  <div class="toolbar--material bottom-corner">
-
+  <div class="toolbar--material bottom-corner" id="claimable">
     <img alt="ONE" width="22px" draggable="false" src="img/harmony-one-icon.svg"> 0.00000&nbsp;&nbsp;<b>CLAIMABLE</b>: 0
   </div>
 
