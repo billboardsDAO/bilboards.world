@@ -36,7 +36,11 @@ window.dapp.global = function() {
         let btn = document.querySelector("ons-bottom-toolbar>ons-row>ons-col>ons-toolbar-button"); // button    
         let span = document.querySelector("ons-bottom-toolbar>ons-row>ons-col>span"); // information
         
-        
+        let currentHeight;
+        aergo.blockchain().then(blockchainState => {
+            currentHeight = blockchainState.bestHeight;
+            span.innerHTML = currentHeight;
+        });
         
         
     }
@@ -77,6 +81,9 @@ window.dapp.switch_theme = function(checked, startup) {
 // onsenui configuration
 ons.ready(function() {
     
+  window.dapp.aergo = new AergoClient();
+    
+    
   ons.createElement('templates/connect.html', { append: true })
     .then(function(sheet) {
       window.dapp.showConnection = sheet.show.bind(sheet);
@@ -89,6 +96,7 @@ ons.ready(function() {
         if(value == null) localforage.setItem('theme', false); 
         window.dapp.switch_theme(document.querySelector('#theme-switcher').checked = value, true);
     });
+    
     
 });
 
