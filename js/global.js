@@ -30,7 +30,7 @@ window.dapp.global = function() {
     
     
 };
-window.dapp.globalIterval = undefined;
+window.dapp.globalInterval = undefined;
 
 window.dapp.switch_theme = function(checked, startup) {    
 
