@@ -85,7 +85,7 @@ ons.ready(function() {
   window.GrpcWebProvider = herajs.GrpcWebProvider;
     
    window.aergo = new AergoClient({}, new GrpcWebProvider({
-    url: "http://testnet-api-http.aergo.io:7845"
+    url: "https://testnet-api-http.aergo.io:7845"
    }));
     
   ons.createElement('templates/connect.html', { append: true })
@@ -176,8 +176,5 @@ document.addEventListener('init', function(event) {
 
 });
 
-
-
-setupContract(); // METAMASK MODULE
 
 
