@@ -101,7 +101,7 @@ window.dapp.aergoConnect = function() {
     };
 
     }, {
-    once = true
+    once: true
      });
    
     
