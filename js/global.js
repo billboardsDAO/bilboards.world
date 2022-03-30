@@ -42,6 +42,20 @@ window.dapp.global = function() {
                 currentHeight = blockchainState.bestHeight;
                 span.innerHTML = currentHeight;
             });
+            
+            if (window.account) {
+             
+               btn.innerHTML = window.account.address.substr(0, 6)+"..."+window.account.address.substr(-3);
+               btn.setAttribute("title", window.account.address);
+                
+            } else {
+                
+               btn.innerHTML = "Aergo Connect";
+               btn.removeAttribute("title");
+                
+            }
+            
+            
         }
         
         
