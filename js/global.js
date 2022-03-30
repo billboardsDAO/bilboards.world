@@ -36,11 +36,13 @@ window.dapp.global = function() {
         let btn = document.querySelector("ons-bottom-toolbar>ons-row>ons-col>ons-toolbar-button"); // button    
         let span = document.querySelector("ons-bottom-toolbar>ons-row>ons-col>span"); // information
         
-        let currentHeight;
-        aergo.blockchain().then(blockchainState => {
-            currentHeight = blockchainState.bestHeight;
-            span.innerHTML = currentHeight;
-        });
+        if (window.aergo) {
+            let currentHeight;
+            aergo.blockchain().then(blockchainState => {
+                currentHeight = blockchainState.bestHeight;
+                span.innerHTML = currentHeight;
+            });
+        }
         
         
     }
@@ -56,6 +58,58 @@ window.dapp.global = function() {
 };
 
 
+window.dapp.aergoConnect = function() {
+ 
+    if (window.account) {        
+        window.dapp.aergoDisconnect();
+    }
+    
+    
+  window.postMessage({
+    type: "AERGO_REQUEST",
+    action:  "ACTIVE_ACCOUNT",
+    data: {}
+  });
+    
+   window.addEventListener("AERGO_ACTIVE_ACCOUNT", function(event) {
+
+    if (event.detail.error) {
+      return false;
+    }
+    
+    let chain;
+       
+    if (event.detail.account.chainId == "aergo.io") {
+        
+       window.aergo = new AergoClient({}, new GrpcWebProvider({
+        url: "https://mainnet-api-http.aergo.io"
+       }));
+      
+   } else if (event.detail.account.chainId == "testnet.aergo.io") {
+       
+       window.aergo = new AergoClient({}, new GrpcWebProvider({
+        url: "https://testnet-api-http.aergo.io"
+       }));
+       
+    } else {
+      return false;
+    }
+       
+    window.account = {
+      address: event.detail.account.address,
+      chain: event.detail.account.chainId
+    };
+
+    }, {
+    once = true
+     });
+   
+    
+}
+
+window.dapp.aergoDisconnect = function() {
+    window.account = undefined;
+}
 
 
 window.dapp.globalInterval = undefined;
@@ -79,14 +133,10 @@ window.dapp.switch_theme = function(checked, startup) {
 }
 
 // onsenui configuration
-ons.ready(function() {
-    
-  window.AergoClient = herajs.AergoClient;
-  window.GrpcWebProvider = herajs.GrpcWebProvider;
-    
-   window.aergo = new AergoClient({}, new GrpcWebProvider({
-    url: "https://testnet-api-http.aergo.io"
-   }));
+ons.ready(function() {   
+
+    window.AergoClient = herajs.AergoClient;
+    window.GrpcWebProvider = herajs.GrpcWebProvider;
 
   ons.createElement('templates/connect.html', { append: true })
     .then(function(sheet) {
