@@ -132,18 +132,22 @@ window.dapp.switch_theme = function(checked, startup) {
 
 }
 
+window.dapp.interfaceConnection = function(){
+    
+    if (window.account) {
+        window.dapp.aergoDisconnect();
+    } else {
+        window.dapp.aergoConnect(); // show modal
+    }
+    
+}
+
 // onsenui configuration
 ons.ready(function() {   
 
     window.AergoClient = herajs.AergoClient;
     window.GrpcWebProvider = herajs.GrpcWebProvider;
-
-  ons.createElement('templates/connect.html', { append: true })
-    .then(function(sheet) {
-      window.dapp.showConnection = sheet.show.bind(sheet);
-      window.dapp.hideConnection = sheet.hide.bind(sheet);
-    });   
-    
+   
     window.dapp.globalInterval = setInterval(window.dapp.global, 2000);
     
     localforage.getItem('theme').then(function(value) {
