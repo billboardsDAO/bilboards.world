@@ -75,7 +75,7 @@ window.dapp.global = function() {
             if (window.account) {
                 
                 aergo.getState(window.account.address).then(state => {
-                    document.getElementById("claimable").innerHTML = Number(state.balance.value.toString()).toFixed(5);
+                    document.getElementById("claimable").innerHTML = web3.utils.fromWei(state.balance.value.toString(), 'ether');
                     //console.log(state);
                 })
                 
