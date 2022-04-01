@@ -44,7 +44,7 @@ window.dapp.global = function() {
         if (window.aergo) {
             
             aergo.blockchain().then(blockchainState => {
-                window.dapp.connectedInterval = 10;
+                window.dapp.connectedInterval = 5;
                 window.dapp.currentHeight = blockchainState.bestHeight;
                 span.innerHTML = "Aergo&nbsp;"+window.account.chain+"&nbsp;<font style='color:green;'>&bull;</font>&nbsp;"+window.dapp.currentHeight;
             }, function(ex) {
@@ -75,7 +75,7 @@ window.dapp.global = function() {
             if (window.account) {
                 
                 aergo.getState(window.account.address).then(state => {
-                    document.getElementById("claimable").innerHTML = Number(state.balance).toFixed(5);
+                    document.getElementById("claimable").innerHTML = Number(state.balance.value.toString()).toFixed(5);
                     //console.log(state);
                 })
                 
@@ -182,7 +182,7 @@ ons.ready(function() {
     window.AergoClient = herajs.AergoClient;
     window.GrpcWebProvider = herajs.GrpcWebProvider;
    
-    window.dapp.globalInterval = setInterval(window.dapp.global, 2000);
+    window.dapp.globalInterval = setInterval(window.dapp.global, 5000);
     
     localforage.getItem('theme').then(function(value) {
         if(value == null) localforage.setItem('theme', false); 
