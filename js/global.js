@@ -25,7 +25,11 @@ lat;long
 */
 
 // interval
+
+window.dapp.connectedInterval = 0;
+
 window.dapp.global = function() {
+    window.dapp.connectedInterval--;
       
     if (document.getElementById("progress-bar")) {
         // progress-bar está visivel   
@@ -40,7 +44,8 @@ window.dapp.global = function() {
             let currentHeight;
             aergo.blockchain().then(blockchainState => {
                 currentHeight = blockchainState.bestHeight;
-                span.innerHTML = currentHeight;
+                span.innerHTML = "Aergo&nbsp;"+window.account.chain+"&nbsp;<font style='color:"+window.dapp.connectedInterval>0?"green":"red"+";'>&bull;</font>&nbsp;"+currentHeight;
+                window.dapp.connectedInterval = 10;            
             });
             
             if (window.account) {
