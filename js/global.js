@@ -27,6 +27,7 @@ lat;long
 // interval
 
 window.dapp.connectedInterval = 0;
+window.dapp.currentHeight;
 
 window.dapp.global = function() {
     window.dapp.connectedInterval--;
@@ -41,13 +42,13 @@ window.dapp.global = function() {
         let span = document.querySelector("ons-bottom-toolbar>ons-row>ons-col>span"); // information
         
         if (window.aergo) {
-            let currentHeight;
+            
             aergo.blockchain().then(blockchainState => {
                 window.dapp.connectedInterval = 10;
-                currentHeight = blockchainState.bestHeight;
-                span.innerHTML = "Aergo&nbsp;"+window.account.chain+"&nbsp;<font style='color:green;'>&bull;</font>&nbsp;"+currentHeight;
+                window.dapp.currentHeight = blockchainState.bestHeight;
+                span.innerHTML = "Aergo&nbsp;"+window.account.chain+"&nbsp;<font style='color:green;'>&bull;</font>&nbsp;"+window.dapp.currentHeight;
             }, function(ex) {
-                  span.innerHTML = "Aergo&nbsp;"+window.account.chain+"&nbsp;<font style='color:red;'>&bull;</font>&nbsp;"+currentHeight;
+                  span.innerHTML = "Aergo&nbsp;"+window.account.chain+"&nbsp;<font style='color:red;'>&bull;</font>&nbsp;"+window.dapp.currentHeight;
               });
             
             if (window.account) {
