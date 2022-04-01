@@ -45,8 +45,10 @@ window.dapp.global = function() {
             aergo.blockchain().then(blockchainState => {
                 window.dapp.connectedInterval = 10;
                 currentHeight = blockchainState.bestHeight;
-                span.innerHTML = "Aergo&nbsp;"+window.account.chain+"&nbsp;<font style='color:"+(window.dapp.connectedInterval>0?"green":"red")+";'>&bull;</font>&nbsp;"+currentHeight;
-            });
+                span.innerHTML = "Aergo&nbsp;"+window.account.chain+"&nbsp;<font style='color:green;'>&bull;</font>&nbsp;"+currentHeight;
+            }, function(ex) {
+                  span.innerHTML = "Aergo&nbsp;"+window.account.chain+"&nbsp;<font style='color:red;'>&bull;</font>&nbsp;"+currentHeight;
+              });
             
             if (window.account) {
              
