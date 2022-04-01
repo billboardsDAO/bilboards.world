@@ -71,6 +71,18 @@ window.dapp.global = function() {
     
     if (document.getElementById("claimable")) {
         // claimable está visivel   
+        if (window.aergo) {
+            if (window.account) {
+                
+                aergo.getState(window.account.address).then(state => {
+                    document.getElementById("claimable").innerHTML = Number(state.balance).toFixed(5);
+                    //console.log(state);
+                })
+                
+            }            
+        }
+        
+        
     }
     
     
