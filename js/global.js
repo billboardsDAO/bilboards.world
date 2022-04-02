@@ -48,7 +48,7 @@ window.dapp.global = function() {
                 window.dapp.currentHeight = blockchainState.bestHeight;
                 span.innerHTML = window.account.chain+"&nbsp;<font style='color:green;'>&bull;</font>&nbsp;"+window.dapp.currentHeight;
             }, function(ex) {
-                span.innerHTML = window.account.chain+"&nbsp;<font style='color:red;'>&bull;</font>&nbsp;"+window.dapp.currentHeight;
+                document.querySelector("ons-bottom-toolbar>ons-row>ons-col>span>font").style.color = "red";
               });
             
             if (window.account) {
