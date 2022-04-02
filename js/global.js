@@ -48,7 +48,7 @@ window.dapp.global = function() {
                 window.dapp.currentHeight = blockchainState.bestHeight;
                 span.innerHTML = window.account.chain+"&nbsp;<font style='color:green;'>&bull;</font>&nbsp;"+window.dapp.currentHeight;
             }, function(ex) {
-                  span.innerHTML = window.account.chain+"&nbsp;<font style='color:red;'>&bull;</font>&nbsp;"+window.dapp.currentHeight;
+                span.innerHTML = window.account.chain+"&nbsp;<font style='color:red;'>&bull;</font>&nbsp;"+window.dapp.currentHeight;
               });
             
             if (window.account) {
@@ -63,16 +63,17 @@ window.dapp.global = function() {
                 
             }
             
-            
+        } else {
+            span.innerHTML = span.getAttribute("data-placeholder");
         }
         
         
     }
     
     if (document.getElementById("claimable")) {
-        // claimable está visivel   
-        if (window.aergo) {
-            if (window.account) {
+  
+        if ((window.aergo)&&(window.account)) {
+
                 
                 aergo.getState(window.account.address).then(state => {                    
                     localforage.getItem('claimable').then(function(value) {
@@ -82,8 +83,11 @@ window.dapp.global = function() {
                         "&nbsp;<b>CLAIMABLE</b>:&nbsp;" + ((value == null)?"0":value.toString());                        
                     });
                 })
-                
-            }            
+       
+        } else {
+            
+            document.getElementById("claimable").innerHTML = document.getElementById("claimable").getAttribute("data-placeholder");
+            
         }
         
         
