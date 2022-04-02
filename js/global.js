@@ -73,14 +73,17 @@ window.dapp.global = function() {
     if (document.getElementById("claimable")) {
   
         if ((window.aergo)&&(window.account)) {
-
                 
                 aergo.getState(window.account.address).then(state => {                    
                     localforage.getItem('claimable').then(function(value) {
-                        if(value == null) localforage.setItem('claimable', 0);                             
-                        document.getElementById("claimable").innerHTML = "<img alt='Aergo' width='22px' draggable='false' src='img/aergo_logomark.svg'>&nbsp;" +
-                        (new herajs.Amount(state.balance.value.toString(), "aer", "aergo")).toString().replace(/ aergo/, "").replace(/^(\d+[\.,]\d{5}).*$/, "$1") +
-                        "&nbsp;<b>CLAIMABLE</b>:&nbsp;" + ((value == null)?"0":value.toString());                        
+                        if(value == null) localforage.setItem('claimable', 0);
+                        
+                        if (!document.querySelector("#claimable>span")) {
+                            document.querySelector("#claimable").innerHTML = "<img alt='Aergo' width='20px' draggable='false' src='img/aergo_logomark.svg'>&nbsp;<span>&nbsp;</span>"
+                        }
+                        document.querySelector("#claimable>span").innerHTML = (new herajs.Amount(state.balance.value.toString(), "aer", "aergo")).toString().replace(/ aergo/, "").replace(/^(\d+[\.,]\d{5}).*$/, "$1") +
+                        "&nbsp;<b>CLAIMABLE</b>:&nbsp;" + ((value == null)?"0":value.toString()); 
+                                              
                     });
                 })
        
