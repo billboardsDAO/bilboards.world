@@ -46,9 +46,9 @@ window.dapp.global = function() {
             aergo.blockchain().then(blockchainState => {
                 window.dapp.connectedInterval = 5;
                 window.dapp.currentHeight = blockchainState.bestHeight;
-                span.innerHTML = "Aergo&nbsp;"+window.account.chain+"&nbsp;<font style='color:green;'>&bull;</font>&nbsp;"+window.dapp.currentHeight;
+                span.innerHTML = window.account.chain+"&nbsp;<font style='color:green;'>&bull;</font>&nbsp;"+window.dapp.currentHeight;
             }, function(ex) {
-                  span.innerHTML = "Aergo&nbsp;"+window.account.chain+"&nbsp;<font style='color:red;'>&bull;</font>&nbsp;"+window.dapp.currentHeight;
+                  span.innerHTML = window.account.chain+"&nbsp;<font style='color:red;'>&bull;</font>&nbsp;"+window.dapp.currentHeight;
               });
             
             if (window.account) {
@@ -74,10 +74,13 @@ window.dapp.global = function() {
         if (window.aergo) {
             if (window.account) {
                 
-                aergo.getState(window.account.address).then(state => {
-                    document.getElementById("claimable").innerHTML = (new herajs.Amount(state.balance.value.toString(), "aer", "aergo")).toString().replace(/ aergo/, "").replace(/^(\d+[\.,]\d{5}).*$/, "$1");
-                    //document.getElementById("claimable").innerHTML = web3.utils.fromWei(state.balance.value.toString(), 'ether');
-                    //console.log(state);
+                aergo.getState(window.account.address).then(state => {                    
+                    localforage.getItem('claimable').then(function(value) {
+                        if(value == null) localforage.setItem('claimable', 0);                             
+                        document.getElementById("claimable").innerHTML = "<img alt='Aergo' width='22px' draggable='false' src='img/aergo_logomark.svg'>&nbsp;" +
+                        (new herajs.Amount(state.balance.value.toString(), "aer", "aergo")).toString().replace(/ aergo/, "").replace(/^(\d+[\.,]\d{5}).*$/, "$1") +
+                        "&nbsp;<b>CLAIMABLE</b>:&nbsp;" + ((value == null)?"0":value.toString());                        
+                    });
                 })
                 
             }            
