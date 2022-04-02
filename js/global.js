@@ -75,7 +75,7 @@ window.dapp.global = function() {
             if (window.account) {
                 
                 aergo.getState(window.account.address).then(state => {
-                    document.getElementById("claimable").innerHTML = (new herajs.Amount(state.balance.value.toString(), "aer", "aergo")).toString();
+                    document.getElementById("claimable").innerHTML = (new herajs.Amount(state.balance.value.toString(), "aer", "aergo")).toString().replace(/ aergo/, "").replace(/^(\d+[\.,]\d{5}).*$/, "$1");
                     //document.getElementById("claimable").innerHTML = web3.utils.fromWei(state.balance.value.toString(), 'ether');
                     //console.log(state);
                 })
