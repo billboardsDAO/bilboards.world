@@ -60,6 +60,7 @@ window.dapp.global = function() {
                 
                btn.innerHTML = "Aergo Connect";
                btn.removeAttribute("title");
+               span.innerHTML = span.getAttribute("data-placeholder");
                 
             }
             
