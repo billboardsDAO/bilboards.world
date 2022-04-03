@@ -298,16 +298,16 @@ ons.ready(function() {
                       var litem = document.createElement('ons-list-item');
                       litem.setAttribute("modifier", "longdivider");
                       litem.setAttribute("tappable", "tappable");
-                      litem.setAttribute("data-value_per_hours", myJson.parse.value_per_hours_ns.toString());
+                      litem.setAttribute("data-value_per_hours", events_list[i].value_per_hours_ns.toString());
                       litem.innerHTML = `<div class="left">
                         <span class="list-item__title" style="text-overflow:ellipsis;width:240px;overflow:hidden;">${window.escapeHtml(myJson.parse.title)}</span><span class="list-item__subtitle">From Wikipedia</span>
                       </div>`;
 
                        var litems = document.getElementById("events-list").children;
 
-                        for (i = 1; i < litems.length; i++) {
-                            if (Number(myJson.parse.value_per_hours_ns) > Number(litems[i].getAttribute("data-value_per_hours"))) {
-                                document.getElementById("events-list").insertBefore(litem, litems[i]);
+                        for (j = 1; j < litems.length; j++) {
+                            if (Number(events_list[i].value_per_hours_ns) > Number(litems[j].getAttribute("data-value_per_hours"))) {
+                                document.getElementById("events-list").insertBefore(litem, litems[j]);
                             }                        
                         }           
 
