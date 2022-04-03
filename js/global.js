@@ -312,7 +312,7 @@ ons.ready(function() {
                     <img class="list-item__thumbnail" src="img/wikipedia_w.svg" height="32" width="32">
                   </div>
                   <div class="center">
-                    <span class="list-item__title">${myJson.parse.title}</span><span class="list-item__subtitle">From Wikipedia</span>
+                    <span class="list-item__title">${window.escapeHtml(myJson.parse.title)}</span><span class="list-item__subtitle">From Wikipedia</span>
                   </div>
                 </ons-list-item>`;
                   
