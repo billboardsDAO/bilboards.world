@@ -273,7 +273,7 @@ ons.ready(function() {
     });
     
     document.querySelector('#search').addEventListener('preclose', function() {
-        document.getElementById("events-list").innerHTML = '<ons-list-header class="list-header">Current Events</ons-list-header>';
+        document.getElementById("events-list").innerHTML = '<ons-list-header class="list-header">Current Events</ons-list-header><ons-progress-circular indeterminate></ons-progress-circular>';
     });
     
     
