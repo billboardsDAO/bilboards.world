@@ -184,10 +184,10 @@ window.dapp.interfaceConnection = function(){
         window.dapp.aergoDisconnect();
     } else {
         
-        ons.createElement('connect.html', { append: true })
+        ons.createElement('templates/connect.html', { append: true })
         .then(function (sheet) {
-          app.showFromTemplate = sheet.show.bind(sheet);
-          app.hideFromTemplate = sheet.hide.bind(sheet);
+          window.dapp.showFromTemplate = sheet.show.bind(sheet);
+          window.dapp.hideFromTemplate = sheet.hide.bind(sheet);
         });        
         
     }
