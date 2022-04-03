@@ -226,12 +226,8 @@ window.dapp.interfaceConnection = function(){
                 window.dapp.aergoConnect();            
                 
                 var showPopover = function(target) {
-                  document
-                    .getElementById('browser-extension-popover')
-                    .show(target);
+                  document.getElementById('browser-extension-popover').show(document.getElementById('search-menu'));
                 };
-                
-                
                 
             }        
         
