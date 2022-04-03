@@ -184,10 +184,28 @@ window.dapp.interfaceConnection = function(){
         window.dapp.aergoDisconnect();
     } else {
         
-        ons.createElement('connections-template', { append: true })
-        .then(function (sheet) {
-          window.dapp.hideConnection = sheet.hide.bind(sheet);
-        });        
+        
+        ons.openActionSheet({
+            title: 'Aergo Connect',
+            cancelable: true,
+            buttons: [
+              'Label 0',
+              'Label 1',
+              {
+                label: 'Aergo Web Node',
+                modifier: 'destructive'
+              },
+              {
+                label: 'Cancel',
+                icon: 'md-close'
+              }
+            ]
+         }).then(function (index) { console.log('index: ', index) });
+        
+        
+        
+        
+        
         
     }
     
