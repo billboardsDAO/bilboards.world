@@ -186,8 +186,7 @@ window.dapp.interfaceConnection = function(){
         
         ons.createElement('templates/connect.html', { append: true })
         .then(function (sheet) {
-          window.dapp.showFromTemplate = sheet.show.bind(sheet);
-          window.dapp.hideFromTemplate = sheet.hide.bind(sheet);
+          window.dapp.hideConnection = sheet.hide.bind(sheet);
         });        
         
     }
