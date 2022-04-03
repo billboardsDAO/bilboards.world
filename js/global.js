@@ -272,6 +272,10 @@ ons.ready(function() {
         window.dapp.switch_theme(document.querySelector('#theme-switcher').checked = value, true);
     });
     
+    document.querySelector('#search').addEventListener('preclose', function() {
+        document.getElementById("events-list").innerHTML = '<ons-list-header class="list-header">Current Events</ons-list-header>';
+    });
+    
     
 });
 
