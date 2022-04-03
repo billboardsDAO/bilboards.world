@@ -183,7 +183,13 @@ window.dapp.interfaceConnection = function(){
     if (window.account) {
         window.dapp.aergoDisconnect();
     } else {
-        window.dapp.aergoConnect(); // show modal
+        
+        ons.createElement('connect.html', { append: true })
+        .then(function (sheet) {
+          app.showFromTemplate = sheet.show.bind(sheet);
+          app.hideFromTemplate = sheet.hide.bind(sheet);
+        });        
+        
     }
     
 }
