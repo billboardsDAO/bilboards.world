@@ -184,7 +184,7 @@ window.dapp.interfaceConnection = function(){
         window.dapp.aergoDisconnect();
     } else {
         
-        ons.createElement('templates/connect.html', { append: true })
+        ons.createElement('connections-sheet', { append: true })
         .then(function (sheet) {
           window.dapp.hideConnection = sheet.hide.bind(sheet);
         });        
