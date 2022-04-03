@@ -105,11 +105,12 @@ window.dapp.global = function() {
 
 
 window.dapp.aergoConnect = function() {
- 
+    
     if (window.account) {        
         window.dapp.aergoDisconnect();
-    }
-    
+    } else {
+        document.querySelector("ons-bottom-toolbar>ons-row>ons-col>ons-toolbar-button").innerHTML = "Connecting...";
+    }    
     
   window.postMessage({
     type: "AERGO_REQUEST",
@@ -158,6 +159,7 @@ window.dapp.aergoConnect = function() {
 
 window.dapp.aergoDisconnect = function() {
     window.account = undefined;
+    document.querySelector("ons-bottom-toolbar>ons-row>ons-col>ons-toolbar-button").innerHTML = "Disconnecting...";
 }
 
 
