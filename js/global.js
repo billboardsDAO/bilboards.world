@@ -119,6 +119,9 @@ window.dapp.aergoConnect = function() {
     
    window.addEventListener("AERGO_ACTIVE_ACCOUNT", function(event) {
 
+    if (window.dapp.extensionPopoverTimeout) clearTimeout(window.dapp.extensionPopoverTimeout);
+    document.getElementById('browser-extension-popover').hide();
+       
     if (event.detail.error) {
       return false;
     }
@@ -178,6 +181,8 @@ window.dapp.switch_theme = function(checked, startup) {
 
 }
 
+
+window.dapp.extensionPopoverTimeout = undefined;
 window.dapp.interfaceConnection = function(){
     
     if (window.account) {
@@ -225,9 +230,11 @@ window.dapp.interfaceConnection = function(){
             if (index == 0) {
                 window.dapp.aergoConnect();            
                 
-                var showPopover = function(target) {
+               window.dapp.extensionPopoverTimeout = setTimeout(function() {
+                  window.dapp.extensionPopoverTimeout = undefined;
                   document.getElementById('browser-extension-popover').show(document.getElementById('search-menu'));
-                };
+               }, 5000);
+                
                 
             }        
         
