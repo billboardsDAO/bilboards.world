@@ -276,19 +276,8 @@ ons.ready(function() {
         document.getElementById("events-list").innerHTML = '<ons-list-header class="list-header">Current Events</ons-list-header><ons-progress-circular indeterminate></ons-progress-circular>';
     });
     
-    
-});
-
-
-
-
-  window.dapp.open_menu = function() {
-    document.getElementById('menu').open();
-  };
-
-  window.dapp.open_search = function() {
-    document.getElementById('search').open();
-      
+    document.querySelector('#search').addEventListener('preopen', function() {        
+           
     if (window.dapp.contract) {
         
         var query_events = async function() {
@@ -321,8 +310,23 @@ ons.ready(function() {
         query_events();
         
     }
-      
-      
+        
+        
+    });
+    
+    
+    
+});
+
+
+
+
+  window.dapp.open_menu = function() {
+    document.getElementById('menu').open();
+  };
+
+  window.dapp.open_search = function() {
+    document.getElementById('search').open();  
   };
 
   window.dapp.hide_menu = function() {
