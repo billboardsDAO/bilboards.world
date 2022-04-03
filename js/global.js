@@ -301,26 +301,25 @@ ons.ready(function() {
             
             for(i=0;i<events_list.length;i++) {
                 
-              fetch('https://en.wikipedia.org/w/api.php?'+window.encodeQueryData({"action":"parse","format":"json","prop":"text","formatversion":2,"page":decodeURIComponent(escape(window.atob(events_list[i].media_base64)))}))
+              fetch('https://en.wikipedia.org/w/api.php?'+window.encodeQueryData({"action":"parse","format":"json","origin":"*","prop":"text","formatversion":2,"page":decodeURIComponent(escape(window.atob(events_list[i].media_base64)))}))
               .then(function(response) {
                 return response.json();
               })
               .then(function(myJson) {
-                console.log(myJson);
-              });
-                
-                 /* final +=  `<!--ons-list-item modifier="longdivider" tappable>
-              <div class="left">
-                <img class="list-item__thumbnail" src="https://placekitten.com/g/40/40">
-              </div>
-              <div class="center">
-                <span class="list-item__title">Cutest kitty</span><span class="list-item__subtitle">On the Internet</span>
-              </div>
-            </ons-list-item>`;*/
+                  
+                  document.getElementById("events-list").innerHTML += `<ons-list-item modifier="longdivider" tappable>
+                  <div class="left">
+                    <img class="list-item__thumbnail" src="img/wikipedia_w.svg" height="32" width="32">
+                  </div>
+                  <div class="center">
+                    <span class="list-item__title">${myJson.parse.title}</span><span class="list-item__subtitle">From Wikipedia</span>
+                  </div>
+                </ons-list-item>`;
+                  
+              });                
                 
             }
-            
-            
+
         };
         query_events();
         
