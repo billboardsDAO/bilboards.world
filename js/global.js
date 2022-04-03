@@ -108,8 +108,7 @@ window.dapp.global = function() {
     
 };
 
-
-async window.dapp.aergoConnect = function() {
+window.dapp.aergoConnect = function() {
     
     if (window.account) {        
         window.dapp.aergoDisconnect();
@@ -155,9 +154,12 @@ async window.dapp.aergoConnect = function() {
       chain: event.detail.account.chainId
     };
        
-    window.dapp.abi = await aergo.getABI(window.dapp.address);
-    window.dapp.contract = Contract.atAddress(window.dapp.address);
-    window.dapp.contract.loadAbi(await aergo.getABI(window.dapp.address));
+       var load_contact = async function() {
+           window.dapp.abi = await aergo.getABI(window.dapp.address);
+           window.dapp.contract = Contract.atAddress(window.dapp.address);
+           window.dapp.contract.loadAbi(await aergo.getABI(window.dapp.address));
+       }
+       load_contact();      
 
     }, {
     once: true
@@ -281,13 +283,16 @@ ons.ready(function() {
     document.getElementById('menu').open();
   };
 
-  async window.dapp.open_search = function() {
+  window.dapp.open_search = function() {
     document.getElementById('search').open();
       
     if (window.dapp.contract) {
         
-        const result = await aergo.queryContract(window.dapp.contract.get_events_list());
-        console.log(result);
+        var query_events = async function() {
+            const result = await aergo.queryContract(window.dapp.contract.get_events_list());
+            console.log(result);
+        };
+        query_events();
         
     }
       
