@@ -233,7 +233,7 @@ window.dapp.interfaceConnection = function(){
                window.dapp.extensionPopoverTimeout = setTimeout(function() {
                   window.dapp.extensionPopoverTimeout = undefined;
                   document.getElementById('browser-extension-popover').show(document.getElementById('search-menu'));
-               }, 5000);
+               }, 1500);
                 
                 
             }        
