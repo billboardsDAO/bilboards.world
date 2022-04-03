@@ -156,12 +156,12 @@ window.dapp.aergoConnect = function() {
       chain: event.detail.account.chainId
     };
        
-       var load_contact = async function() {
+       var load_contract = async function() {
            window.dapp.abi = await aergo.getABI(window.dapp.address);
            window.dapp.contract = Contract.atAddress(window.dapp.address);
            window.dapp.contract.loadAbi(await aergo.getABI(window.dapp.address));
        }
-       load_contact();      
+       load_contract();      
 
     }, {
     once: true
@@ -291,8 +291,36 @@ ons.ready(function() {
     if (window.dapp.contract) {
         
         var query_events = async function() {
-            const result = await aergo.queryContract(window.dapp.contract.get_events_list());
-            console.log(result);
+            const events_list = await aergo.queryContract(window.dapp.contract.get_events_list());
+            
+            //https://en.wikipedia.org/w/api.php?action=parse&format=json&page=Pet_door&prop=text&formatversion=2
+                      
+            
+            let list = document.getElementById("events-list");
+            let final = '<ons-list-header class="list-header">Current Events</ons-list-header>';
+            
+            for(i=0;i<events_list.length;i++) {
+                
+              fetch('https://en.wikipedia.org/w/api.php?'+window.encodeQueryData({"action":"parse","format":"json","prop":"text","formatversion":2,"page":window.base64.decode(events_list[i].media_base64)}))
+              .then(function(response) {
+                return response.json();
+              })
+              .then(function(myJson) {
+                console.log(myJson);
+              });
+                
+                 /* final +=  `<!--ons-list-item modifier="longdivider" tappable>
+              <div class="left">
+                <img class="list-item__thumbnail" src="https://placekitten.com/g/40/40">
+              </div>
+              <div class="center">
+                <span class="list-item__title">Cutest kitty</span><span class="list-item__subtitle">On the Internet</span>
+              </div>
+            </ons-list-item>`;*/
+                
+            }
+            
+            
         };
         query_events();
         
@@ -364,3 +392,11 @@ document.addEventListener('init', function(event) {
 
 
 
+window.encodeQueryData = function(data) {
+   const ret = [];
+   for (let d in data)
+     ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
+   return ret.join('&');
+}
+
+window.base64={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(e){var t="";var n,r,i,s,o,u,a;var f=0;e=Base64._utf8_encode(e);while(f<e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n>>2;o=(n&3)<<4|r>>4;u=(r&15)<<2|i>>6;a=i&63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},decode:function(e){var t="";var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9\+\/\=]/g,"");while(f<e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s<<2|o>>4;r=(o&15)<<4|u>>2;i=(u&3)<<6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=Base64._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/\r\n/g,"\n");var t="";for(var n=0;n<e.length;n++){var r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r)}else if(r>127&&r<2048){t+=String.fromCharCode(r>>6|192);t+=String.fromCharCode(r&63|128)}else{t+=String.fromCharCode(r>>12|224);t+=String.fromCharCode(r>>6&63|128);t+=String.fromCharCode(r&63|128)}}return t},_utf8_decode:function(e){var t="";var n=0;var r=c1=c2=0;while(n<e.length){r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r);n++}else if(r>191&&r<224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&31)<<6|c2&63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);n+=3}}return t}}
