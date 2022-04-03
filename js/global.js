@@ -109,7 +109,7 @@ window.dapp.global = function() {
 };
 
 
-window.dapp.aergoConnect = function() {
+async window.dapp.aergoConnect = function() {
     
     if (window.account) {        
         window.dapp.aergoDisconnect();
@@ -281,7 +281,7 @@ ons.ready(function() {
     document.getElementById('menu').open();
   };
 
-  window.dapp.open_search = function() {
+  async window.dapp.open_search = function() {
     document.getElementById('search').open();
       
     if (window.dapp.contract) {
