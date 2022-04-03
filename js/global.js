@@ -306,7 +306,7 @@ ons.ready(function() {
                        var litems = document.getElementById("events-list").children;
 
                         for (i = 1; i < litems.length; i++) {
-                            if Number(myJson.parse.value_per_hours_ns) > Number(litems[i].getAttribute("data-value_per_hours")) {
+                            if (Number(myJson.parse.value_per_hours_ns) > Number(litems[i].getAttribute("data-value_per_hours")) {
                                 document.getElementById("events-list").insertBefore(litem, litems[i]);
                             }                        
                         }           
