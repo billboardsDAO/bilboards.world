@@ -223,7 +223,16 @@ window.dapp.interfaceConnection = function(){
          }).then(function (index) { 
         
             if (index == 0) {
-                window.dapp.aergoConnect();                
+                window.dapp.aergoConnect();            
+                
+                var showPopover = function(target) {
+                  document
+                    .getElementById('browser-extension-popover')
+                    .show(target);
+                };
+                
+                
+                
             }        
         
         });
