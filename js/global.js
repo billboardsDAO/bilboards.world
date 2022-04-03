@@ -169,6 +169,8 @@ window.dapp.aergoConnect = function() {
 window.dapp.aergoDisconnect = function() {
     window.account = undefined;
     document.querySelector("ons-bottom-toolbar>ons-row>ons-col>ons-toolbar-button").innerHTML = "Disconnecting...";
+    window.dapp.abi = undefined;
+    window.dapp.contract = undefined;
 }
 
 
@@ -260,6 +262,7 @@ ons.ready(function() {
 
     window.AergoClient = herajs.AergoClient;
     window.GrpcWebProvider = herajs.GrpcWebProvider;
+    window.Contract = herajs.Contract;
    
     window.dapp.globalInterval = setInterval(window.dapp.global, 5000);
     
@@ -280,6 +283,15 @@ ons.ready(function() {
 
   window.dapp.open_search = function() {
     document.getElementById('search').open();
+      
+    if (window.dapp.contract) {
+        
+        const result = await aergo.queryContract(window.dapp.contract.get_events_list());
+        console.log(result);
+        
+    }
+      
+      
   };
 
   window.dapp.hide_menu = function() {
