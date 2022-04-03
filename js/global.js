@@ -1,6 +1,8 @@
 // object to insert global window functions of the dapp
 var dapp = {};
 
+window.Buffer = buffer.Buffer;
+
 window.dapp.address = "AmgxqtwjFewjnxj3oRnz9sSndK3QZgAUDGAs8E3X2xrU9YC4YmyN";
 
 window.dapp.contract = undefined;
