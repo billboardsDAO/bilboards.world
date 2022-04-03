@@ -181,16 +181,35 @@ window.dapp.switch_theme = function(checked, startup) {
 window.dapp.interfaceConnection = function(){
     
     if (window.account) {
-        window.dapp.aergoDisconnect();
+        
+          ons.openActionSheet({
+            title: 'Aergo Connect',
+            cancelable: true,
+            buttons: [
+              {
+                label: 'Disconnect',
+                modifier: 'destructive',
+                icon: 'fa-ban'
+              },
+              {
+                label: 'Cancel',
+                icon: 'md-close'
+              }
+            ]
+         }).then(function (index) { 
+        
+            if (index == 1) {
+                window.dapp.aergoDisconnect();        
+            }        
+        
+        });        
+        
     } else {
-        
-        
+                
         ons.openActionSheet({
             title: 'Aergo Connect',
             cancelable: true,
             buttons: [
-              'Label 0',
-              'Label 1',
               {
                 label: 'Aergo Web Node',
                 modifier: 'destructive',
@@ -201,13 +220,14 @@ window.dapp.interfaceConnection = function(){
                 icon: 'md-close'
               }
             ]
-         }).then(function (index) { console.log('index: ', index) });
+         }).then(function (index) { 
         
+            if (index == 1) {
+                window.dapp.aergoConnect();                
+            }        
         
-        
-        
-        
-        
+        });
+
     }
     
 }
