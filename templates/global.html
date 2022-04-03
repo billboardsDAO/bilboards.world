@@ -13,7 +13,7 @@
       </ons-toolbar-button>
     </div>
     <div class="right">
-      <ons-toolbar-button onclick="window.dapp.open_search()">
+      <ons-toolbar-button onclick="window.dapp.open_search()" id="search-menu">
         <ons-if platform="windows other">Search&nbsp;</ons-if><ons-icon icon="md-search"></ons-icon>
       </ons-toolbar-button>
     </div>
@@ -54,13 +54,10 @@
 </ons-page>
     
     
-<ons-popover direction="down" id="browser-extension-popover">
+<ons-popover cancelable direction="down" id="browser-extension-popover">
   <div style="padding: 10px; text-align: center;">
     <p>
       This is a popover
-    </p>
-    <p>
-      <ons-button onclick="hidePopover()">Close</ons-button>
     </p>
   </div>
 </ons-popover>
