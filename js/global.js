@@ -1,6 +1,11 @@
 // object to insert global window functions of the dapp
 var dapp = {};
 
+window.dapp.address = "AmgxqtwjFewjnxj3oRnz9sSndK3QZgAUDGAs8E3X2xrU9YC4YmyN";
+
+window.dapp.contract = undefined;
+window.dapp.abi = undefined;
+
 // localforage configuration
 localforage.config({    
     name: 'billboardsDAO',
@@ -149,6 +154,10 @@ window.dapp.aergoConnect = function() {
       address: event.detail.account.address,
       chain: event.detail.account.chainId
     };
+       
+    window.dapp.abi = await aergo.getABI(window.dapp.address);
+    window.dapp.contract = Contract.atAddress(window.dapp.address);
+    window.dapp.contract.loadAbi(await aergo.getABI(window.dapp.address));
 
     }, {
     once: true
