@@ -290,11 +290,7 @@ ons.ready(function() {
         var query_events = async function() {
             const events_list = await aergo.queryContract(window.dapp.contract.get_events_list());
             
-            //https://en.wikipedia.org/w/api.php?action=parse&format=json&page=Pet_door&prop=text&formatversion=2
-                      
-            
-            let list = document.getElementById("events-list");
-            let final = '<ons-list-header class="list-header">Current Events</ons-list-header>';
+            document.getElementById("events-list").innerHTML = '<ons-list-header class="list-header">Current Events</ons-list-header>';
             
             for(i=0;i<events_list.length;i++) {
                 
