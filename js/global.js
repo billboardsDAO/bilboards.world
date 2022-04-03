@@ -193,7 +193,8 @@ window.dapp.interfaceConnection = function(){
               'Label 1',
               {
                 label: 'Aergo Web Node',
-                modifier: 'destructive'
+                modifier: 'destructive',
+                icon: 'fa-network-wired'
               },
               {
                 label: 'Cancel',
