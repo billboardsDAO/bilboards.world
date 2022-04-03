@@ -186,19 +186,19 @@ window.dapp.interfaceConnection = function(){
             title: 'Aergo Connect',
             cancelable: true,
             buttons: [
-              {
+              { //0
                 label: 'Disconnect',
                 modifier: 'destructive',
                 icon: 'fa-ban'
               },
-              {
+              { //1
                 label: 'Cancel',
                 icon: 'md-close'
               }
             ]
          }).then(function (index) { 
         
-            if (index == 1) {
+            if (index == 0) {
                 window.dapp.aergoDisconnect();        
             }        
         
@@ -210,19 +210,19 @@ window.dapp.interfaceConnection = function(){
             title: 'Aergo Connect',
             cancelable: true,
             buttons: [
-              {
+              { //0
                 label: 'Aergo Web Node',
                 modifier: 'destructive',
                 icon: 'fa-network-wired'
               },
-              {
+              { //1
                 label: 'Cancel',
                 icon: 'md-close'
               }
             ]
          }).then(function (index) { 
         
-            if (index == 1) {
+            if (index == 0) {
                 window.dapp.aergoConnect();                
             }        
         
