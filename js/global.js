@@ -295,7 +295,6 @@ ons.ready(function() {
                     try {
                          
                       var litem = document.createElement('ons-list-item');
-                      litem.setAttribute("modifier", "longdivider");
                       litem.setAttribute("tappable", "tappable");
                       litem.setAttribute("data-value_per_hour", events_list[i].value_per_hour_ns.toString());
                       litem.innerHTML = `<div>
