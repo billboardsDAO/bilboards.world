@@ -294,13 +294,15 @@ ons.ready(function() {
                     
                     // try {
                          
-                      /*var litem = document.createElement('ons-list-item');
+                      var litem = document.createElement('ons-list-item');
                       litem.setAttribute("modifier", "longdivider");
                       litem.setAttribute("tappable", "tappable");
                       litem.setAttribute("data-value_per_hour", events_list[i].value_per_hour_ns.toString());
                       litem.innerHTML = `<div class="left">
-                        <span class="list-item__title" style="text-overflow:ellipsis;width:240px;overflow:hidden;">${window.escapeHtml(myJson.parse.title)}</span><span class="list-item__subtitle">From Wikipedia</span>
+                        <span class="list-item__title" style="text-overflow:ellipsis;width:240px;overflow:hidden;">${window.escapeHtml(respjson.parse.title)}</span><span class="list-item__subtitle">From Wikipedia</span>
                       </div>`;
+                    
+                        alert(respjson.parse.title);
 
                        document.getElementById("events-list").insertBefore(litem);
                                           
@@ -310,23 +312,7 @@ ons.ready(function() {
                         let sorted = Array.from(litemx).sort(function(a, b){return b.dataset.value_per_hour-a.dataset.value_per_hour});
 
                         document.getElementById("events-list").innerHTML = '<ons-list-header class="list-header">Current Events</ons-list-header>';
-                        sorted.forEach(e => document.getElementById("events-list").appendChild(e));*/
-                         
-                      let litem = document.createElement('ons-list-item');
-                      litem.setAttribute("modifier", "longdivider");
-                      litem.setAttribute("tappable", "tappable");
-                      litem.setAttribute("data-value_per_hour", events_list[i].value_per_hour_ns.toString());
-                      litem.innerHTML = `<div class="left">
-                        <span class="list-item__title" style="text-overflow:ellipsis;width:240px;overflow:hidden;">${window.escapeHtml(respjson.parse.title)}</span><span class="list-item__subtitle">From Wikipedia</span>
-                      </div>`;
-
-                       var litems = document.getElementById("events-list").children;
-
-                        for (j = 1; j < litems.length; j++) {
-                            if (Number(events_list[i].value_per_hour_ns) > Number(litems[j].getAttribute("data-value_per_hour"))) {
-                                document.getElementById("events-list").insertBefore(litem, litems[j]);
-                            }                        
-                        }    
+                        sorted.forEach(e => document.getElementById("events-list").appendChild(e));
                          
                     // } catch(ex){}        
            
