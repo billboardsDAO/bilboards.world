@@ -283,24 +283,40 @@ ons.ready(function() {
         var query_events = async function() {
             const events_list = await aergo.queryContract(window.dapp.contract.get_events_list());
             
-            document.getElementById("events-list").innerHTML = '<ons-list-header class="list-header">Current Events</ons-list-header><ons-list-item data-value_per_hours="0" tappable>Create Event</ons-list-item>';
+            document.getElementById("events-list").innerHTML = '<ons-list-header class="list-header">Current Events</ons-list-header>';
             
             if (events_list.length>0) {
             
                 for(i=0;i<events_list.length;i++) {
 
-                  fetch('https://en.wikipedia.org/w/api.php?'+window.encodeQueryData({"action":"parse","format":"json","origin":"*","prop":"text","formatversion":2,"page":decodeURIComponent(escape(window.atob(events_list[i].media_base64)))}))
-                  .then(function(response) {
-                    return response.json();
-                  })
-                  .then(function(myJson) {
-
-                      var litem = document.createElement('ons-list-item');
+                     const resp = await fetch('https://en.wikipedia.org/w/api.php?'+window.encodeQueryData({"action":"parse","format":"json","origin":"*","prop":"text","formatversion":2,"page":decodeURIComponent(escape(window.atob(events_list[i].media_base64)))}));
+                    
+                    // try {
+                         
+                      /*var litem = document.createElement('ons-list-item');
                       litem.setAttribute("modifier", "longdivider");
                       litem.setAttribute("tappable", "tappable");
                       litem.setAttribute("data-value_per_hour", events_list[i].value_per_hour_ns.toString());
                       litem.innerHTML = `<div class="left">
                         <span class="list-item__title" style="text-overflow:ellipsis;width:240px;overflow:hidden;">${window.escapeHtml(myJson.parse.title)}</span><span class="list-item__subtitle">From Wikipedia</span>
+                      </div>`;
+
+                       document.getElementById("events-list").insertBefore(litem);
+                                          
+                       let litems = document.getElementById("events-list");
+                       let litemx = document.getElementById("events-list").querySelectorAll("ons-list-item");
+
+                        let sorted = Array.from(litemx).sort(function(a, b){return b.dataset.value_per_hour-a.dataset.value_per_hour});
+
+                        document.getElementById("events-list").innerHTML = '<ons-list-header class="list-header">Current Events</ons-list-header>';
+                        sorted.forEach(e => document.getElementById("events-list").appendChild(e));*/
+                         
+                      let litem = document.createElement('ons-list-item');
+                      litem.setAttribute("modifier", "longdivider");
+                      litem.setAttribute("tappable", "tappable");
+                      litem.setAttribute("data-value_per_hour", events_list[i].value_per_hour_ns.toString());
+                      litem.innerHTML = `<div class="left">
+                        <span class="list-item__title" style="text-overflow:ellipsis;width:240px;overflow:hidden;">${window.escapeHtml(resp.json().parse.title)}</span><span class="list-item__subtitle">From Wikipedia</span>
                       </div>`;
 
                        var litems = document.getElementById("events-list").children;
@@ -309,9 +325,10 @@ ons.ready(function() {
                             if (Number(events_list[i].value_per_hour_ns) > Number(litems[j].getAttribute("data-value_per_hour"))) {
                                 document.getElementById("events-list").insertBefore(litem, litems[j]);
                             }                        
-                        }           
-
-                  });                
+                        }    
+                         
+                    // } catch(ex){}        
+           
 
                 }
              
