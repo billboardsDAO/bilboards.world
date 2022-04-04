@@ -296,7 +296,8 @@ ons.ready(function() {
                          
                       var litem = document.createElement('ons-list-item');
                       litem.setAttribute("tappable", "tappable");
-                      litem.setAttribute("style", "text-overflow:ellipsis;width:240px;overflow:hidden;");
+                      litem.setAttribute("modifier", "longdivider");
+                      litem.setAttribute("style", "text-overflow:ellipsis;width:226px;overflow:hidden;");
                       litem.setAttribute("data-value_per_hour", events_list[i].value_per_hour_ns.toString());
                       litem.innerHTML = `Wikipedia:&nbsp;${window.escapeHtml(respjson.parse.title)}`;
                                
