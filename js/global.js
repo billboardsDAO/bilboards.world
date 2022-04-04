@@ -290,6 +290,7 @@ ons.ready(function() {
                 for(i=0;i<events_list.length;i++) {
 
                      const resp = await fetch('https://en.wikipedia.org/w/api.php?'+window.encodeQueryData({"action":"parse","format":"json","origin":"*","prop":"text","formatversion":2,"page":decodeURIComponent(escape(window.atob(events_list[i].media_base64)))}));
+                     const respjson = await resp.json();
                     
                     // try {
                          
@@ -316,7 +317,7 @@ ons.ready(function() {
                       litem.setAttribute("tappable", "tappable");
                       litem.setAttribute("data-value_per_hour", events_list[i].value_per_hour_ns.toString());
                       litem.innerHTML = `<div class="left">
-                        <span class="list-item__title" style="text-overflow:ellipsis;width:240px;overflow:hidden;">${window.escapeHtml(resp.json().parse.title)}</span><span class="list-item__subtitle">From Wikipedia</span>
+                        <span class="list-item__title" style="text-overflow:ellipsis;width:240px;overflow:hidden;">${window.escapeHtml(respjson.parse.title)}</span><span class="list-item__subtitle">From Wikipedia</span>
                       </div>`;
 
                        var litems = document.getElementById("events-list").children;
