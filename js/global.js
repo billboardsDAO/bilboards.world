@@ -292,17 +292,15 @@ ons.ready(function() {
                      const resp = await fetch('https://en.wikipedia.org/w/api.php?'+window.encodeQueryData({"action":"parse","format":"json","origin":"*","prop":"text","formatversion":2,"page":decodeURIComponent(escape(window.atob(events_list[i].media_base64)))}));
                      const respjson = await resp.json();
                     
-                    // try {
+                    try {
                          
                       var litem = document.createElement('ons-list-item');
                       litem.setAttribute("modifier", "longdivider");
                       litem.setAttribute("tappable", "tappable");
                       litem.setAttribute("data-value_per_hour", events_list[i].value_per_hour_ns.toString());
-                      litem.innerHTML = `<div class="left">
-                        <span class="list-item__title" style="text-overflow:ellipsis;width:240px;overflow:hidden;">${window.escapeHtml(respjson.parse.title)}</span><span class="list-item__subtitle">From Wikipedia</span>
+                      litem.innerHTML = `<div>
+                        <span class="list-item__title" style="text-overflow:ellipsis;width:240px;overflow:hidden;">${window.escapeHtml(respjson.parse.title)}</span><br/><span class="list-item__subtitle">From Wikipedia</span>
                       </div>`;
-                    
-                        alert(respjson.parse.title);
 
                        document.getElementById("events-list").insertBefore(litem);
                                           
@@ -314,9 +312,8 @@ ons.ready(function() {
                         document.getElementById("events-list").innerHTML = '<ons-list-header class="list-header">Current Events</ons-list-header>';
                         sorted.forEach(e => document.getElementById("events-list").appendChild(e));
                          
-                    // } catch(ex){}        
+                     } catch(ex){console.log("invalid wikipedia article")}        
            
-
                 }
              
             } else {
