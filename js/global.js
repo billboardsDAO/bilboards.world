@@ -296,11 +296,10 @@ ons.ready(function() {
                          
                       var litem = document.createElement('ons-list-item');
                       litem.setAttribute("tappable", "tappable");
+                      litem.setAttribute("style", "text-overflow:ellipsis;width:240px;overflow:hidden;");
                       litem.setAttribute("data-value_per_hour", events_list[i].value_per_hour_ns.toString());
-                      litem.innerHTML = `<div>
-                        <span class="list-item__title" style="text-overflow:ellipsis;width:240px;overflow:hidden;">${window.escapeHtml(respjson.parse.title)}</span><br/><span class="list-item__subtitle">From Wikipedia</span>
-                      </div>`;
-
+                      litem.innerHTML = `Wikipedia:&nbsp;${window.escapeHtml(respjson.parse.title)}`;
+                               
                        document.getElementById("events-list").insertBefore(litem);
                                           
                        let litems = document.getElementById("events-list");
