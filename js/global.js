@@ -274,76 +274,73 @@ ons.ready(function() {
     
     document.querySelector('#search').addEventListener('preclose', function() {
         document.getElementById("events-list").innerHTML = '<ons-list-header class="list-header">Current Events</ons-list-header><ons-progress-circular indeterminate></ons-progress-circular>';
+    });    
+           
+    document.querySelector('#menu').addEventListener('preopen', function() {
+        alert("1");
+
+        if (window.account) {
+            document.getElementById("wallet-menu-connected").style.display = "block";
+        } else {
+            document.getElementById("wallet-menu-connected").style.display = "none";        
+        }
+
     });
     
     document.querySelector('#search').addEventListener('preopen', function() {        
-           
-    if (window.dapp.contract) {
-        
-        var query_events = async function() {
-            const events_list = await aergo.queryContract(window.dapp.contract.get_events_list());
-            
-            document.getElementById("events-list").innerHTML = '<ons-list-header class="list-header">Current Events</ons-list-header>';
-            
-            if (events_list.length>0) {
-            
-                for(i=0;i<events_list.length;i++) {
 
-                     const resp = await fetch('https://en.wikipedia.org/w/api.php?'+window.encodeQueryData({"action":"parse","format":"json","origin":"*","prop":"text","formatversion":2,"page":decodeURIComponent(escape(window.atob(events_list[i].media_base64)))}));
-                     const respjson = await resp.json();
-                    
-                    try {
-                         
-                      var litem = document.createElement('ons-list-item');
-                      litem.setAttribute("tappable", "tappable");
-                      litem.setAttribute("modifier", "longdivider");
-                      litem.setAttribute("style", "text-overflow:ellipsis;width:226px;overflow:hidden;");
-                      litem.setAttribute("data-value_per_hour", events_list[i].value_per_hour_ns.toString());
-                      litem.innerHTML = `Wikipedia:&nbsp;${window.escapeHtml(respjson.parse.title)}`;
-                               
-                       document.getElementById("events-list").insertBefore(litem);
-                                          
-                       let litems = document.getElementById("events-list");
-                       let litemx = document.getElementById("events-list").querySelectorAll("ons-list-item");
+        if (window.dapp.contract) {
 
-                        let sorted = Array.from(litemx).sort(function(a, b){return b.dataset.value_per_hour-a.dataset.value_per_hour});
+            var query_events = async function() {
+                const events_list = await aergo.queryContract(window.dapp.contract.get_events_list());
 
-                        document.getElementById("events-list").innerHTML = '<ons-list-header class="list-header">Current Events</ons-list-header>';
-                        sorted.forEach(e => document.getElementById("events-list").appendChild(e));
-                         
-                     } catch(ex){console.log("invalid wikipedia article")}        
-           
-                }
-             
-            } else {
-                
-              var litem = document.createElement('ons-list-item');
-              litem.innerHTML = `<div class="center">
-                <span class="list-item__title">All events have expired!</span>
-              </div>`;
-                
-              document.getElementById("events-list").insertBefore(litem);
-                
-            }       
+                document.getElementById("events-list").innerHTML = '<ons-list-header class="list-header">Current Events</ons-list-header>';
 
-        };
-        query_events();
-        
-    }
-        
-        
-        document.querySelector('#menu').addEventListener('preopen', function() {
-            alert("1");
-            
-            if (window.account) {
-                document.getElementById("wallet-menu-connected").style.display = "block";
-            } else {
-                document.getElementById("wallet-menu-connected").style.display = "none";        
-            }
-            
-            
-        });
-        
+                if (events_list.length>0) {
+
+                    for(i=0;i<events_list.length;i++) {
+
+                         const resp = await fetch('https://en.wikipedia.org/w/api.php?'+window.encodeQueryData({"action":"parse","format":"json","origin":"*","prop":"text","formatversion":2,"page":decodeURIComponent(escape(window.atob(events_list[i].media_base64)))}));
+                         const respjson = await resp.json();
+
+                        try {
+
+                          var litem = document.createElement('ons-list-item');
+                          litem.setAttribute("tappable", "tappable");
+                          litem.setAttribute("modifier", "longdivider");
+                          litem.setAttribute("style", "text-overflow:ellipsis;width:226px;overflow:hidden;");
+                          litem.setAttribute("data-value_per_hour", events_list[i].value_per_hour_ns.toString());
+                          litem.innerHTML = `Wikipedia:&nbsp;${window.escapeHtml(respjson.parse.title)}`;
+
+                           document.getElementById("events-list").insertBefore(litem);
+
+                           let litems = document.getElementById("events-list");
+                           let litemx = document.getElementById("events-list").querySelectorAll("ons-list-item");
+
+                            let sorted = Array.from(litemx).sort(function(a, b){return b.dataset.value_per_hour-a.dataset.value_per_hour});
+
+                            document.getElementById("events-list").innerHTML = '<ons-list-header class="list-header">Current Events</ons-list-header>';
+                            sorted.forEach(e => document.getElementById("events-list").appendChild(e));
+
+                         } catch(ex){console.log("invalid wikipedia article")}        
+
+                    }
+
+                } else {
+
+                  var litem = document.createElement('ons-list-item');
+                  litem.innerHTML = `<div class="center">
+                    <span class="list-item__title">All events have expired!</span>
+                  </div>`;
+
+                  document.getElementById("events-list").insertBefore(litem);
+
+                }       
+
+            };
+            query_events();
+
+        }  
 
     });
     
