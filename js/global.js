@@ -8,6 +8,8 @@ window.dapp.address = "AmhhXytCBtzJvnmKpS6SS73jHiYNryQZpgBVeCwbzsgr9T3aPJ5N";
 window.dapp.contract = undefined;
 window.dapp.abi = undefined;
 
+window.dapp.homepage = "https://google.com"
+
 // localforage configuration
 localforage.config({    
     name: 'billboardsDAO',
@@ -361,12 +363,48 @@ ons.ready(function() {
   };
 
   window.dapp.hide_menu = function() {
-    document.getElementById('menu').hide();
+    document.getElementById('menu').close();
   };
 
   window.dapp.hide_search = function() {
-    document.getElementById('search').hide();
+    document.getElementById('search').close();
   };
+
+  window.dapp.exit = function() {
+    
+      if (window.account) {
+        
+          ons.openActionSheet({
+            title: 'Aergo Connect',
+            cancelable: true,
+            buttons: [
+              { //0
+                label: 'Disconnect and Exit DApp',
+                modifier: 'destructive',
+                icon: 'fa-ban'
+              },
+              { //1
+                label: 'Cancel',
+                icon: 'md-close'
+              }
+            ]
+         }).then(function (index) { 
+        
+            if (index == 0) {
+                window.dapp.aergoDisconnect();  
+                location.href = window.dapp.homepage;
+            }        
+        
+        });        
+        
+    } else { 
+        
+        location.href = window.dapp.homepage;
+        
+    }
+      
+  };
+
 
   window.dapp.load = function(page) {
     var content = document.getElementById('content');
