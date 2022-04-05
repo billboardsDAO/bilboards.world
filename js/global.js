@@ -198,7 +198,7 @@ window.dapp.switch_theme = function(checked, startup) {
 
 window.dapp.extensionPopoverTimeout = undefined;
 window.dapp.interfaceConnection = function(){
-    document.getElementById('menu').hide();
+    
     if (window.account) {
         
           ons.openActionSheet({
