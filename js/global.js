@@ -332,6 +332,18 @@ ons.ready(function() {
     }
         
         
+        document.querySelector('#menu').addEventListener('preopen', function() {
+            
+            if (window.account) {
+                document.getElementById("wallet-menu-connected").style.display = "block";
+            } else {
+                document.getElementById("wallet-menu-connected").style.display = "none";        
+            }
+            
+            
+        });
+        
+
     });
     
     
