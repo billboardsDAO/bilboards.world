@@ -333,6 +333,7 @@ ons.ready(function() {
         
         
         document.querySelector('#menu').addEventListener('preopen', function() {
+            alert("1");
             
             if (window.account) {
                 document.getElementById("wallet-menu-connected").style.display = "block";
