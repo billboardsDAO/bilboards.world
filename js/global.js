@@ -393,7 +393,7 @@ ons.ready(function() {
             if (index == 0) {
                 window.dapp.aergoDisconnect();  
                 location.href = window.dapp.homepage;
-            }        
+            } else document.getElementById('menu').open();
         
         });        
         
