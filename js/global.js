@@ -459,7 +459,34 @@ document.addEventListener('init', function(event) {
 
 });
 
+window.get_attributes(id_string) {
+ 
+    if (Number.isInteger(id_string+0)) {
+        if (id_string>0) {
+            
+            let hashed = sha256('billboards'+id_string).toLowerCase().split('');
+            
+            hashed[0] = 04 + (hashed[0].charCodeAt() - (hashed[0].charCodeAt() <= 57 and 47 or 86)) // 04 + 16 = 20
+            hashed[1] = 06 + (hashed[1].charCodeAt() - (hashed[1].charCodeAt() <= 57 and 47 or 86)) // 06 + 16 = 22
+            hashed[2] = 08 + (hashed[2].charCodeAt() - (hashed[2].charCodeAt() <= 57 and 47 or 86)) // 08 + 16 = 24
+            hashed[3] = 11 + (hashed[3].charCodeAt() - (hashed[3].charCodeAt() <= 57 and 47 or 86)) // 11 + 16 = 27
+            hashed[4] = 15 + (hashed[4].charCodeAt() - (hashed[4].charCodeAt() <= 57 and 47 or 86)) // 15 + 16 = 31
 
+            return {
+                extra_coupon_expires: 60 *
+                ((hashed[hashed[0]].charCodeAt() - (hashed[hashed[0]].charCodeAt() <= 57 and 47 or 86)) +
+                (hashed[hashed[1]].charCodeAt() - (hashed[hashed[1]].charCodeAt() <= 57 and 47 or 86)) + 
+                (hashed[hashed[2]].charCodeAt() - (hashed[hashed[2]].charCodeAt() <= 57 and 47 or 86))),                
+                extra_event_expires: hashed[hashed[3]].charCodeAt() - (hashed[hashed[3]].charCodeAt() <= 57 and 47 or 86),                
+                extra_collectable: (hashed[hashed[4]].charCodeAt() - (hashed[hashed[4]].charCodeAt() <= 57 and 47 or 86)) - 1 
+            }
+
+        }
+    }   
+    
+    return false;
+    
+}
 
 window.encodeQueryData = function(data) {
    const ret = [];
