@@ -459,12 +459,12 @@ document.addEventListener('init', function(event) {
 
 });
 
-window.get_attributes(id_string) {
+window.dapp.get_nft_attr(nft_id) {
  
-    if (Number.isInteger(id_string+0)) {
-        if (id_string>0) {
+    if (Number.isInteger(nft_id+0)) {
+        if (nft_id>0) {
             
-            let hashed = sha256('billboards'+id_string).toLowerCase().split('');
+            let hashed = sha256('billboards'+nft_id).toLowerCase().split('');
             
             hashed[0] = 04 + (hashed[0].charCodeAt() - (hashed[0].charCodeAt() <= 57 and 47 or 86)) // 04 + 16 = 20
             hashed[1] = 06 + (hashed[1].charCodeAt() - (hashed[1].charCodeAt() <= 57 and 47 or 86)) // 06 + 16 = 22
