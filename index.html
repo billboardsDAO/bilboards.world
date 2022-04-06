@@ -30,6 +30,21 @@
           <ons-page>
             <img src="https://monaca.io/img/logos/download_image_onsenui_01.png" alt="Onsen UI" style="width: 100%">
               
+              <ons-list-title>World Billboards</ons-list-title>
+                  
+             <ons-list modifier="inset">
+              <ons-list-item onclick="window.dapp.load('templates/marketplace.html')" tappable>
+                NFTs Marketplace
+              </ons-list-item>
+              <ons-list-item>
+              <div class="center">
+                Dark theme
+              </div>
+              <div class="right">
+                <ons-switch id="theme-switcher" onchange="window.dapp.switch_theme(this.checked,false)"></ons-switch>
+              </div>
+            </ons-list-item>
+              
              <ons-list modifier="inset" style="margin-top: 5px;display: none;" id="wallet-menu-connected">
               <ons-list-header>Connected Wallet</ons-list-header>
               <ons-list-item onclick="window.dapp.load('templates/settings.html')" tappable modifier="longdivider">
@@ -45,19 +60,7 @@
                 Disconnect Wallet
               </ons-list-item> 
              </ons-list>
-              
-             <ons-list modifier="inset">
-              <ons-list-item onclick="window.dapp.load('templates/marketplace.html')" tappable>
-                NFTs Marketplace
-              </ons-list-item>
-              <ons-list-item>
-              <div class="center">
-                Dark theme
-              </div>
-              <div class="right">
-                <ons-switch id="theme-switcher" onchange="window.dapp.switch_theme(this.checked,false)"></ons-switch>
-              </div>
-            </ons-list-item>
+
             </ons-list> 
              <ons-list modifier="inset" style="margin-top: 5px;" id="wallet-menu-disconnected">
               <ons-list-header>Connect Wallet</ons-list-header>
