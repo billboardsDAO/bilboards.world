@@ -459,7 +459,7 @@ document.addEventListener('init', function(event) {
 
 });
 
-window.dapp.get_nft_attr(nft_id) {
+window.dapp.get_nft_attr = function(nft_id) {
  
     if (Number.isInteger(nft_id+0)) {
         if (nft_id>0) {
