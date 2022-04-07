@@ -1,0 +1,28 @@
+<ons-page id="mybillboards">
+  <ons-toolbar>
+    <div class="left"><ons-back-button>Back</ons-back-button></div>
+    <div class="center">My Billboards</div>
+  </ons-toolbar>
+
+  <ons-list>
+    <ons-list-header>How to play?</ons-list-header>
+    
+    <ons-list-item expandable tappable>
+      How to create a billboard?
+      <div class="expandable-content">
+        <p>Firstly, you must to buy a NFT in our marketplace. Then, in My NFTs page, choose your NFT to apply in the account.</p>
+        
+        <p>Choose any locate in the world map, click in "+" button and "Create Billboard".</p>
+      
+      </div>
+    </ons-list-item>
+    
+   </ons-list>
+  
+  <script>
+    document.querySelector('ons-back-button').onClick = function(event) {
+      window.dapp.load('templates/global.html')
+    };    
+  </script>
+  
+</ons-page>
