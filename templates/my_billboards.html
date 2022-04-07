@@ -19,7 +19,20 @@
     
    </ons-list>
   
-  
+  <ons-bottom-toolbar style="z-index:1000;" id="bottom">
+    <ons-row style="line-height:40px;">
+      <ons-col width="100%">
+        <ons-toolbar-button onclick="dapp.interfaceConnection()">
+          Aergo Connect
+        </ons-toolbar-button>
+        <span data-placeholder="Let's start making money!">Let's start making money!<span>
+      </ons-col>            
+   </ons-row>
+  </ons-bottom-toolbar>
+
+      <div class="toolbar--material bottom-corner" id="claimable" data-placeholder="Connect to sync map">
+    Connect to sync map
+  </div>
   
   <script>
     document.querySelector('ons-back-button').onClick = function(event) {
