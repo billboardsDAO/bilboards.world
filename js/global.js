@@ -489,15 +489,15 @@ window.dapp.get_nft_attr = function(nft_id) {
 }
 
 window.dapp.create_nft_div = function(nft_id) {if(Number.isInteger(nft_id+0)) {if (nft_id>0) {
-                   
+
   let div = document.createElement('div');
   div.className = "nft-div"; // requires nft-container
   div.innerHTML = `
-  
+ 
     <table bortder=0 style="width:100%">
         <tr><!--image--> 
             <td colspan="3">
-                <img src="https://www.gravatar.com/avatar/${sha256('billboards'+nft_id).toLowerCase().slice(-32)}?s=60&r=g&d=robohash" style="width:60px;height:60px" />            
+                <img  alt="Loading" class="lazy" data-src="https://www.gravatar.com/avatar/${sha256('billboards'+nft_id).toLowerCase().slice(-32)}?s=60&r=g&d=robohash" style="width:60px;height:60px" />            
             </td>        
         </tr>
         <tr><!--attrs-->
@@ -514,7 +514,9 @@ window.dapp.create_nft_div = function(nft_id) {if(Number.isInteger(nft_id+0)) {i
   
   
   `; 
-     
+    
+   lazyload.update(); // depois de incluir
+    
    return div
     
 }}}
