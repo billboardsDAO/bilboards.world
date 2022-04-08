@@ -16,3 +16,19 @@
   z-index: 2000 !important;
   bottom: -5px !important;
 }
+
+.nft-container{
+    display: flex;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+}
+
+.nft-item{
+    flex-grow: 1;
+    flex: 50%;
+    border: solid 1px;
+    margin: 4px;
+    width: 50%;
+    max-width:140px;
+    height: 150px;
+}
