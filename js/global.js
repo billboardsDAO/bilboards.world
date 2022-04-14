@@ -490,6 +490,8 @@ window.dapp.get_nft_attr = function(nft_id) {
 
 window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger(nft_id+0)) {if(nft_id>0){
 
+  let extras = window.dapp.get_nft_attr(nft_id);
+    
   let div = document.createElement('div');
   div.className = "nft-div";
   div.innerHTML = `
@@ -501,8 +503,29 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
             </td>        
         </tr>
         <tr><!--attrs-->
-        
-        
+            <td width="33%" style="text-align:center;">
+                <div data-preset="bubble" class="ldBar" data-value="35"></div>
+            </td>
+            <td width="33%" style="text-align:center;">
+              <div
+                  data-type="fill"
+                  data-path="M10 10L90 10L90 90L10 90Z"
+                  class="ldBar"
+                  data-value="35"
+                  data-fill="data:ldbar/res,
+                  bubble(#248,#fff,50,1)"
+                </div>
+            </td>
+            <td width="33%" style="text-align:center;">
+               <div
+                  data-type="fill"
+                  data-path="M45 10L45 10L80 90L10 90Z"
+                  class="ldBar"
+                  data-value="35"
+                  data-fill="data:ldbar/res,
+                  bubble(#3fc2b8,#fff,50,1)"
+                </div>
+            </td>          
         </tr>
          <tr><!--menu-->
         
@@ -515,6 +538,18 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
   `; 
     
    container_el.append(div);
+    
+    /*
+      /* construct manually */
+  var bar1 = new ldBar("#myItem1");
+  /* ldBar stored in the element */
+  var bar2 = document.getElementById('myItem1').ldBar;
+  bar1.set(60);
+    
+    
+    
+    */
+    
     
    lazyload.update();
    return true
