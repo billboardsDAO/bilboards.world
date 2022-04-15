@@ -497,9 +497,14 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
   div.innerHTML = `
  
     <table border=0 style="width:100%">
+        <tr><!--title--> 
+            <td colspan="3" style="text-align:right;">
+                 <b>#${nft_id}</b>
+            </td>        
+        </tr>
         <tr><!--image--> 
             <td colspan="3">
-                <img  alt="Loading" class="lazy" data-src="https://www.gravatar.com/avatar/${sha256('billboards'+nft_id).toLowerCase().slice(-32)}?s=60&r=g&d=robohash" style="width:60px;height:60px" />            
+                <img  alt="Loading" data-lazy-function="lazy_function" class="lazy" data-src="https://www.gravatar.com/avatar/${sha256('billboards'+nft_id).toLowerCase().slice(-32)}?s=60&r=g&d=robohash" style="width:60px;height:60px" />            
             </td>        
         </tr>
         <tr><!--attrs-->
@@ -533,12 +538,10 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
                   bubble(#3fc2b8,#fff,50,1)">
                 </div>
             </td>          
-        </tr>
-         <tr><!--menu-->
-        
-        
-        </tr>
-    
+        </tr>  
+         <tr><!--options--> 
+            <td colspan="3" style="text-align:right;" id="options_${nft_id}"></td>        
+        </tr>    
     </table>
 
   
