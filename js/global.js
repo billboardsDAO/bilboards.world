@@ -581,11 +581,12 @@ window.dapp.executeLazyFunction = async function(element) {if ((window.aergo)&&(
             
                 opções:
 
-                mostrar preco e botão comprar
-                mostrar botão aplciar
-                mostrar mensagem "Aplicado"
-                mostrar botão vender
-                mostrar preço e botão alterar preço (e remover da venda)
+                mostrar preco e botão comprar -- owner <> account && value > 0
+                mostrar botão aplicar -- owner == account & applied <> id & value == 0
+                mostrar botão vender (e aplicar) -- owner == account & applied <> id
+                mostrar mensagem "Aplicado" -- owner == account & applied == id
+                mostrar preço e botão alterar preço (e remover da venda) -- owner == account & value > 0
+                mostrar não está a venda -- owner <> account && value == 0
 
             */
         }
