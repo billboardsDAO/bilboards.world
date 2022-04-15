@@ -504,7 +504,7 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
         </tr>
         <tr><!--image--> 
             <td colspan="3">
-                <img  alt="Loading" data-lazy-function="lazy_function" data-id="${nft_id}" class="lazy" data-src="https://www.gravatar.com/avatar/${sha256('billboards'+nft_id).toLowerCase().slice(-32)}?s=60&r=g&d=robohash" style="width:60px;height:60px" />            
+                <img  alt="Loading" data-id="${nft_id}" class="lazy" data-src="https://www.gravatar.com/avatar/${sha256('billboards'+nft_id).toLowerCase().slice(-32)}?s=60&r=g&d=robohash" style="width:60px;height:60px" />            
             </td>        
         </tr>
         <tr><!--attrs-->
@@ -565,6 +565,23 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
    return true
     
 }}return false}
+
+window.dapp.executeLazyFunction = function(element) {if ((window.aergo)&&(window.account)) {
+    if (document.getElementById("options_"+element.dataset.id)) {
+        if (document.getElementById("options_"+element.dataset.id).innerHTML=="") {
+            /*
+                opções:
+
+                mostrar preco e botão comprar
+                mostrar botão aplciar
+                mostrar mensagem "Aplicado"
+                mostrar botão vender
+                mostrar preço e botão alterar preço (e remover da venda)
+
+            */
+        }
+    }
+}}
 
 window.encodeQueryData = function(data) {
    const ret = [];
