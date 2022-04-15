@@ -504,26 +504,33 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
         </tr>
         <tr><!--attrs-->
             <td width="33%" style="text-align:center;">
-                <div data-preset="bubble" class="ldBar" data-value="35"></div>
+                <div
+                    id="extra_coupon_expires_${nft_id}"
+                    data-preset="bubble"
+                    class="ldBar"
+                    data-value="35">
+                </div>
             </td>
             <td width="33%" style="text-align:center;">
               <div
+                  id="extra_event_expires_${nft_id}"
                   data-type="fill"
                   data-path="M10 10L90 10L90 90L10 90Z"
                   class="ldBar"
                   data-value="35"
                   data-fill="data:ldbar/res,
-                  bubble(#248,#fff,50,1)"
+                  bubble(#248,#fff,50,1)">
                 </div>
             </td>
             <td width="33%" style="text-align:center;">
                <div
+                  id="extra_collectable_${nft_id}"
                   data-type="fill"
                   data-path="M45 10L45 10L80 90L10 90Z"
                   class="ldBar"
                   data-value="35"
                   data-fill="data:ldbar/res,
-                  bubble(#3fc2b8,#fff,50,1)"
+                  bubble(#3fc2b8,#fff,50,1)">
                 </div>
             </td>          
         </tr>
@@ -538,19 +545,19 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
   `; 
     
    container_el.append(div);
+
+    let extra_coupon_expires_$ = new ldBar("#extra_coupon_expires_"+nft_id);
+    let extra_event_expires_$ = new ldBar("#extra_event_expires_"+nft_id);
+    let extra_collectable_$ = new ldBar("#extra_collectable_"+nft_id);
     
-    /*
-      /* construct manually */
-  var bar1 = new ldBar("#myItem1");
-  /* ldBar stored in the element */
-  var bar2 = document.getElementById('myItem1').ldBar;
-  bar1.set(60);
+    function map(x, in_min, in_max, out_min, out_max) {
+      return Math.floor((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
+    }
     
-    
-    
-    */
-    
-    
+    extra_coupon_expires_$.set(map(extras.extra_coupon_expires,1*3*60,16*3*60,0,100));
+    extra_event_expires_$.set(map(extras.extra_event_expires,1,16,0,100));
+    extra_collectable_$.set(map(extras.extra_collectable,0,15,0,100));
+
    lazyload.update();
    return true
     
