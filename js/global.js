@@ -3,7 +3,7 @@ var dapp = {};
 
 window.Buffer = buffer.Buffer;
 
-window.dapp.address = "AmhhXytCBtzJvnmKpS6SS73jHiYNryQZpgBVeCwbzsgr9T3aPJ5N";
+window.dapp.address = "AmgPfMQsGUN7pQvGLdAy931PQNvgmdpvUAqnQPhLjBi1tBdBNU1k";
 
 window.dapp.contract = undefined;
 window.dapp.abi = undefined;
@@ -40,6 +40,15 @@ window.dapp.currentHeight;
 
 window.dapp.global = function() {
     window.dapp.connectedInterval--;
+   
+    if ((window.aergo)&&(window.account)) {
+        localforage.getItem('applied').then(function(value) {
+            if(value == null) localforage.setItem('applied', 0); 
+            aergo.queryContract(window.dapp.contract.user_applied_string()).then(function(value2){
+               localforage.setItem('applied', value2);             
+            });
+        });
+    }
       
     if (document.getElementById("progress-bar")) {
         // progress-bar está visivel   
@@ -161,7 +170,7 @@ window.dapp.aergoConnect = function() {
            window.dapp.contract = Contract.atAddress(window.dapp.address);
            window.dapp.contract.loadAbi(await aergo.getABI(window.dapp.address));
        }
-       load_contract();      
+       load_contract();
 
     }, {
     once: true
@@ -570,10 +579,12 @@ window.dapp.executeLazyFunction = async function(element) {if ((window.aergo)&&(
     if (document.getElementById("options_"+element.dataset.id)) {
         if (document.getElementById("options_"+element.dataset.id).innerHTML=="") {
             const nft_table = await aergo.queryContract(window.dapp.contract.get_NFT_table(element.dataset.id.toString()));
-            
+            const value = await localforage.getItem('applied');
             //id_string
             //value_ns
             //owner_address
+            
+            
             
             /*
                 
