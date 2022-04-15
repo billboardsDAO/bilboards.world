@@ -566,10 +566,19 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
     
 }}return false}
 
-window.dapp.executeLazyFunction = function(element) {if ((window.aergo)&&(window.account)) {
+window.dapp.executeLazyFunction = async function(element) {if ((window.aergo)&&(window.account)) {
     if (document.getElementById("options_"+element.dataset.id)) {
         if (document.getElementById("options_"+element.dataset.id).innerHTML=="") {
+            const nft_table = await aergo.queryContract(window.dapp.contract.get_NFT_table(element.dataset.id.toString()));
+            
+            //id_string
+            //value_ns
+            //owner_address
+            
             /*
+                
+                escrever no escopo do await
+            
                 opções:
 
                 mostrar preco e botão comprar
