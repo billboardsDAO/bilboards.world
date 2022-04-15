@@ -3,7 +3,7 @@ var dapp = {};
 
 window.Buffer = buffer.Buffer;
 
-window.dapp.address = "AmgPfMQsGUN7pQvGLdAy931PQNvgmdpvUAqnQPhLjBi1tBdBNU1k";
+window.dapp.address = "AmhK9K9RMZxVDQuUqVQsipdNoWCeYhTcQLxP9wwr1airLVybuncS";
 
 window.dapp.contract = undefined;
 window.dapp.abi = undefined;
@@ -169,8 +169,11 @@ window.dapp.aergoConnect = function() {
            window.dapp.abi = await aergo.getABI(window.dapp.address);
            window.dapp.contract = Contract.atAddress(window.dapp.address);
            window.dapp.contract.loadAbi(await aergo.getABI(window.dapp.address));
+           
+           localforage.setItem('marketing_address', await aergo.queryContract(window.dapp.contract.get_marketing_address()));           
+           
        }
-       load_contract();
+       load_contract();      
 
     }, {
     once: true
@@ -579,7 +582,9 @@ window.dapp.executeLazyFunction = async function(element) {if ((window.aergo)&&(
     if (document.getElementById("options_"+element.dataset.id)) {
         if (document.getElementById("options_"+element.dataset.id).innerHTML=="") {
             const nft_table = await aergo.queryContract(window.dapp.contract.get_NFT_table(element.dataset.id.toString()));
-            const value = await localforage.getItem('applied');
+            const applied = await localforage.getItem('applied');
+            let applied_string = applied.toString();
+            
             //id_string
             //value_ns
             //owner_address
