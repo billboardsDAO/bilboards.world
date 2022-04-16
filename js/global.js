@@ -636,6 +636,11 @@ window.dapp.executeLazyFunction = async function(element) {if ((window.aergo)&&(
                   </div>
                 </ons-popover>               
                 `;
+            } else if ((window.account.address==nft_table.owner_address)&&(Number(nft_table.value_ns)==0)&&(Number(applied_string)==0)) {
+                //console.log("mostrar botão aplicar");
+                document.getElementById("options_"+nft_table.id_string).innerHTML = `
+                <ons-button onclick="window.dapp.apply_nft('${nft_table.id_string}');">Apply NFT</ons-button>                   
+                `;
             } else if ((window.account.address==nft_table.owner_address)&&(Number(nft_table.value_ns)==0)&&(applied_string!=nft_table.id_string)) {
                 //console.log("mostrar botão vender aplicar");
                 document.getElementById("options_"+nft_table.id_string).innerHTML = `
