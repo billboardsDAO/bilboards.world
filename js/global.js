@@ -566,7 +566,8 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
                     id="extra_coupon_expires_${nft_id}"
                     data-preset="bubble"
                     class="ldBar"
-                    data-value="35">
+                    data-value="0"
+                    onClick="ons.notification.toast('Free extra minutes for each coupon on your billboards.<br>${Math.floor(extras.extra_coupon_expires/60)} minutes', {timeout: 2000,buttonLabel: "OK"});">
                 </div>
             </td>
             <td width="33%" style="text-align:center;">
@@ -575,9 +576,10 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
                   data-type="fill"
                   data-path="M10 10L90 10L90 90L10 90Z"
                   class="ldBar"
-                  data-value="35"
+                  data-value="0"
                   data-fill="data:ldbar/res,
-                  bubble(#248,#fff,50,1)">
+                  bubble(#248,#fff,50,1)"
+                  onClick="ons.notification.toast('Free extra hours for your events:<br>${extras.extra_event_expires} hour${extras.extra_event_expires==1?"":"s"}', {timeout: 2000,buttonLabel: "OK"});">
                 </div>
             </td>
             <td width="33%" style="text-align:center;">
@@ -586,9 +588,10 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
                   data-type="fill"
                   data-path="M45 10L45 10L80 90L10 90Z"
                   class="ldBar"
-                  data-value="35"
+                  data-value="0"
                   data-fill="data:ldbar/res,
-                  bubble(#3fc2b8,#fff,50,1)">
+                  bubble(#3fc2b8,#fff,50,1)"
+                  onClick="ons.notification.toast('Extra claimables for each billboard created:<b>${extras.extra_collectable}', {timeout: 2000,buttonLabel: "OK"});">
                 </div>
             </td>          
         </tr>  
