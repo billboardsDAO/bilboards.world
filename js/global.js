@@ -557,7 +557,7 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
         </tr>
         <tr><!--image--> 
             <td colspan="3">
-                <img  alt="Loading" data-id="${nft_id}" data-price="${adjective[1]}" class="lazy" data-src="https://www.gravatar.com/avatar/${sha256('billboards'+nft_id).toLowerCase().slice(-32)}?s=60&r=g&d=robohash" style="width:60px;height:60px" />            
+                <img  alt="Loading" data-id="${nft_id}" data-price="${adjective[0]}" class="lazy" data-src="https://www.gravatar.com/avatar/${sha256('billboards'+nft_id).toLowerCase().slice(-32)}?s=60&r=g&d=robohash" style="width:60px;height:60px" />            
             </td>        
         </tr>
         <tr><!--attrs-->
@@ -667,7 +667,7 @@ window.dapp.executeLazyFunction = async function(element) {if ((window.aergo)&&(
             } else if ((window.account.address==nft_table.owner_address)&&(Number(nft_table.value_ns) >0)&&(applied_string!=nft_table.id_string)) {
                  //console.log("mostrar set price e não vender mais");
                 document.getElementById("options_"+nft_table.id_string).innerHTML = `
-                 <ons-button onclick="document.getElementById('popover_setprice_card_${nft_table.id_string}').show(this);">Set price</ons-button>&nbsp;or&nbsp;<ons-button onclick="window.dapp.sell_nft('${nft_table.id_string}',0);">Don't sell it</ons-button>
+                 <ons-button onclick="document.getElementById('popover_setprice_card_${nft_table.id_string}').show(this);">Set price</ons-button>&nbsp;or&nbsp;<ons-button onclick="window.dapp.sell_nft('${nft_table.id_string}',0);">Cancel Sale</ons-button>
                 <ons-popover cancelable id="popover_setprice_card_${nft_table.id_string}">
                   <div style="padding: 10px; text-align: center;">
                     <p>
