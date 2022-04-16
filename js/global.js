@@ -525,19 +525,39 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
 
   let extras = window.dapp.get_nft_attr(nft_id);
     
+    function map(x, in_min, in_max, out_min, out_max) {
+      return Math.floor((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
+    }
+    
+    
+  let adjective = undefined;
+  let rarity = map(extras.extra_coupon_expires,1*3*60,16*3*60,0,100) + map(extras.extra_event_expires,1,16,0,100) + map(extras.extra_collectable,0,15,0,100);
+   
+   if      ((rarity==0)||(rarity==300)) adjective = [5990,"black","<b>Impossible!?</b>"];
+   else if (rarity<10) adjective = [1500,"#e6de00","<b>Collectible!</b>"];
+   else if (rarity<100) adjective = [600,"#b3b3b3","Very Common"];
+   else if (rarity<160) adjective = [650,"#00cc00","Common"];
+   else if (rarity<200) adjective = [750,"##ff6666","Rare"];
+   else if (rarity<250) adjective = [900,"#ff0000","<b>Very Rare</b>"];
+   else if (rarity<280) adjective = [1200,"#0000ff","<b>Epic</b>"];
+   else adjective = [2000,"#5200cc","<b>Legendary</b>"];
+    
   let div = document.createElement('div');
   div.className = "nft-div";
   div.innerHTML = `
  
     <table border=0 style="width:100%">
         <tr><!--title--> 
-            <td colspan="3" style="text-align:right;">
+           <td colspan="2" style="text-align:left;color:${adjective[1]};">
+                 ${adjective[2]}
+            </td>
+            <td colspan="1" style="text-align:right;">
                  <b>#${nft_id}</b>
             </td>        
         </tr>
         <tr><!--image--> 
             <td colspan="3">
-                <img  alt="Loading" data-id="${nft_id}" class="lazy" data-src="https://www.gravatar.com/avatar/${sha256('billboards'+nft_id).toLowerCase().slice(-32)}?s=60&r=g&d=robohash" style="width:60px;height:60px" />            
+                <img  alt="Loading" data-id="${nft_id}" data-price="${adjective[1]}" class="lazy" data-src="https://www.gravatar.com/avatar/${sha256('billboards'+nft_id).toLowerCase().slice(-32)}?s=60&r=g&d=robohash" style="width:60px;height:60px" />            
             </td>        
         </tr>
         <tr><!--attrs-->
@@ -586,10 +606,6 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
     let extra_event_expires_$ = new ldBar("#extra_event_expires_"+nft_id);
     let extra_collectable_$ = new ldBar("#extra_collectable_"+nft_id);
     
-    function map(x, in_min, in_max, out_min, out_max) {
-      return Math.floor((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
-    }
-    
     extra_coupon_expires_$.set(map(extras.extra_coupon_expires,1*3*60,16*3*60,0,100));
     extra_event_expires_$.set(map(extras.extra_event_expires,1,16,0,100));
     extra_collectable_$.set(map(extras.extra_collectable,0,15,0,100));
@@ -630,7 +646,7 @@ window.dapp.executeLazyFunction = async function(element) {if ((window.aergo)&&(
                       What value (in aergo) do you want to sell it?
                     </p>
                     <p>
-                      <ons-input id="price_${nft_table.id_string}" modifier="underbar" placeholder="Price in Aergo" value="500" type="number" required min="1" style="width:120px;"></ons-input>&nbsp;aergo
+                      <ons-input id="price_${nft_table.id_string}" modifier="underbar" placeholder="Price in Aergo" value="${element.dataset.price}" type="number" required min="1" style="width:120px;"></ons-input>&nbsp;aergo
                     </p>
                     <p>
                       <ons-button onclick="window.dapp.sell_nft('${nft_table.id_string}',document.getElementById('price_${nft_table.id_string}').value);">Confirm to marketplace</ons-button>
