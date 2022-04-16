@@ -585,26 +585,20 @@ window.dapp.executeLazyFunction = async function(element) {if ((window.aergo)&&(
             const applied = await localforage.getItem('applied');
             let applied_string = applied.toString();
             
-            //id_string
-            //value_ns
-            //owner_address
-            
-            
-            
-            /*
-                
-                escrever no escopo do await
-            
-                opções:
+            if        ((window.account.address!=nft_table.owner_address)&&(Number(nft_table.value_ns) >0)&&(applied_string!=nft_table.id_string)) {
+                console.log("mostrar preco e botão comprar ");
+            } else if ((window.account.address==nft_table.owner_address)&&(Number(nft_table.value_ns)==0)&&(applied_string!=nft_table.id_string)) {
+                console.log("mostrar botão vender aplicar");
+            } else if ((window.account.address==nft_table.owner_address)&&(Number(nft_table.value_ns)==0)&&(applied_string==nft_table.id_string)) {
+                console.log("mostrar aplicado");                
+            } else if ((window.account.address==nft_table.owner_address)&&(Number(nft_table.value_ns) >0)&&(applied_string!=nft_table.id_string)) {
+                 console.log("mostrar set price"); 
+            } else if ((window.account.address!=nft_table.owner_address)&&(Number(nft_table.value_ns)==0)&&(applied_string!=nft_table.id_string)) {
+                 console.log("mostrar set price"); 
+            } else {
+                console.log("mostrar erro")   
+            }
 
-                mostrar preco e botão comprar -- owner <> account && value > 0
-                mostrar botão aplicar -- owner == account & applied <> id & value == 0
-                mostrar botão vender (e aplicar) -- owner == account & applied <> id
-                mostrar mensagem "Aplicado" -- owner == account & applied == id
-                mostrar preço e botão alterar preço (e remover da venda) -- owner == account & value > 0
-                mostrar não está a venda -- owner <> account && value == 0
-
-            */
         }
     }
 }}
