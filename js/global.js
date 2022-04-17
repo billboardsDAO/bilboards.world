@@ -450,7 +450,7 @@ document.addEventListener('init', function(event) {
     if (page.querySelector('#map')) {                
 
       var mapOptions = {
-        center: [17.385044, 78.486671],
+        center: [-23.6266, -46.5638],
         zoom: 10
       }
 
