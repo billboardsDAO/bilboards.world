@@ -3,13 +3,47 @@
     <div class="left"><ons-back-button>Back</ons-back-button></div>
     <div class="center">Billboards NFTs Marketplace</div>
   </ons-toolbar>
+  
+  <ons-pull-hook id="pull-hook">
+     Load more 50 NFTs in marketplace
+  </ons-pull-hook>
 
   <p>This is the second page.</p>
   
   <script>
     document.querySelector('ons-back-button').onClick = function(event) {
       window.dapp.load('templates/global.html')
-    };    
+    };
+    
+    document.addEventListener('init', function(event) {
+      
+      var pullHook = document.getElementById('pull-hook');
+
+      pullHook.addEventListener('changestate', function(event) {
+        var message = '';
+
+        switch (event.state) {
+          case 'initial':
+            message = 'Load more 50 NFTs in marketplace';
+            break;
+          case 'preaction':
+            message = 'Release';
+            break;
+          case 'action':
+            message = 'Loading...';
+            break;
+        }
+
+        pullHook.innerHTML = message;
+      });
+
+      pullHook.onAction = function(done) {
+        setTimeout(done, 1000);
+      };
+      
+    });
+    
+    
   </script>
   
 </ons-page>
