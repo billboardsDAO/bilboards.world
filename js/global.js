@@ -537,13 +537,14 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
    else if (rarity<10) adjective = [1500,"#e6de00","<b>Collectible!</b>"];
    else if (rarity<100) adjective = [600,"#b3b3b3","Very Common"];
    else if (rarity<160) adjective = [650,"#00cc00","Common"];
-   else if (rarity<200) adjective = [750,"##ff6666","Rare"];
+   else if (rarity<200) adjective = [750,"#ff6666","Rare"];
    else if (rarity<250) adjective = [900,"#ff0000","<b>Very Rare</b>"];
    else if (rarity<280) adjective = [1200,"#0000ff","<b>Epic</b>"];
    else adjective = [2000,"#5200cc","<b>Legendary</b>"];
     
   let div = document.createElement('div');
   div.className = "nft-div";
+  div.style.border = "solid 2px "+adjective[1];
   div.innerHTML = `
  
     <table border=0 style="width:100%">
