@@ -15,8 +15,8 @@
       window.dapp.load('templates/global.html')
     };
     
-    document.addEventListener('init', function(event) {
-      
+    ons.getScriptPage().onInit = function() {
+     
       var pullHook = document.getElementById('pull-hook');
 
       pullHook.addEventListener('changestate', function(event) {
@@ -41,7 +41,16 @@
         setTimeout(done, 1000);
       };
       
-    });
+    };
+    
+    ons.getScriptPage().onShow = function() { // load first elements in marketplace
+      
+      
+    }
+    
+    ons.getScriptPage().onHide = function() {
+      // requires to delete all cards?      
+    }
     
     
   </script>
