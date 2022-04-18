@@ -329,7 +329,6 @@ ons.ready(function() {
 
                            document.getElementById("events-list").insertBefore(litem);
 
-                           let litems = document.getElementById("events-list");
                            let litemx = document.getElementById("events-list").querySelectorAll("ons-list-item");
 
                             let sorted = Array.from(litemx).sort(function(a, b){return b.dataset.value_per_hour-a.dataset.value_per_hour});
@@ -545,6 +544,8 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
   let div = document.createElement('div');
   div.className = "nft-div";
   div.style.border = "solid 2px "+adjective[1];
+  div.dataset.aer="1"; // 0 is envelope
+  div.dataset.id = "nft-"+nft_id.;
   div.innerHTML = `
  
     <table border=0 style="width:100%">
@@ -697,8 +698,12 @@ window.dapp.executeLazyFunction = async function(element) {if ((window.aergo)&&(
                     <ons-button modifier="large--quiet" disabled="true"><ons-icon icon="fa-bug"></ons-icon>&nbsp;not loaded...</ons-button>
                 `;
             }
-
-        }
+            element.dataset.aer = Number(nft_table.value_ns)==0?"1":nft_table.value_ns;
+            /*let itemp = element.parentNode;
+            let sorted = Array.from(itemp.childNodes).sort(function(a, b){return Number(a.dataset.aer)-Number(b.dataset.aer)});
+            itemp.innerHTML = '';
+            sorted.forEach(e => itemp.appendChild(e));*/
+        } 
     }
 }}
 
