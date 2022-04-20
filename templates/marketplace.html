@@ -32,7 +32,7 @@
         if (marketplace_list.length>0) {
 
             for(i=0;i<marketplace_list.length;i++) {
-              window.dapp.create_nft_div(marketplace_list[i].id_string, document.getElementById("nft-container"));
+              window.dapp.create_nft_div(marketplace_list[i], document.getElementById("nft-container"));
             }          
 
             current_item += 50;
