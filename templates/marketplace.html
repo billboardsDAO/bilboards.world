@@ -21,14 +21,17 @@
       window.dapp.load('templates/global.html')
     };
     
-    var query_marketplace = async function(cur_item) {
+    var query_marketplace = async function(cur_item, done) {
       
         if (loading) return;
 
         loading = true;
 
-        const marketplace_list = await aergo.queryContract(window.dapp.contract.get_marketplace_list(cur_item));
-
+        const marketplace_list = await aergo.queryContract(window.dapp.contract.get_marketplace_list(cur_item.toString()));
+        done();
+      
+      alert(marketplace_list.length);
+      
         if (marketplace_list.length>0) {
 
             for(i=0;i<marketplace_list.length;i++) {
@@ -67,8 +70,7 @@
       });
 
       pullHook.onAction = function(done) {
-        setTimeout(done, 1000);
-        query_marketplace(current_item);
+        query_marketplace(current_item, done);
       };
       
     };
