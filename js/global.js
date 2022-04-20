@@ -524,6 +524,8 @@ window.dapp.sell_nft = function(nft_id_string, price_value) {
 
 window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger(nft_id+0)) {if(nft_id>0){
 
+    alert("criando item " +nft_id);
+    
   let extras = window.dapp.get_nft_attr(nft_id);
     
     function map(x, in_min, in_max, out_min, out_max) {
