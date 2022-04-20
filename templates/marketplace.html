@@ -72,10 +72,12 @@
     };
     
     ons.getScriptPage().onShow = function() { // load first elements in marketplace
+      alert("show");
       query_marketplace(current_item);         
     }
     
     ons.getScriptPage().onHide = function() {
+       alert("hide");
       // requires to delete all cards?      
     }
     
