@@ -474,8 +474,7 @@ document.addEventListener('init', function(event) {
 
 window.dapp.get_nft_attr = function(nft_id) {
  
-    if (Number.isInteger(nft_id+0)) {
-        if (nft_id>0) {
+    if(Number.isInteger(Number(nft_id))) {if(Number(nft_id)>0){
             
             let hashed = sha256('billboards'+nft_id).toLowerCase().split('');
             
@@ -493,9 +492,8 @@ window.dapp.get_nft_attr = function(nft_id) {
                 extra_event_expires: hashed[hashed[3]].charCodeAt() - (hashed[hashed[3]].charCodeAt() <= 57 ? 47 : 86),                
                 extra_collectable: (hashed[hashed[4]].charCodeAt() - (hashed[hashed[4]].charCodeAt() <= 57 ? 47 : 86)) - 1 
             }
-
-        }
-    }   
+        
+    }} 
     
     return false;
     
@@ -524,8 +522,7 @@ window.dapp.sell_nft = function(nft_id_string, price_value) {
 
 window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger(Number(nft_id))) {if(Number(nft_id)>0){
 
-    alert("criando item " +nft_id);
-    
+       
   let extras = window.dapp.get_nft_attr(nft_id);
     
     function map(x, in_min, in_max, out_min, out_max) {
@@ -536,6 +533,8 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
   let adjective = undefined;
   let rarity = map(extras.extra_coupon_expires,1*3*60,16*3*60,0,100) + map(extras.extra_event_expires,1,16,0,100) + map(extras.extra_collectable,0,15,0,100);
    
+    alert("--criando item " +rarity);
+    
    if      ((rarity==0)||(rarity==300)) adjective = [5990,"black","<b>Impossible!?</b>"];
    else if (rarity<10) adjective = [1500,"#e6de00","<b>Collectible!</b>"];
    else if (rarity<100) adjective = [600,"#b3b3b3","Very Common"];
