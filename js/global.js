@@ -294,10 +294,12 @@ ons.ready(function() {
 
         if (window.account) {
             document.getElementById("wallet-menu-connected").style.display = "block";
+            document.getElementById("marketpĺace-connected").style.display = "block";
             document.getElementById("wallet-menu-disconnected").style.display = "none";
         } else {
             document.getElementById("wallet-menu-connected").style.display = "none";
-            document.getElementById("wallet-menu-disconnected").style.display = "block";
+            document.getElementById("marketpĺace-connected").style.display = "none";
+            document.getElementById("wallet-menu-disconnected").style.display = "block";           
         }
 
     });
