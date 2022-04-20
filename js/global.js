@@ -3,7 +3,7 @@ var dapp = {};
 
 window.Buffer = buffer.Buffer;
 
-window.dapp.address = "AmhK9K9RMZxVDQuUqVQsipdNoWCeYhTcQLxP9wwr1airLVybuncS";
+window.dapp.address = "AmgCDxUicVcRUQTHbCnyEWrzRcEkuxrUaziPe4LH4VMRCyQsgMCc";
 
 window.dapp.contract = undefined;
 window.dapp.abi = undefined;
