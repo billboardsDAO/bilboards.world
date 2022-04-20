@@ -545,7 +545,7 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
   div.className = "nft-div";
   div.style.border = "solid 2px "+adjective[1];
   div.dataset.aer="1"; // 0 is envelope
-  div.dataset.id = "nft-"+nft_id.;
+  div.id = "nft-"+nft_id;
   div.innerHTML = `
  
     <table border=0 style="width:100%">
