@@ -520,7 +520,7 @@ window.dapp.sell_nft = function(nft_id_string, price_value) {
     
 }
 
-window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger(Number(nft_id))) {if(Number(nft_id)>0){
+window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInteger(Number(nft_id))) {if(Number(nft_id)>0){
 
        
   let extras = window.dapp.get_nft_attr(nft_id);
@@ -586,8 +586,22 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
 
    container_el.appendChild(div);
     
-    setTimeout(async function(a,b,c,d,e){
+    setTimeout(async function(a,b,c,d,e,f){
         lazyload.update();
+        let ds = [{
+                    label: 'This NFT',
+                    data: [a, b, c],
+                    fill: true,
+                    backgroundColor: e[3],
+                    borderColor: e[1],
+                    pointBackgroundColor: e[1],
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: e[1]
+                  }];
+        
+        if (f) ds.push(f);
+        
         new Chart(document.getElementById('canvas_'+d), {
             type: 'radar',
             data: {
@@ -596,30 +610,10 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
                     'EE',
                     'C'
                   ],
-                datasets: [{
-                        label: 'This NFT',
-                        data: [a, b, c],
-                        fill: true,
-                        backgroundColor: e[3],
-                        borderColor: e[1],
-                        pointBackgroundColor: e[1],
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: e[1]
-                      }, {
-                        label: 'Applied NFT',
-                        data: [28, 48, 40, 19, 96, 27, 100],
-                        fill: true,
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgb(54, 162, 235)',
-                        pointBackgroundColor: 'rgb(54, 162, 235)',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgb(54, 162, 235)'
-                      }]
+                datasets: ds
             }
         });        
-    }, 500, map(extras.extra_coupon_expires,1*3*60,16*3*60,0,100), map(extras.extra_event_expires,1,16,0,100), map(extras.extra_collectable,0,15,0,100), nft_id, adjective)
+    }, 500, map(extras.extra_coupon_expires,1*3*60,16*3*60,0,100), map(extras.extra_event_expires,1,16,0,100), map(extras.extra_collectable,0,15,0,100), nft_id, adjective, ac)
    return true
     
 }}return false}
