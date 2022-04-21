@@ -570,6 +570,7 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
                 <div
                     id="extra_coupon_expires_${nft_id}"
                     data-preset="bubble"
+                    style="width:70px;height:70px;"
                     class="ldBar"
                     data-value="0"
                     onClick="ons.notification.toast('Free extra minutes for each coupon on your billboards:<br>${Math.floor(extras.extra_coupon_expires/60)} minutes', {timeout: 2000});">
@@ -579,6 +580,7 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
               <div
                   id="extra_event_expires_${nft_id}"
                   data-type="fill"
+                  style="width:70px;height:70px;"
                   data-path="M10 10L90 10L90 90L10 90Z"
                   class="ldBar"
                   data-value="0"
@@ -591,6 +593,7 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
                <div
                   id="extra_collectable_${nft_id}"
                   data-type="fill"
+                  style="width:70px;height:70px;"
                   data-path="M45 10L45 10L80 90L10 90Z"
                   class="ldBar"
                   data-value="0"
