@@ -17,6 +17,8 @@
     var current_item = 1;
     var loading = false;
     
+    var applied_chart = undefined;
+    
     document.querySelector('ons-back-button').onClick = function(event) {
       window.dapp.load('templates/global.html')
     };
@@ -24,6 +26,28 @@
     var query_marketplace = async function(cur_item, done) {
       
         if (loading) return;
+      
+        const applied = await localforage.getItem('applied');      
+        if (!isNaN(applied)) {if (Number(applied)>0){
+          let extras = window.dapp.get_nft_attr(applied);    
+          function map(x, in_min, in_max, out_min, out_max) {
+            return Math.floor((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
+          }
+          let rarity = map(extras.extra_coupon_expires,1*3*60,16*3*60,0,100) + map(extras.extra_event_expires,1,16,0,100) + map(extras.extra_collectable,0,15,0,100);
+          applied_chart = {
+              label: 'Applied NFT',
+              data: [map(extras.extra_coupon_expires,1*3*60,16*3*60,0,100),
+                     map(extras.extra_event_expires,1,16,0,100), 
+                     map(extras.extra_collectable,0,15,0,100)],
+              fill: true,
+              backgroundColor: 'rgba(200, 254, 200, 02)',
+              borderColor: 'rgb(200, 254, 200)',
+              pointBackgroundColor: 'rgb(200, 254, 200)',
+              pointBorderColor: '#fff',
+              pointHoverBackgroundColor: '#fff',
+              pointHoverBorderColor: 'rgb(200, 254, 200)'
+            }
+        }else {applied_chart = undefined}} else {applied_chart = undefined};
 
         loading = true;
 
@@ -37,7 +61,7 @@
 
             for(i=0;i<marketplace_list.length;i++) {
               alert("#"+marketplace_list[i]);
-              window.dapp.create_nft_div(marketplace_list[i], document.getElementById("nft-container"));
+              window.dapp.create_nft_div(marketplace_list[i], document.getElementById("nft-container"), applied_chart);
             }          
 
             current_item += 50;
