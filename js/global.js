@@ -535,14 +535,14 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
    
     alert("--criando item " +rarity);
     
-   if      ((rarity==0)||(rarity==300)) adjective = [5990,"black","<b>Impossible!?</b>"];
-   else if (rarity<10) adjective = [1500,"#e6de00","<b>Collectible!</b>"];
-   else if (rarity<100) adjective = [600,"#b3b3b3","Very Common"];
-   else if (rarity<160) adjective = [650,"#00cc00","Common"];
-   else if (rarity<200) adjective = [750,"#ff6666","Rare"];
-   else if (rarity<250) adjective = [900,"#ff0000","<b>Very Rare</b>"];
-   else if (rarity<280) adjective = [1200,"#0000ff","<b>Epic</b>"];
-   else adjective = [2000,"#5200cc","<b>Legendary</b>"];
+   if      ((rarity==0)||(rarity==300)) adjective = [5990,"black","<b>Impossible!?</b>","rgba(0, 0, 0, 0.2)"];
+   else if (rarity<10) adjective = [1500,"#e6de00","<b>Collectible!</b>","rgba(230, 222, 0, 0.2)"];
+   else if (rarity<100) adjective = [600,"#b3b3b3","Very Common","rgba(179, 179, 179, 0.2)"];
+   else if (rarity<160) adjective = [650,"#00cc00","Common","rgba(138, 138, 138,0.2)"];
+   else if (rarity<200) adjective = [750,"#ff6666","Rare","rgba(255, 102, 102,0.2)"];
+   else if (rarity<250) adjective = [900,"#ff0000","<b>Very Rare</b>","rgba(255, 0, 0,0.2)"];
+   else if (rarity<280) adjective = [1200,"#0000ff","<b>Epic</b>","rgba(0, 0, 255,0.2)"];
+   else adjective = [2000,"#5200cc","<b>Legendary</b>","rgba(82, 0, 204,0.2)"];
     
   let div = document.createElement('div');
   div.className = "nft-div";
@@ -550,78 +550,76 @@ window.dapp.create_nft_div = function(nft_id, container_el) {if(Number.isInteger
   div.dataset.aer="1"; // 0 is envelope
   div.id = "nft-"+nft_id;
   div.innerHTML = `
- 
-    <table border=0 style="width:100%">
-        <tr><!--title--> 
-           <td colspan="2" style="text-align:left;color:${adjective[1]};">
-                 ${adjective[2]}
-            </td>
+     <table border=0 style="width:100%">
+        <tr><!--title-->
             <td colspan="1" style="text-align:right;">
-                 <b>#${nft_id}</b>
-            </td>        
-        </tr>
-        <tr><!--image--> 
-            <td colspan="3">
-                <img  alt="Loading" data-id="${nft_id}" data-price="${adjective[0]}" class="lazy" data-src="https://www.gravatar.com/avatar/${sha256('billboards'+nft_id).toLowerCase().slice(-32)}?s=60&r=g&d=robohash" style="width:60px;height:60px" />            
+                <img  alt="Loading" data-id="${nft_id}" data-price="${adjective[0]}" class="lazy" data-src="https://www.gravatar.com/avatar/${sha256('billboards'+nft_id).toLowerCase().slice(-32)}?s=60&r=g&d=robohash" style="width:60px;height:60px" /> 
+            </td>
+            <td colspan="2" style="text-align:left;">
+                 <b>#${nft_id}</b></br>
+                 <span style="color:${adjective[1]};">${adjective[2]}<span>   
             </td>        
         </tr>
         <tr><!--attrs-->
-            <td width="33%" style="text-align:center;">
-                <div
-                    id="extra_coupon_expires_${nft_id}"
-                    data-preset="bubble"
-                    style="width:70px;height:70px;"
-                    class="ldBar"
-                    data-value="0"
-                    onClick="ons.notification.toast('Free extra minutes for each coupon on your billboards:<br>${Math.floor(extras.extra_coupon_expires/60)} minutes', {timeout: 2000});">
-                </div>
-            </td>
-            <td width="33%" style="text-align:center;">
-              <div
-                  id="extra_event_expires_${nft_id}"
-                  data-type="fill"
-                  style="width:70px;height:70px;"
-                  data-path="M10 10L90 10L90 90L10 90Z"
-                  class="ldBar"
-                  data-value="0"
-                  data-fill="data:ldbar/res,
-                  bubble(#248,#fff,50,1)"
-                  onClick="ons.notification.toast('Free extra hours for each new event:<br>${extras.extra_event_expires} hour${extras.extra_event_expires==1?"":"s"}', {timeout: 2000});">
-                </div>
-            </td>
-            <td width="33%" style="text-align:center;">
-               <div
-                  id="extra_collectable_${nft_id}"
-                  data-type="fill"
-                  style="width:70px;height:70px;"
-                  data-path="M45 10L45 10L80 90L10 90Z"
-                  class="ldBar"
-                  data-value="0"
-                  data-fill="data:ldbar/res,
-                  bubble(#3fc2b8,#fff,50,1)"
-                  onClick="ons.notification.toast('Free extra claimables for each new billboard:<br>${extras.extra_collectable}', {timeout: 2000});">
-                </div>
+            <td colspan="3">
+                <canvas id="canvas_${nft_id}" width="200" height="200" onclick="document.getElementById('popover_canvas_${nft_id}').show(this);"></canvas>
+                <ons-popover cancelable id="popover_canvas_${nft_id}">
+                  <div style="padding: 10px; text-align: center;">
+                    <p>
+                      <b>CE:</b>&nbsp;Free extra minutes for each coupon on your billboards:&nbsp;<b>${Math.floor(extras.extra_coupon_expires/60)} minutes</b>
+                    </p>
+                    <p>
+                      <b>EE:</b>&nbsp;Free extra hours for each new event:&nbsp;<b>${extras.extra_event_expires} hour${extras.extra_event_expires==1?"":"s"}</b>
+                    </p>
+                    <p>
+                      <b>C:</b>&nbsp;Free extra claimables for each new billboard:&nbsp;<b>${extras.extra_collectable}</b>
+                    </p>
+                  </div>
+                </ons-popover> 
             </td>          
         </tr>  
          <tr><!--options--> 
             <td colspan="3" style="text-align:right;" id="options_${nft_id}"></td>        
         </tr>    
-    </table>
-
-  
+    </table> 
   `; 
 
-   container_el.append(div);
-
-    let extra_coupon_expires_$ = new ldBar("#extra_coupon_expires_"+nft_id);
-    let extra_event_expires_$ = new ldBar("#extra_event_expires_"+nft_id);
-    let extra_collectable_$ = new ldBar("#extra_collectable_"+nft_id);
+   container_el.appendChild(div);
     
-    extra_coupon_expires_$.set(map(extras.extra_coupon_expires,1*3*60,16*3*60,0,100));
-    extra_event_expires_$.set(map(extras.extra_event_expires,1,16,0,100));
-    extra_collectable_$.set(map(extras.extra_collectable,0,15,0,100));
-
-   lazyload.update();
+    setTimeout(async function(a,b,c,d,e){
+        lazyload.update();
+        new Chart(document.getElementById('canvas_'+d), {
+            type: 'radar',
+            data: {
+                  labels: [
+                    'CE',
+                    'EE',
+                    'C'
+                  ],
+                datasets: [{
+                        label: 'This NFT',
+                        data: [a, b, c],
+                        fill: true,
+                        backgroundColor: e[3],
+                        borderColor: e[1],
+                        pointBackgroundColor: e[1],
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: e[1]
+                      }, {
+                        label: 'Applied NFT',
+                        data: [28, 48, 40, 19, 96, 27, 100],
+                        fill: true,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgb(54, 162, 235)',
+                        pointBackgroundColor: 'rgb(54, 162, 235)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(54, 162, 235)'
+                      }]
+            }
+        });        
+    }, 500, map(extras.extra_coupon_expires,1*3*60,16*3*60,0,100), map(extras.extra_event_expires,1,16,0,100), map(extras.extra_collectable,0,15,0,100), nft_id, adjective)
    return true
     
 }}return false}
