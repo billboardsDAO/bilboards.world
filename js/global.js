@@ -555,7 +555,7 @@ window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInt
                  <b>#${nft_id}</b></br>
                  <span style="color:${adjective[1]};">${adjective[2]}<span>   
             </td>
-            <td style="text-align:center;width:98%;" id="options_${nft_id}"></td>  
+            <td style="text-align:right;width:98%;" id="options_${nft_id}"></td>  
         </tr>
         <tr><!--attrs-->
             <td colspan="3">
