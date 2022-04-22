@@ -541,7 +541,7 @@ window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInt
    else adjective = [2000,"#5200cc","<b>Legendary</b>","rgba(82, 0, 204,0.2)"];
     
   let div = document.createElement('div');
-  div.className = "nft-div";
+  div.className = "nft-item";
   div.style.border = "solid 2px "+adjective[1];
   div.dataset.aer="1"; // 0 is envelope
   div.id = "nft-"+nft_id;
