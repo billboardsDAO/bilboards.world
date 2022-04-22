@@ -68,8 +68,6 @@
     
     ons.getScriptPage().onInit = function() {
       
-       alert("init");
-     
       var pullHook = document.getElementById('pull-hook');
 
       pullHook.addEventListener('changestate', function(event) {
@@ -97,12 +95,10 @@
     };
     
     ons.getScriptPage().onShow = function() { // load first elements in marketplace
-      alert("show");
       query_marketplace(current_item, function(){});         
     }
     
     ons.getScriptPage().onHide = function() {
-       alert("hide");
       // requires to delete all cards?      
     }
     
