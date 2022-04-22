@@ -563,13 +563,13 @@ window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInt
                 <ons-popover cancelable id="popover_canvas_${nft_id}">
                   <div style="padding: 10px; text-align: center;">
                     <p>
-                      <b>CE:</b>&nbsp;Free extra minutes for each coupon on your billboards:&nbsp;<b>${Math.floor(extras.extra_coupon_expires/60)} minutes</b>
+                      <b>COUPON &plus;MINUTES</b>&nbsp;Free extra minutes for each coupon on your billboards:&nbsp;<b>${Math.floor(extras.extra_coupon_expires/60)} minutes</b>
                     </p>
                     <p>
-                      <b>EE:</b>&nbsp;Free extra hours for each new event:&nbsp;<b>${extras.extra_event_expires} hour${extras.extra_event_expires==1?"":"s"}</b>
+                      <b>EVENT &plus;HOURS</b>&nbsp;Free extra hours for each new event:&nbsp;<b>${extras.extra_event_expires} hour${extras.extra_event_expires==1?"":"s"}</b>
                     </p>
                     <p>
-                      <b>C:</b>&nbsp;Free extra claimables for each new billboard:&nbsp;<b>${extras.extra_collectable}</b>
+                      <b>&plus;CLAIMABLES</b>&nbsp;Free extra claimables for each new billboard:&nbsp;<b>${extras.extra_collectable}</b>
                     </p>
                   </div>
                 </ons-popover> 
@@ -600,9 +600,9 @@ window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInt
             type: 'radar',
             data: {
                   labels: [
-                    'CE',
-                    'EE',
-                    'C'
+                    'COUPON +MINUTES',
+                    'EVENT +HOURS',
+                    '+CLAIMABLES'
                   ],
                 datasets: ds
             },
