@@ -629,7 +629,7 @@ window.dapp.executeLazyFunction = async function(element) {if ((window.aergo)&&(
             if        ((window.account.address!=nft_table.owner_address)&&(Number(nft_table.value_ns) >0)&&(applied_string!=nft_table.id_string)) {
                 //console.log("mostrar preco e botão comprar ");                
                 document.getElementById("options_"+nft_table.id_string).innerHTML = `
-                 <ons-button onclick="document.getElementById('popover_buy_card_${nft_table.id_string}').show(this);">Buy ${(new herajs.Amount(nft_table.value_ns, "aer", "aergo")).toString().replace(/ aergo/, "").replace(/^(\d+[\.,]\d{5}).*$/, "$1")} aergo</ons-button>
+                 <ons-button onclick="document.getElementById('popover_buy_card_${nft_table.id_string}').show(document.getElementById('marketplace_title'));">Buy ${(new herajs.Amount(nft_table.value_ns, "aer", "aergo")).toString().replace(/ aergo/, "").replace(/^(\d+[\.,]\d{5}).*$/, "$1")} aergo</ons-button>
                 <ons-popover cancelable id="popover_buy_card_${nft_table.id_string}">
                   <div style="padding: 10px; text-align: center;">
                     <p>
@@ -649,7 +649,7 @@ window.dapp.executeLazyFunction = async function(element) {if ((window.aergo)&&(
             } else if ((window.account.address==nft_table.owner_address)&&(Number(nft_table.value_ns)==0)&&(applied_string!=nft_table.id_string)) {
                 //console.log("mostrar botão vender aplicar");
                 document.getElementById("options_"+nft_table.id_string).innerHTML = `
-                 <ons-button onclick="document.getElementById('popover_sell_card_${nft_table.id_string}').show(this);">Sell</ons-button>&nbsp;or&nbsp;<ons-button onclick="window.dapp.apply_nft('${nft_table.id_string}');">Apply</ons-button>
+                 <ons-button onclick="document.getElementById('popover_sell_card_${nft_table.id_string}').show(document.getElementById('marketplace_title'));">Sell</ons-button>&nbsp;or&nbsp;<ons-button onclick="window.dapp.apply_nft('${nft_table.id_string}');">Apply</ons-button>
                 <ons-popover cancelable id="popover_sell_card_${nft_table.id_string}">
                   <div style="padding: 10px; text-align: center;">
                     <p>
