@@ -551,13 +551,14 @@ window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInt
             <td style="text-align:right;width:1%;">
                 <img  alt="Loading" data-id="${nft_id}" data-price="${adjective[0]}" class="lazy" data-src="https://www.gravatar.com/avatar/${sha256('billboards'+nft_id).toLowerCase().slice(-32)}?s=60&r=g&d=robohash" style="width:60px;height:60px" /> 
             </td>
-            <td style="text-align:left;width:99%;">
+            <td style="text-align:left;width:1%;" nowrap>
                  <b>#${nft_id}</b></br>
                  <span style="color:${adjective[1]};">${adjective[2]}<span>   
-            </td>        
+            </td>
+            <td style="text-align:center;width:98%;" id="options_${nft_id}"></td>  
         </tr>
         <tr><!--attrs-->
-            <td colspan="2">
+            <td colspan="3">
                 <canvas id="canvas_${nft_id}" width="390" height="250" onclick="document.getElementById('popover_canvas_${nft_id}').show(this);"></canvas>
                 <ons-popover cancelable id="popover_canvas_${nft_id}">
                   <div style="padding: 10px; text-align: center;">
@@ -573,10 +574,7 @@ window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInt
                   </div>
                 </ons-popover> 
             </td>          
-        </tr>  
-         <tr><!--options--> 
-            <td colspan="2" style="text-align:center;" id="options_${nft_id}"></td>        
-        </tr>    
+        </tr>
     </table> 
   `; 
 
