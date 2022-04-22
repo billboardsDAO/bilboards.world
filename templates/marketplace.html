@@ -50,16 +50,12 @@
 
         loading = true;
 
-        alert(cur_item);
         const marketplace_list = await aergo.queryContract(window.dapp.contract.get_marketplace_list(cur_item.toString()));
         done();
-      
-       alert(">>>"+marketplace_list.length);
       
         if (marketplace_list.length>0) {
 
             for(i=0;i<marketplace_list.length;i++) {
-              alert("#"+marketplace_list[i]);
               window.dapp.create_nft_div(marketplace_list[i], document.getElementById("nft-container"), applied_chart);
             }          
 
