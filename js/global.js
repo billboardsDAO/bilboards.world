@@ -558,7 +558,7 @@ window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInt
         </tr>
         <tr><!--attrs-->
             <td colspan="2">
-                <canvas id="canvas_${nft_id}" width="200" height="200" onclick="document.getElementById('popover_canvas_${nft_id}').show(this);"></canvas>
+                <canvas id="canvas_${nft_id}" width="390" height="250" onclick="document.getElementById('popover_canvas_${nft_id}').show(this);"></canvas>
                 <ons-popover cancelable id="popover_canvas_${nft_id}">
                   <div style="padding: 10px; text-align: center;">
                     <p>
