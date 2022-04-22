@@ -522,26 +522,22 @@ window.dapp.sell_nft = function(nft_id_string, price_value) {
 
 window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInteger(Number(nft_id))) {if(Number(nft_id)>0){
 
-       
   let extras = window.dapp.get_nft_attr(nft_id);
     
     function map(x, in_min, in_max, out_min, out_max) {
       return Math.floor((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
     }
-    
-    
+        
   let adjective = undefined;
   let rarity = map(extras.extra_coupon_expires,1*3*60,16*3*60,0,100) + map(extras.extra_event_expires,1,16,0,100) + map(extras.extra_collectable,0,15,0,100);
-   
-    alert("--criando item " +rarity);
     
    if      ((rarity==0)||(rarity==300)) adjective = [5990,"black","<b>Impossible!?</b>","rgba(0, 0, 0, 0.2)"];
    else if (rarity<10) adjective = [1500,"#e6de00","<b>Collectible!</b>","rgba(230, 222, 0, 0.2)"];
    else if (rarity<100) adjective = [600,"#b3b3b3","Very Common","rgba(179, 179, 179, 0.2)"];
-   else if (rarity<160) adjective = [650,"#00cc00","Common","rgba(138, 138, 138,0.2)"];
-   else if (rarity<200) adjective = [750,"#ff6666","Rare","rgba(255, 102, 102,0.2)"];
-   else if (rarity<250) adjective = [900,"#ff0000","<b>Very Rare</b>","rgba(255, 0, 0,0.2)"];
-   else if (rarity<280) adjective = [1200,"#0000ff","<b>Epic</b>","rgba(0, 0, 255,0.2)"];
+   else if (rarity<220) adjective = [650,"rgb(138, 138, 138)","Common","rgba(138, 138, 138,0.2)"];
+   else if (rarity<260) adjective = [750,"#ff6666","Rare","rgba(255, 102, 102,0.2)"];
+   else if (rarity<280) adjective = [900,"#ff0000","<b>Very Rare</b>","rgba(255, 0, 0,0.2)"];
+   else if (rarity<290) adjective = [1200,"#0000ff","<b>Epic</b>","rgba(0, 0, 255,0.2)"];
    else adjective = [2000,"#5200cc","<b>Legendary</b>","rgba(82, 0, 204,0.2)"];
     
   let div = document.createElement('div');
@@ -552,16 +548,16 @@ window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInt
   div.innerHTML = `
      <table border=0 style="width:100%">
         <tr><!--title-->
-            <td colspan="1" style="text-align:right;">
+            <td style="text-align:right;width:1%;">
                 <img  alt="Loading" data-id="${nft_id}" data-price="${adjective[0]}" class="lazy" data-src="https://www.gravatar.com/avatar/${sha256('billboards'+nft_id).toLowerCase().slice(-32)}?s=60&r=g&d=robohash" style="width:60px;height:60px" /> 
             </td>
-            <td colspan="2" style="text-align:left;">
+            <td style="text-align:left;width:99%;">
                  <b>#${nft_id}</b></br>
                  <span style="color:${adjective[1]};">${adjective[2]}<span>   
             </td>        
         </tr>
         <tr><!--attrs-->
-            <td colspan="3">
+            <td colspan="2">
                 <canvas id="canvas_${nft_id}" width="200" height="200" onclick="document.getElementById('popover_canvas_${nft_id}').show(this);"></canvas>
                 <ons-popover cancelable id="popover_canvas_${nft_id}">
                   <div style="padding: 10px; text-align: center;">
@@ -579,7 +575,7 @@ window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInt
             </td>          
         </tr>  
          <tr><!--options--> 
-            <td colspan="3" style="text-align:right;" id="options_${nft_id}"></td>        
+            <td colspan="2" style="text-align:center;" id="options_${nft_id}"></td>        
         </tr>    
     </table> 
   `; 
