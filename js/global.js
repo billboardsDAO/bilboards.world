@@ -629,63 +629,27 @@ window.dapp.executeLazyFunction = async function(element) {if ((window.aergo)&&(
             if        ((window.account.address!=nft_table.owner_address)&&(Number(nft_table.value_ns) >0)&&(applied_string!=nft_table.id_string)) {
                 //console.log("mostrar preco e botão comprar ");                
                 document.getElementById("options_"+nft_table.id_string).innerHTML = `
-                 <ons-button onclick="document.getElementById('popover_buy_card_${nft_table.id_string}').show(document.getElementById('marketplace_title'));">Buy ${(new herajs.Amount(nft_table.value_ns, "aer", "aergo")).toString().replace(/ aergo/, "").replace(/^(\d+[\.,]\d{5}).*$/, "$1")} aergo</ons-button>
-                <ons-popover cancelable id="popover_buy_card_${nft_table.id_string}">
-                  <div style="padding: 10px; text-align: center;">
-                    <p>
-                      Are you sure you want to buy this NFT?
-                    </p>
-                    <p>
-                      <ons-button onclick="window.dapp.buy_nft('${nft_table.id_string}');">Yes I'm sure!</ons-button>
-                    </p>
-                  </div>
-                </ons-popover>               
+                 <ons-button onmouseup="ons.notification.prompt('Prompt!').then(function(input) {var message = input ? 'Entered: ' + input : 'Entered nothing!';ons.notification.alert(message);});window.dapp.buy_nft('${nft_table.id_string}');">Buy ${(new herajs.Amount(nft_table.value_ns, "aer", "aergo")).toString().replace(/ aergo/, "").replace(/^(\d+[\.,]\d{5}).*$/, "$1")} aergo</ons-button>  
                 `;
             } else if ((window.account.address==nft_table.owner_address)&&(Number(nft_table.value_ns)==0)&&(Number(applied_string)==0)) {
                 //console.log("mostrar botão aplicar");
                 document.getElementById("options_"+nft_table.id_string).innerHTML = `
-                <ons-button onclick="window.dapp.apply_nft('${nft_table.id_string}');">Apply</ons-button>                   
+                <ons-button onmouseup="window.dapp.apply_nft('${nft_table.id_string}');">Apply</ons-button>                   
                 `;
             } else if ((window.account.address==nft_table.owner_address)&&(Number(nft_table.value_ns)==0)&&(applied_string!=nft_table.id_string)) {
                 //console.log("mostrar botão vender aplicar");
                 document.getElementById("options_"+nft_table.id_string).innerHTML = `
-                 <ons-button onclick="document.getElementById('popover_sell_card_${nft_table.id_string}').show(document.getElementById('marketplace_title'));">Sell</ons-button>&nbsp;or&nbsp;<ons-button onclick="window.dapp.apply_nft('${nft_table.id_string}');">Apply</ons-button>
-                <ons-popover cancelable id="popover_sell_card_${nft_table.id_string}">
-                  <div style="padding: 10px; text-align: center;">
-                    <p>
-                      What value (in aergo) do you want to sell it?
-                    </p>
-                    <p>
-                      <ons-input id="price_${nft_table.id_string}" modifier="underbar" placeholder="Price in Aergo" value="${element.dataset.price}" type="number" required min="1" style="width:120px;"></ons-input>&nbsp;aergo
-                    </p>
-                    <p>
-                      <ons-button onclick="window.dapp.sell_nft('${nft_table.id_string}',document.getElementById('price_${nft_table.id_string}').value);">Confirm to marketplace</ons-button>
-                    </p>
-                  </div>
-                </ons-popover>               
+                 <ons-button onmouseup="ons.notification.prompt('Prompt!').then(function(input) {var message = input ? 'Entered: ' + input : 'Entered nothing!';ons.notification.alert(message);});/*window.dapp.sell_nft('${nft_table.id_string}',document.getElementById('price_${nft_table.id_string}').value);*/">Sell</ons-button>&nbsp;or&nbsp;<ons-button onclick="window.dapp.apply_nft('${nft_table.id_string}');">Apply</ons-button>
                 `;
             } else if ((window.account.address==nft_table.owner_address)&&(Number(nft_table.value_ns)==0)&&(applied_string==nft_table.id_string)) {
                 //console.log("mostrar aplicado");
                 document.getElementById("options_"+nft_table.id_string).innerHTML = `
-                    <ons-button modifier="large" disabled="true"><ons-icon icon="fa-check"></ons-icon>&nbsp;NFT currently applied</ons-button>
+                    <ons-button modifier="large" disabled="true"><ons-icon icon="fa-check"></ons-icon>&nbsp;Currently applied</ons-button>
                 `;
             } else if ((window.account.address==nft_table.owner_address)&&(Number(nft_table.value_ns) >0)&&(applied_string!=nft_table.id_string)) {
                  //console.log("mostrar set price e não vender mais");
                 document.getElementById("options_"+nft_table.id_string).innerHTML = `
-                 <ons-button onclick="document.getElementById('popover_setprice_card_${nft_table.id_string}').show(this);">Set price</ons-button>&nbsp;or&nbsp;<ons-button onclick="window.dapp.sell_nft('${nft_table.id_string}',0);">Cancel Sale</ons-button>
-                <ons-popover cancelable id="popover_setprice_card_${nft_table.id_string}">
-                  <div style="padding: 10px; text-align: center;">
-                    <p>
-                     What value (in aergo) do you want to change?
-                    </p>
-                    <p>
-                      <ons-input id="setprice_${nft_table.id_string}" modifier="underbar" placeholder="Price in Aergo" value="${(new herajs.Amount(nft_table.value_ns, "aer", "aergo")).toString().replace(/ aergo/, "").replace(/^(\d+[\.,]\d{5}).*$/, "$1")}" type="number" required min="1" style="width:120px;"></ons-input>&nbsp;aergo
-                    </p>
-                    <p>
-                      <ons-button onclick="window.dapp.sell_nft('${nft_table.id_string}',document.getElementById('setprice_${nft_table.id_string}').value);">Set new price!</ons-button>
-                    </p>
-                  </div>
-                </ons-popover>               
+                 <ons-button onmouseup="">Set price</ons-button>&nbsp;or&nbsp;<ons-button onclick="window.dapp.sell_nft('${nft_table.id_string}',0);">Cancel Sale</ons-button>
                 `;
             } else if ((window.account.address!=nft_table.owner_address)&&(Number(nft_table.value_ns)==0)&&(applied_string!=nft_table.id_string)) {
                  //console.log("mostrar não está a venda"); 
