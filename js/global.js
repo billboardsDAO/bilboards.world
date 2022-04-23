@@ -610,7 +610,10 @@ window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInt
                 scales: {
                     r: {
                         suggestedMin: 0,
-                        suggestedMax: 100
+                        suggestedMax: 100,
+                          ticks: {
+                            display: false
+                          }
                     }
                 }
             }
