@@ -613,6 +613,9 @@ window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInt
                         suggestedMax: 100,
                           ticks: {
                             display: false
+                          },
+                          pointLabels: {
+                            display: false
                           }
                     }
                 }
