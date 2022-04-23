@@ -600,9 +600,9 @@ window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInt
             type: 'radar',
             data: {
                   labels: [
-                    'EXTRA COUPON MINUTES',
-                    'EXTRA EVENT HOURS',
-                    'EXTRA CLAIMABLES'
+                    'EXTRA COUPON MINUTES %',
+                    'EXTRA EVENT HOURS %',
+                    'EXTRA CLAIMABLES %'
                   ],
                 datasets: ds
             },
