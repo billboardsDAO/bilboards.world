@@ -636,7 +636,7 @@ window.dapp.executeLazyFunction = async function(element) {if ((window.aergo)&&(
                 document.getElementById("options_"+nft_table.id_string).innerHTML = `
                 <ons-button onmouseup="window.dapp.apply_nft('${nft_table.id_string}');">Apply</ons-button>                   
                 `;
-            } else if ((window.account.address==nft_table.owner_address)&&(Number(nft_table.value_ns)==0)&&(applied_string!=nft_table.id_string)) {
+            } else if ((window.account.address==nft_table.owner_address)&&(Number(nft_table.value_ns)==0)&&(applied_string!=nft_table.id_string)) {*/
                 //console.log("mostrar botão vender aplicar");
                 document.getElementById("options_"+nft_table.id_string).innerHTML = `
                  <ons-button onmouseup="ons.notification.prompt('Enter the Aergo amount you want to sell:', {
@@ -654,12 +654,12 @@ window.dapp.executeLazyFunction = async function(element) {if ((window.aergo)&&(
                     }
                  });">Sell</ons-button>&nbsp;<ons-button onclick="window.dapp.apply_nft('${nft_table.id_string}');">Apply</ons-button>
                 `;
-            } else if ((window.account.address==nft_table.owner_address)&&(Number(nft_table.value_ns)==0)&&(applied_string==nft_table.id_string)) {
+           /* } else if ((window.account.address==nft_table.owner_address)&&(Number(nft_table.value_ns)==0)&&(applied_string==nft_table.id_string)) {
                 //console.log("mostrar aplicado");
                 document.getElementById("options_"+nft_table.id_string).innerHTML = `
                     <ons-button modifier="large" disabled="true"><ons-icon icon="fa-check"></ons-icon>&nbsp;Currently applied</ons-button>
                 `;
-            } else if ((window.account.address==nft_table.owner_address)&&(Number(nft_table.value_ns) >0)&&(applied_string!=nft_table.id_string)) {*/
+            } else if ((window.account.address==nft_table.owner_address)&&(Number(nft_table.value_ns) >0)&&(applied_string!=nft_table.id_string)) {
                  //console.log("mostrar set price e não vender mais");
                 document.getElementById("options_"+nft_table.id_string).innerHTML = `
                  <ons-button onmouseup="ons.notification.prompt('Enter the Aergo amount you want to set the new price:', {
@@ -677,7 +677,7 @@ window.dapp.executeLazyFunction = async function(element) {if ((window.aergo)&&(
                     }
                  });">Set Price</ons-button>&nbsp;<ons-button onclick="window.dapp.sell_nft('${nft_table.id_string}',0);">Cancel Sale</ons-button>
                 `;
-           /* } else if ((window.account.address!=nft_table.owner_address)&&(Number(nft_table.value_ns)==0)&&(applied_string!=nft_table.id_string)) {
+            } else if ((window.account.address!=nft_table.owner_address)&&(Number(nft_table.value_ns)==0)&&(applied_string!=nft_table.id_string)) {
                  //console.log("mostrar não está a venda"); 
                  document.getElementById("options_"+nft_table.id_string).innerHTML = `
                     <ons-button modifier="large--quiet" disabled="true"><ons-icon icon="fa-store"></ons-icon>&nbsp;NOT FOR SALE!</ons-button>
