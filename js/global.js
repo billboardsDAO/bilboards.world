@@ -549,7 +549,7 @@ window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInt
      <table border=0 style="width:100%">
         <tr><!--title-->
             <td style="text-align:right;width:1%;">
-                <img  alt="Loading" data-id="${nft_id}" data-price="${adjective[0]}" class="lazy" data-src="https://www.gravatar.com/avatar/${sha256('billboards'+nft_id).toLowerCase().slice(-32)}?s=60&r=g&d=robohash" style="width:60px;height:60px" /> 
+                <img  alt="Loading" data-id="${nft_id}" data-price="${adjective[0]}" class="lazy" data-src="https://www.gravatar.com/avatar/${sha256('billboards'+nft_id).toLowerCase().slice(-32)}?s=60&r=g&d=retro" style="width:60px;height:60px" /> 
             </td>
             <td style="text-align:left;width:1%;" nowrap>
                  <b>#${nft_id}</b></br>
