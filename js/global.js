@@ -642,8 +642,8 @@ window.dapp.executeLazyFunction = async function(element) {if ((window.aergo)&&(
                  <ons-button onmouseup="ons.notification.prompt('Enter the Aergo amount you want to sell:', {
                     cancelable: true,
                     defaultValue: ${element.dataset.price},
-                    inputType: "number",
-                    buttonLabels: ["Sell NFT #${element.dataset.id}"]
+                    inputType: 'number',
+                    buttonLabels: ['Sell NFT #${element.dataset.id}']
                  }).then(function(input) {    
                     if (input) {
                         if(Number.isInteger(Number(input))) {if(Number(input)>0){            
@@ -665,8 +665,8 @@ window.dapp.executeLazyFunction = async function(element) {if ((window.aergo)&&(
                  <ons-button onmouseup="ons.notification.prompt('Enter the Aergo amount you want to set the new price:', {
                     cancelable: true,
                     defaultValue: ${nft_table.value_ns},
-                    inputType: "number",
-                    buttonLabels: ["Set price NFT #${(new herajs.Amount(nft_table.value_ns, "aer", "aergo")).toString().replace(/ aergo/, "").replace(/^(\d+[\.,]\d{5}).*$/, "$1")}"]
+                    inputType: 'number',
+                    buttonLabels: ['Set price NFT #${(new herajs.Amount(nft_table.value_ns, "aer", "aergo")).toString().replace(/ aergo/, "").replace(/^(\d+[\.,]\d{5}).*$/, "$1")}']
                  }).then(function(input) {    
                     if (input) {
                         if(Number.isInteger(Number(input))) {if(Number(input)>0){            
