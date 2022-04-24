@@ -559,9 +559,7 @@ window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInt
         </tr>
         <tr><!--attrs-->
             <td colspan="3">
-                <canvas id="canvas_${nft_id}" width="390" height="250" onclick="document.getElementById('popover_canvas_${nft_id}').show(this);"></canvas>
-                <ons-popover cancelable id="popover_canvas_${nft_id}">
-                  <div style="padding: 10px; text-align: center;">
+                <canvas id="canvas_${nft_id}" width="390" height="250" onclick="ons.notification.alert('
                     <p>
                       <b>EXTRA COUPON MINUTES</b>&nbsp;Free extra minutes for each coupon on your billboards:&nbsp;<b>${Math.floor(extras.extra_coupon_expires/60)} minutes</b>
                     </p>
@@ -570,9 +568,8 @@ window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInt
                     </p>
                     <p>
                       <b>EXTRA CLAIMABLES</b>&nbsp;Free extra claimables for each new billboard:&nbsp;<b>${extras.extra_collectable}</b>
-                    </p>
-                  </div>
-                </ons-popover> 
+                    </p> 
+                  ');"></canvas>
             </td>          
         </tr>
     </table> 
