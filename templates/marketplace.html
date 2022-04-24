@@ -9,6 +9,11 @@
   </ons-pull-hook>
 
   <div class="nft-container" id="nft-container">    
+    
+    <div class="nft-item" style="solid 4px rgb(215, 197, 142);text-align: center;vertical-align: middle;" data-aer="#">
+          <ons-button disabled="true" onclick="query_marketplace(current_item)" id="marketplace_loadmore_button">Load More</ons-button>
+          <ons-progress-circular style="display:none;" indeterminate id="marketplace_loadmore_progress"></ons-progress-circular>
+    </div>    
 
   </div>
   
@@ -23,7 +28,7 @@
       window.dapp.load('templates/global.html')
     };
     
-    var query_marketplace = async function(cur_item, done) {
+    var query_marketplace = async function(cur_item) {
       
         if (loading) return;
       
@@ -49,9 +54,11 @@
         }else {applied_chart = undefined}} else {applied_chart = undefined};
 
         loading = true;
-
+        marketplace_loadmore.setAttribute("disabled",true);
+        marketplace_loadmore.innerHTML = "Please wait, loading...";
+        document.getElementById('marketplace_loadmore_progress').style.display = "block";
+      
         const marketplace_list = await aergo.queryContract(window.dapp.contract.get_marketplace_list(cur_item.toString()));
-        done();
       
         if (marketplace_list.length>0) {
 
@@ -60,46 +67,28 @@
             }          
 
             current_item += 50;
+
+            marketplace_loadmore.setAttribute("disabled",false);      
+            marketplace_loadmore.innerHTML = "Load More";
+            
+         } else {           
+ 
+           marketplace_loadmore.innerHTML = "Sorry, no more items in marketplace!";
+
          }
 
-        loading = false;     
+        document.getElementById('marketplace_loadmore_progress').style.display = "none";
+        loading = false;        
 
-    }
-    
-    ons.getScriptPage().onInit = function() {
-      
-      var pullHook = document.getElementById('pull-hook');
-
-      pullHook.addEventListener('changestate', function(event) {
-        var message = '';
-
-        switch (event.state) {
-          case 'initial':
-            message = loading?"Loading marketplace items":'Load more 50 NFTs in marketplace';
-            break;
-          case 'preaction':
-            message = loading?"Loading marketplace items":'Release';
-            break;
-          case 'action':
-            message = loading?"Loading marketplace items":'Loading...';
-            break;
-        }
-
-        pullHook.innerHTML = message;
-      });
-
-      pullHook.onAction = function(done) {
-        query_marketplace(current_item, done);
-      };
-      
-    };
+    }   
     
     ons.getScriptPage().onShow = function() { // load first elements in marketplace
-      query_marketplace(current_item, function(){});         
+      query_marketplace(current_item);         
     }
     
     ons.getScriptPage().onHide = function() {
-      // requires to delete all cards?      
+      current_item = 1;
+      loading = false;
     }
     
     
