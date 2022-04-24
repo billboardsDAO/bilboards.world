@@ -12,6 +12,19 @@
 
   </div>
   
+    <ons-bottom-toolbar style="z-index:1000;" id="bottom">
+      <ons-row style="line-height:40px;">
+        <ons-col width="100%">
+          <ons-toolbar-button onclick="window.dapp.load('templates/global.html');dapp.interfaceConnection()">
+            
+          </ons-toolbar-button>
+          <span data-placeholder=""><span>
+        </ons-col>            
+     </ons-row>
+    </ons-bottom-toolbar>
+
+    <div class="toolbar--material bottom-corner" id="claimable" data-placeholder="..."></div>
+  
   <script>
     
     var current_item = 1;
