@@ -569,7 +569,7 @@ window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInt
                     <p>
                       <b>EXTRA CLAIMABLES</b>&nbsp;Free extra claimables for each new billboard:&nbsp;<b>${extras.extra_collectable}</b>
                     </p> 
-                  ');"></canvas>
+                  ', {title:'NFT #${nft_id}'});"></canvas>
             </td>          
         </tr>
     </table> 
