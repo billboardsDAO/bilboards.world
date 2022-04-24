@@ -3,6 +3,7 @@
     <div class="left"><ons-back-button>Back</ons-back-button></div>
     <div class="center" id="marketplace_title">Billboards NFTs Marketplace</div>
   </ons-toolbar>
+  <ons-progress-bar indeterminate id="marketplace_loadmore_progress" style="display:none;"></ons-progress-bar>
 
   <div class="nft-container" id="nft-container">    
     
@@ -51,6 +52,7 @@
         loading = true;
         document.getElementById("marketplace_loadmore_button").setAttribute("disabled",true);
         document.getElementById("marketplace_loadmore_button").innerHTML = "Please wait, loading...";
+        document.getElementById("marketplace_loadmore_progress").style.display = "block";
       
         const marketplace_list = await aergo.queryContract(window.dapp.contract.get_marketplace_list(cur_item.toString()));
       
@@ -71,6 +73,7 @@
 
          }
 
+      document.getElementById("marketplace_loadmore_progress").style.display = "none";
       loading = false;        
 
     }   
