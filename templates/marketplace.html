@@ -6,9 +6,8 @@
 
   <div class="nft-container" id="nft-container">    
     
-    <div class="nft-item" style="border:solid 4px rgb(215, 197, 142);text-align: center;vertical-align: middle;" data-aer="#">
-          <ons-button disabled="true" onclick="query_marketplace(current_item)" id="marketplace_loadmore_button">Load More</ons-button>
-          <ons-progress-circular style="display:none;" indeterminate id="marketplace_loadmore_progress"></ons-progress-circular>
+    <div>
+          <ons-progress-circular style="display:none;" indeterminate id="marketplace_loadmore_progress"></ons-progress-circular>&nbsp;<ons-button disabled="true" onclick="query_marketplace(current_item)" id="marketplace_loadmore_button">Load More</ons-button>
     </div>    
 
   </div>
@@ -64,7 +63,7 @@
 
             current_item += 50;
 
-            document.getElementById("marketplace_loadmore_button").setAttribute("disabled",false);      
+            document.getElementById("marketplace_loadmore_button").removeAttribute("disabled");     
             document.getElementById("marketplace_loadmore_button").innerHTML = "Load More";
             
          } else {           
