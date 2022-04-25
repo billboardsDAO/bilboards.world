@@ -3,7 +3,7 @@
     <div class="left"><ons-back-button>Back</ons-back-button></div>
     <div class="center">My NFTs</div>
     <div class="right">
-      <ons-toolbar-button>Claim Envelope</ons-toolbar-button>
+      <ons-toolbar-button onclick="claim_envelope();">Claim Envelope</ons-toolbar-button>
     </div>
   </ons-toolbar>
 
@@ -55,22 +55,48 @@
             }
         }else {applied_chart = undefined}} else {applied_chart = undefined};
 
-        const marketplace_list = await aergo.queryContract(window.dapp.contract.get_marketplace_list(cur_item.toString()));
+        const user_data = await aergo.queryContract(window.dapp.contract.get_user_data(window.account.address));
+        let inserted = [];
       
-        if (marketplace_list.length>0) {
+        if (user_data) {
+          
+          // create envelopes item
 
-            for(i=0;i<marketplace_list.length;i++) {
-              window.dapp.create_nft_div(marketplace_list[i], document.getElementById("nft-container"), applied_chart);
-            }          
+          
+          // create nft items
+        
+          if (user_data.NFTs.history_table.length>0) {
+              for(i=0;i<user_data.NFTs.history_table.length;i++) {                
+                const nft_table = await aergo.queryContract(window.dapp.contract.get_NFT_table(user_data.NFTs.history_table[i].toString()));               
 
-            current_item += 50;
+                  if ((nft_table.owner_address==window.account.address)&&(inserted.indexOf(user_data.NFTs.history_table[i].toString()) == -1)) {
+                    inserted.push(user_data.NFTs.history_table[i].toString());
+                    window.dapp.create_nft_div(user_data.NFTs.history_table[i].toString(), document.getElementById("nft-container"), applied_chart);
+                  }
 
-            document.getElementById("marketplace_loadmore_button").removeAttribute("disabled");     
-            document.getElementById("marketplace_loadmore_button").innerHTML = "Load More";
-            
-         } else document.getElementById("marketplace_loadmore_button").innerHTML = "Sorry, no more items in marketplace!";
+                
+              } 
+
+           }
+          
+        }
 
     }  
+    
+    function claim_envelope() {
+      
+      // checks claimable >= 1000 ok
+      // call contract
+      // check results == true
+      // update
+      
+          localforage.getItem('claimable').then(function(value) {
+            if (Number(value) >= 1000) {
+              
+            }
+          });
+      
+    }
     
   </script>
   
