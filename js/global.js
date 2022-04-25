@@ -524,6 +524,7 @@ window.dapp.apply_nft = function(nft_id_string) {
     window.postMessage({
       type: 'AERGO_REQUEST',
       action: "SEND_TX",
+      amount: '0 aer',
       data: {
         from: window.account.address,
         to: window.dapp.address,
@@ -543,6 +544,7 @@ window.dapp.sell_nft = function(nft_id_string, price_value) {
     window.postMessage({
       type: 'AERGO_REQUEST',
       action: "SEND_TX",
+      amount: '0 aer',
       data: {
         from: window.account.address,
         to: window.dapp.address,
