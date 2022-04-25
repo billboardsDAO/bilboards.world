@@ -506,16 +506,17 @@ window.dapp.buy_nft = function(nft_id_string, aer_amount) {
     window.postMessage({
       type: 'AERGO_REQUEST',
       action: "SEND_TX",
-      data: JSON.stringify({
+      data: {
         from: window.account.address,
         to: window.dapp.address,
         amount: aer_amount + ' aer',
-        payload_json: { "Name": "NFT_buy", "Args": [nft_id_string, location.hash] }
-      })
+        payload_json: { "Name": "NFT_buy", "Args": (location.hash==""?[nft_id_string]:[nft_id_string,location.hash])}
+      }
     });
     
     window.addEventListener("AERGO_SEND_TX_RESULT", function(event) {
-      console.log(event);
+      console.log("comprado " + event.toString());
+      window.dapp.load('templates/my_nfts.html');
     }, { once: true });
     
 }
