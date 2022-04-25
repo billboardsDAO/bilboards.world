@@ -709,7 +709,7 @@ window.dapp.executeLazyFunction = async function(element) {if ((window.aergo)&&(
                         }}
                         ons.notification.alert('Invalid value, the operation was cancelled.');
                     }
-                 });">Set Price</ons-button>&nbsp;<ons-button onclick="window.dapp.sell_nft('${nft_table.id_string}',0);">Cancel Sale</ons-button>
+                 });">Set Price</ons-button>&nbsp;<ons-button onclick="window.dapp.sell_nft('${nft_table.id_string}','0');">Cancel Sale</ons-button>
                 `;
             } else if ((window.account.address!=nft_table.owner_address)&&(Number(nft_table.value_ns)==0)&&(applied_string!=nft_table.id_string)) {
                  //console.log("mostrar não está a venda"); 
