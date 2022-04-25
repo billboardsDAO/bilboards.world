@@ -32,9 +32,9 @@
       window.dapp.load('templates/global.html')
     };   
     
-    ons.getScriptPage().onShow = function() {
+    aync function show_my_nfts() {
       
-       const applied = await localforage.getItem('applied');      
+      const applied = await localforage.getItem('applied');      
         if (!isNaN(applied)) {if (Number(applied)>0){
           let extras = window.dapp.get_nft_attr(applied);    
           function map(x, in_min, in_max, out_min, out_max) {
@@ -80,7 +80,11 @@
            }
           
         }
-
+      
+    }
+    
+    ons.getScriptPage().onShow = function() {      
+       show_my_nfts();
     }  
     
     function claim_envelope() {
