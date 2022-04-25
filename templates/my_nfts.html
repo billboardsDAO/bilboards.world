@@ -71,7 +71,6 @@
 
                   if ((nft_table.owner_address==window.account.address)&&(inserted.indexOf(user_data.NFTs.history_table[i].toString()) == -1)) {
                     inserted.push(user_data.NFTs.history_table[i].toString());
-                    alert("chegou aqui");
                     window.dapp.create_nft_div(user_data.NFTs.history_table[i].toString(), document.getElementById("nft-container-my_nfts"), applied_chart);
                   }
 
