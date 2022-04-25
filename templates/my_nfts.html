@@ -1,0 +1,100 @@
+<ons-page id="NFTs-My">
+  <ons-toolbar>
+    <div class="left"><ons-back-button>Back</ons-back-button></div>
+    <div class="center">My NFTs</div>
+    <div class="right">
+      <ons-toolbar-button>Claim Envelope</ons-toolbar-button>
+    </div>
+  </ons-toolbar>
+
+  <div class="content nft-container" id="nft-container">    
+    
+    <p style="margin:10px;">
+         <ons-button disabled="true" onclick="query_marketplace(current_item)" id="marketplace_loadmore_button">Load More</ons-button><br/><br/>
+    </p>    
+
+  </div>
+  
+    <ons-bottom-toolbar style="z-index:1000;" id="bottom">
+      <ons-row style="line-height:40px;">
+        <ons-col width="100%">
+          <ons-toolbar-button onclick="window.dapp.load('templates/global.html');dapp.interfaceConnection()"></ons-toolbar-button>
+          <span data-placeholder=""><span>
+        </ons-col>            
+     </ons-row>
+    </ons-bottom-toolbar>
+
+    <div class="toolbar--material bottom-corner" id="claimable" data-placeholder="..."></div>
+  
+  <script>
+    
+    var current_item = 1;
+    var loading = false;
+    
+    var applied_chart = undefined;
+    
+    document.querySelector('ons-back-button').onClick = function(event) {
+      window.dapp.load('templates/global.html')
+    };
+    
+    var query_marketplace = async function(cur_item) {
+      
+        if (loading) return;
+      
+        const applied = await localforage.getItem('applied');      
+        if (!isNaN(applied)) {if (Number(applied)>0){
+          let extras = window.dapp.get_nft_attr(applied);    
+          function map(x, in_min, in_max, out_min, out_max) {
+            return Math.floor((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
+          }
+          applied_chart = {
+              label: 'Applied NFT',
+              data: [map(extras.extra_coupon_expires,1*3*60,16*3*60,0,100),
+                     map(extras.extra_event_expires,1,16,0,100), 
+                     map(extras.extra_collectable,0,15,0,100)],
+              fill: true,
+              backgroundColor: 'rgba(200, 254, 200, 02)',
+              borderColor: 'rgb(200, 254, 200)',
+              pointBackgroundColor: 'rgb(200, 254, 200)',
+              pointBorderColor: '#fff',
+              pointHoverBackgroundColor: '#fff',
+              pointHoverBorderColor: 'rgb(200, 254, 200)'
+            }
+        }else {applied_chart = undefined}} else {applied_chart = undefined};
+
+        loading = true;
+        document.getElementById("marketplace_loadmore_button").setAttribute("disabled",true);
+        document.getElementById("marketplace_loadmore_button").innerHTML = "<ons-icon size='20px' spin icon='md-spinner'></ons-icon>&nbsp;Please wait, loading...";
+      
+        const marketplace_list = await aergo.queryContract(window.dapp.contract.get_marketplace_list(cur_item.toString()));
+      
+        if (marketplace_list.length>0) {
+
+            for(i=0;i<marketplace_list.length;i++) {
+              window.dapp.create_nft_div(marketplace_list[i], document.getElementById("nft-container"), applied_chart);
+            }          
+
+            current_item += 50;
+
+            document.getElementById("marketplace_loadmore_button").removeAttribute("disabled");     
+            document.getElementById("marketplace_loadmore_button").innerHTML = "Load More";
+            
+         } else document.getElementById("marketplace_loadmore_button").innerHTML = "Sorry, no more items in marketplace!";
+
+      loading = false;        
+
+    }   
+    
+    ons.getScriptPage().onShow = function() { // load first elements in marketplace
+      query_marketplace(current_item);         
+    }
+    
+    ons.getScriptPage().onHide = function() {
+      current_item = 1;
+      loading = false;
+    }
+    
+    
+  </script>
+  
+</ons-page>
