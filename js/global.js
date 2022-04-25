@@ -44,7 +44,7 @@ window.dapp.global = function() {
     if ((window.aergo)&&(window.account)) {
         localforage.getItem('applied').then(function(value) {
             if(value == null) localforage.setItem('applied', 0); 
-            aergo.queryContract(window.dapp.contract.user_applied_string()).then(function(value2){
+            aergo.queryContract(window.dapp.contract.user_applied_string(window.account.address)).then(function(value2){
                localforage.setItem('applied', Number(value2));             
             });
         });
