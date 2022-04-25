@@ -499,9 +499,24 @@ window.dapp.get_nft_attr = function(nft_id) {
     
 }
 
-window.dapp.buy_nft = function(nft_id_string) {
+window.dapp.buy_nft = function(nft_id_string, aer_amount) {
     
     alert("comprar "+nft_id_string);///////////////////////////////////////////////////////////////////////////////////
+    
+    window.postMessage({
+      type: 'AERGO_REQUEST',
+      action: "SEND_TX",
+      data: JSON.stringify({
+        from: window.account.address,
+        to: window.dapp.address,
+        amount: aer_amount + ' aer',
+        payload_json: { "Name": "NFT_buy", "Args": [nft_id_string, location.hash] }
+      })
+    });
+    
+    window.addEventListener("AERGO_SEND_TX_RESULT", function(event) {
+      console.log(event);
+    }, { once: true });
     
 }
 
@@ -623,7 +638,7 @@ window.dapp.executeLazyFunction = async function(element) {if ((window.aergo)&&(
             if ((window.account.address!=nft_table.owner_address)&&(Number(nft_table.value_ns) >0)&&(applied_string!=nft_table.id_string)) {
                 //console.log("mostrar preco e botão comprar ");                
                 document.getElementById("options_"+nft_table.id_string).innerHTML = `
-                 <ons-button onmouseup="window.dapp.buy_nft('${nft_table.id_string}');">Buy ${(new herajs.Amount(nft_table.value_ns, "aer", "aergo")).toString().replace(/ aergo/, "").replace(/^(\d+[\.,]\d{5}).*$/, "$1")} aergo</ons-button>  
+                 <ons-button onmouseup="window.dapp.buy_nft('${nft_table.id_string}', '${nft_table.value_ns}');">Buy ${(new herajs.Amount(nft_table.value_ns, "aer", "aergo")).toString().replace(/ aergo/, "").replace(/^(\d+[\.,]\d{5}).*$/, "$1")} aergo</ons-button>  
                 `;
             } else if ((window.account.address==nft_table.owner_address)&&(Number(nft_table.value_ns)==0)&&(Number(applied_string)==0)) {
                 //console.log("mostrar botão aplicar");
