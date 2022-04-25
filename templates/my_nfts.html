@@ -32,7 +32,7 @@
       window.dapp.load('templates/global.html')
     };   
     
-    aync function show_my_nfts() {
+    async function show_my_nfts() {
       
       const applied = await localforage.getItem('applied');      
         if (!isNaN(applied)) {if (Number(applied)>0){
