@@ -559,7 +559,7 @@ window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInt
         </tr>
         <tr><!--attrs-->
             <td colspan="3">
-                <canvas id="canvas_${nft_id}" width="390" height="250" onclick="ons.notification.alert('<p><b>EXTRA COUPON MINUTES</b>&nbsp;Free extra minutes for each coupon on your billboards:&nbsp;<b>${Math.floor(extras.extra_coupon_expires/60)} minutes</b></p><p><b>EXTRA EVENT HOURS</b>&nbsp;Free extra hours for each new event:&nbsp;<b>${extras.extra_event_expires} hour${extras.extra_event_expires==1?"":"s"}</b></p><p><b>EXTRA CLAIMABLES</b>&nbsp;Free extra claimables for each new billboard:&nbsp;<b>${extras.extra_collectable}</b></p>', {title:'NFT #${nft_id}'});"></canvas>
+                <canvas id="canvas_${nft_id}" width="390" height="250" onclick="ons.notification.alert('<p><b>EXTRA COUPON MINUTES:</b>&nbsp;Free extra minutes for each coupon on your billboards:&nbsp;<b>${Math.floor(extras.extra_coupon_expires/60)} minutes</b></p><p><b>EXTRA EVENT HOURS:</b>&nbsp;Free extra hours for each new event:&nbsp;<b>${extras.extra_event_expires} hour${extras.extra_event_expires==1?"":"s"}</b></p><p><b>EXTRA CLAIMABLES:</b>&nbsp;Free extra claimables for each new billboard:&nbsp;<b>${extras.extra_collectable}</b></p>', {title:'NFT #${nft_id}'});"></canvas>
             </td>          
         </tr>
     </table> 
