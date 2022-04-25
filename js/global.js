@@ -510,7 +510,7 @@ window.dapp.buy_nft = function(nft_id_string, aer_amount) {
         from: window.account.address,
         to: window.dapp.address,
         amount: aer_amount + ' aer',
-        payload_json: { "Name": "NFT_buy", "Args": (location.hash==""?[nft_id_string]:[nft_id_string,location.hash])}
+        payload_json: { "Name": "NFT_buy", "Args": (location.hash.replace("#","")==""?[nft_id_string]:[nft_id_string,location.hash.replace("#","")])}
       }
     });
     
