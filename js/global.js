@@ -513,7 +513,7 @@ window.dapp.buy_nft = function(nft_id_string, aer_amount) {
     });
     
     window.addEventListener("AERGO_SEND_TX_RESULT", function(event) {
-      console.log(event.toString());
+      console.log(event);
       window.dapp.load('templates/my_nfts.html');
     }, { once: true });
     
@@ -532,6 +532,7 @@ window.dapp.apply_nft = function(nft_id_string) {
     });
     
     window.addEventListener("AERGO_SEND_TX_RESULT", function(event) {
+      console.log(event);
       window.dapp.load('templates/my_nfts.html');
     }, { once: true });
     
@@ -550,6 +551,7 @@ window.dapp.sell_nft = function(nft_id_string, price_value) {
     });
     
     window.addEventListener("AERGO_SEND_TX_RESULT", function(event) {
+      console.log(event);
       window.dapp.load('templates/my_nfts.html');
     }, { once: true });    
     
