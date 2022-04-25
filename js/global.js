@@ -524,10 +524,10 @@ window.dapp.apply_nft = function(nft_id_string) {
     window.postMessage({
       type: 'AERGO_REQUEST',
       action: "SEND_TX",
-      amount: '0 aer',
       data: {
         from: window.account.address,
         to: window.dapp.address,
+        amount: '0 aer',
         payload_json: { "Name": "NFT_apply", "Args": [nft_id_string]}
       }
     });
@@ -548,6 +548,7 @@ window.dapp.sell_nft = function(nft_id_string, price_value) {
       data: {
         from: window.account.address,
         to: window.dapp.address,
+        amount: '0 aer',
         payload_json: { "Name": "NFT_set_price", "Args": [nft_id_string, (new herajs.Amount(price_value.replace(",","."), "aergo", "aer")).toString().replace(/ aer/, "")]}
       }
     });
