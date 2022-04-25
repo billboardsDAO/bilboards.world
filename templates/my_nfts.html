@@ -7,9 +7,9 @@
     </div>
   </ons-toolbar>
 
-  <div class="content nft-container" id="nft-container">    
+  <div class="content nft-container" id="nft-container-my_nfts">    
     
-    <p>&nbsp;</p><!--window.dapp.create_nft_div requires container lastChild-->   
+    <p>&nbsp;</p>
 
   </div>
   
@@ -71,7 +71,8 @@
 
                   if ((nft_table.owner_address==window.account.address)&&(inserted.indexOf(user_data.NFTs.history_table[i].toString()) == -1)) {
                     inserted.push(user_data.NFTs.history_table[i].toString());
-                    window.dapp.create_nft_div(user_data.NFTs.history_table[i].toString(), document.getElementById("nft-container"), applied_chart);
+                    alert("chegou aqui");
+                    window.dapp.create_nft_div(user_data.NFTs.history_table[i].toString(), document.getElementById("nft-container-my_nfts"), applied_chart);
                   }
 
                 
