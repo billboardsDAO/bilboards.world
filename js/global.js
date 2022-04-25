@@ -501,8 +501,6 @@ window.dapp.get_nft_attr = function(nft_id) {
 
 window.dapp.buy_nft = function(nft_id_string, aer_amount) {
     
-    alert("comprar "+nft_id_string);///////////////////////////////////////////////////////////////////////////////////
-    
     window.postMessage({
       type: 'AERGO_REQUEST',
       action: "SEND_TX",
@@ -515,7 +513,7 @@ window.dapp.buy_nft = function(nft_id_string, aer_amount) {
     });
     
     window.addEventListener("AERGO_SEND_TX_RESULT", function(event) {
-      console.log("comprado " + event.toString());
+      console.log(event.toString());
       window.dapp.load('templates/my_nfts.html');
     }, { once: true });
     
@@ -523,16 +521,37 @@ window.dapp.buy_nft = function(nft_id_string, aer_amount) {
 
 window.dapp.apply_nft = function(nft_id_string) {
     
-    alert("apply "+nft_id_string);///////////////////////////////////////////////////////////////////////////////////
+    window.postMessage({
+      type: 'AERGO_REQUEST',
+      action: "SEND_TX",
+      data: {
+        from: window.account.address,
+        to: window.dapp.address,
+        payload_json: { "Name": "NFT_apply", "Args": [nft_id_string]}
+      }
+    });
+    
+    window.addEventListener("AERGO_SEND_TX_RESULT", function(event) {
+      window.dapp.load('templates/my_nfts.html');
+    }, { once: true });
     
 }
 
-window.dapp.sell_nft = function(nft_id_string, price_value) { 
+window.dapp.sell_nft = function(nft_id_string, price_value) {     
+
+    window.postMessage({
+      type: 'AERGO_REQUEST',
+      action: "SEND_TX",
+      data: {
+        from: window.account.address,
+        to: window.dapp.address,
+        payload_json: { "Name": "NFT_set_price", "Args": [nft_id_string, (new herajs.Amount(price_value.replace(",","."), "aergo", "aer")).toString().replace(/ aer/, "")]}
+      }
+    });
     
-    // price value => converter virgular para pontos
-    // converter aergo para aer
-    
-    alert("sell "+nft_id_string+"|"+price_value);///////////////////////////////////////////////////////////////////////////////////
+    window.addEventListener("AERGO_SEND_TX_RESULT", function(event) {
+      window.dapp.load('templates/my_nfts.html');
+    }, { once: true });    
     
 }
 
