@@ -61,10 +61,11 @@
         if (user_data) {
           
           // create envelopes item
-
+          for(i=0;i<Number(user_data.NFTs.envelopes_ns);i++) { 
+              window.dapp.create_envelope_div(document.getElementById("nft-container-my_nfts"));
+          }
           
-          // create nft items
-        
+          // create nft items        
           if (user_data.NFTs.history_table.length>0) {
               for(i=0;i<user_data.NFTs.history_table.length;i++) {                
                 const nft_table = await aergo.queryContract(window.dapp.contract.get_NFT_table(user_data.NFTs.history_table[i].toString()));               
