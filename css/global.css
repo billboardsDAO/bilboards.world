@@ -41,5 +41,7 @@
     margin: 4px;
     width: 96%;
     max-width: 400px;
+    height: 50px;
+    max-height: 50px;
 }
 
