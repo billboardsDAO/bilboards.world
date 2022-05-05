@@ -630,10 +630,9 @@ window.dapp.create_envelope_div = function(container_el) {
                 <ons-icon icon="fa-envelope"></ons-icon>
             </td>
             <td style="text-align:left;width:1%;" nowrap>
-                 <b style="color:rgb(255, 204, 102);">Closed Envelope</b></br>
-                 <b>Open to generate a new NFT!</b>
+                 <b style="color:rgb(255, 204, 102);">Closed Envelope</b><
             </td>
-            <td>
+            <td style="text-align:right;width:98%;">
               <ons-button onmouseup="window.dapp.mint_nft();">Open</ons-button>   
             </td>
         </tr>
