@@ -58,7 +58,7 @@
         const user_data = await aergo.queryContract(window.dapp.contract.get_user_data(window.account.address));
         let inserted = [];
       
-        if (user_data) {
+        if ('NFTs' in user_data) {
           
           // create envelopes item
           for(i=0;i<Number(user_data.NFTs.envelopes_ns);i++) { 
