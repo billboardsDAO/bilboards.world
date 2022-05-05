@@ -605,7 +605,7 @@ window.dapp.mint_nft = function(nft_id_string, price_value) {
                   } else if (!isNaN(tx.toString())) {
                       ons.notification.toast('SUCCESS! You generated NFT #'+tx.toString(), { timeout: 5000, animation: 'fall' });                      
                   } else {
-                      ons.notification.toast('FAIL!<br/>'+tx.toString()), { timeout: 5000, animation: 'ascend' }); 
+                      ons.notification.toast('FAIL!<br/>'+tx.toString(), { timeout: 5000, animation: 'ascend' }); 
                   }
                 } else {
                    ons.notification.toast('Opss... Transaction failed!<br/>'+tx.toString(), { timeout: 5000, animation: 'ascend' });
