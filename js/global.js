@@ -601,7 +601,7 @@ window.dapp.mint_nft = function(nft_id_string, price_value) {
                 if (txInfo.status == "SUCCESS") {
                   const tx = JSON.parse(txInfo.result.toString());
                   if (tx.toString().toLowerCase()=="false") {
-                      ons.notification.toast('FAIL! Transaction failed... Try again!'), { timeout: 5000, animation: 'ascend' });  
+                      ons.notification.toast('FAIL! Transaction failed... Try again!', { timeout: 5000, animation: 'ascend' });  
                   } else if (!isNaN(tx.toString())) {
                       ons.notification.toast('SUCCESS! You generated NFT #'+tx.toString(), { timeout: 5000, animation: 'fall' });                      
                   } else {
