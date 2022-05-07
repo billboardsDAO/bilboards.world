@@ -187,7 +187,6 @@ window.dapp.aergoConnect = function() {
 
 window.dapp.aergoDisconnect = function() {
     window.account = undefined;
-    window.dapp.abi = undefined;
     window.dapp.contract = undefined;
 }
 
