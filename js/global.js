@@ -690,8 +690,9 @@ window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInt
     </table> 
   `; 
 
-   //container_el.appendChild(div);    
-   container_el.insertBefore(div, container_el.lastElementChild);
+   if (container_el) {
+       
+    container_el.insertBefore(div, container_el.lastElementChild);
     
     setTimeout(async function(a,b,c,d,e,f){
         lazyload.update();
@@ -734,8 +735,10 @@ window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInt
                 }
             }
         });        
-    }, 500, map(extras.extra_coupon_expires,1*3*60,16*3*60,0,100), map(extras.extra_event_expires,1,16,0,100), map(extras.extra_collectable,0,15,0,100), nft_id, adjective, ac)
+    }, 500, map(extras.extra_coupon_expires,1*3*60,16*3*60,0,100), map(extras.extra_event_expires,1,16,0,100), map(extras.extra_collectable,0,15,0,100), nft_id, adjective, ac);
    return true
+   
+   }
     
 }}return false}
 
