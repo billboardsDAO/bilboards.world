@@ -6,6 +6,8 @@
       <ons-toolbar-button onclick="claim_envelope();">Claim Envelope</ons-toolbar-button>
     </div>
   </ons-toolbar>
+  
+  <ons-progress-bar indeterminate style="display:none;" id="progress"></ons-progress-bar>
 
   <div class="content nft-container" id="nft-container-my_nfts">    
     
@@ -33,6 +35,8 @@
     };   
     
     async function show_my_nfts() {
+      
+      document.getElementById("progress").style.display = "block"
       
       const applied = await localforage.getItem('applied');      
         if (!isNaN(applied)) {if (Number(applied)>0){
@@ -81,6 +85,8 @@
            }
           
         }
+      
+      if (document.getElementById("progress")) document.getElementById("progress").style.display = "none";
       
     }
     
