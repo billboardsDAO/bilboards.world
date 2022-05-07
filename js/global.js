@@ -169,7 +169,6 @@ window.dapp.aergoConnect = function() {
     };
        
        var load_contract = async function() {
-           window.dapp.abi = await aergo.getABI(window.dapp.address);
            //window.dapp.contract = Contract.atAddress(window.dapp.address);
            //window.dapp.contract.loadAbi(await aergo.getABI(window.dapp.address));
            window.dapp.contract = Contract.fromAbi(window.dapp.abi).setAddress(window.dapp.address);
