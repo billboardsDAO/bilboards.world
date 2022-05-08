@@ -792,9 +792,10 @@ window.dapp.create_nft_div = function(nft_id, container_el, ac) {if(Number.isInt
             }
         });        
     }, 500, map(extras.extra_coupon_expires,1*3*60,16*3*60,0,100), map(extras.extra_event_expires,1,16,0,100), map(extras.extra_collectable,0,15,0,100), nft_id, adjective, ac);
-   return true
-   
+      
    }
+    
+   return div;
     
 }}return false}
 
