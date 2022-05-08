@@ -76,7 +76,8 @@
         if (marketplace_list.length>0) {
 
             for(i=0;i<marketplace_list.length;i++) {
-              window.dapp.create_nft_div(marketplace_list[i], document.getElementById("nft-container"), applied_chart());
+              if (!document.getElementById("nft-"+marketplace_list[i]))
+                window.dapp.create_nft_div(marketplace_list[i], document.getElementById("nft-container"), applied_chart());
             }          
 
             current_item += 50;
