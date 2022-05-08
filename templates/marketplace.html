@@ -33,13 +33,11 @@
     var current_item = 1;
     var loading = false;
     
-    var applied_chart = undefined;
-    
     document.querySelector('ons-back-button').onClick = function(event) {
       window.dapp.load('templates/global.html')
     };
     
-    async function applied_chart() {
+    var applied_chart = async function () {
          const applied = await localforage.getItem('applied');      
          if (!isNaN(applied)) {if (Number(applied)>0){
           let extras = window.dapp.get_nft_attr(applied);    
@@ -64,7 +62,7 @@
     
     var query_marketplace = async function(cur_item) {
       
-        if (loading) return;
+        if (loading) return;       
         loading = true;
       
         if (document.getElementById("marketplace_loadmore_button")) {
