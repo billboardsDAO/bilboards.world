@@ -515,7 +515,25 @@ window.dapp.buy_nft = function(nft_id_string, aer_amount) {
     });
     
     window.addEventListener("AERGO_SEND_TX_RESULT", function(event) {
-      window.dapp.load('templates/my_nfts.html');
+      if ('error' in event.detail) {
+         ons.notification.toast('Opss... Aergo Connection failed! Try again!', { timeout: 5000, animation: 'ascend' });
+         document.getElementById('content').load('templates/global.html').then(document.getElementById('content').load('templates/my_nfts.html'));
+      } else {
+        setTimeout(function(h){
+            aergo.getTransactionReceipt(h).then(txInfo => {
+                if (txInfo.status == "SUCCESS") {
+                  const tx = JSON.parse(txInfo.result.toString());
+                  if (tx.toString().toLowerCase()=="true") {                      
+                      ons.notification.toast('Congratulations! NFT successfully purchased!', { timeout: 5000, animation: 'fall' });     
+                  } else {
+                      ons.notification.toast('Oops.. something went wrong! Try again...', { timeout: 5000, animation: 'ascend' });         
+                  }
+                } else {
+                   ons.notification.toast('Oops.. something went wrong! Try again...', { timeout: 5000, animation: 'ascend' });
+                }
+                document.getElementById('content').load('templates/global.html').then(document.getElementById('content').load('templates/my_nfts.html'));
+            });            
+        }, 3500, event.detail.hash);       
     }, { once: true });
     
 }
@@ -536,7 +554,7 @@ window.dapp.apply_nft = function(nft_id_string) {
     window.addEventListener("AERGO_SEND_TX_RESULT", function(event) {
       if ('error' in event.detail) {
          ons.notification.toast('Opss... Aergo Connection failed! Try again!', { timeout: 5000, animation: 'fall' });
-         window.dapp.load('templates/my_nfts.html');
+          document.getElementById('content').load('templates/global.html').then(document.getElementById('content').load('templates/my_nfts.html'));
       } else {
         setTimeout(function(h){
             aergo.getTransactionReceipt(h).then(txInfo => {
@@ -551,7 +569,9 @@ window.dapp.apply_nft = function(nft_id_string) {
                 } else {
                    ons.notification.toast('Opss... Transaction failed!<br/>'+tx.toString(), { timeout: 5000, animation: 'ascend' });
                 }
-                setTimeout(function(){window.dapp.load('templates/my_nfts.html')}, 400);
+                setTimeout(function(){
+                     document.getElementById('content').load('templates/global.html').then(document.getElementById('content').load('templates/my_nfts.html'));
+                }, 400);
             });            
         }, 3500, event.detail.hash);
       }      
@@ -573,8 +593,26 @@ window.dapp.sell_nft = function(nft_id_string, price_value) {
       }
     });
     
-    window.addEventListener("AERGO_SEND_TX_RESULT", function(event) {
-      window.dapp.load('templates/my_nfts.html');
+    window.addEventListener("AERGO_SEND_TX_RESULT", function(event) {      
+      if ('error' in event.detail) {
+         ons.notification.toast('Opss... Aergo Connection failed! Try again!', { timeout: 5000, animation: 'ascend' });
+         window.dapp.load('templates/my_nfts.html');
+      } else {
+        setTimeout(function(h){
+            aergo.getTransactionReceipt(h).then(txInfo => {
+                if (txInfo.status == "SUCCESS") {
+                  const tx = JSON.parse(txInfo.result.toString());
+                  if (tx.toString().toLowerCase()=="false") {
+                      ons.notification.toast('Oops.. something went wrong! Try again...', { timeout: 5000, animation: 'ascend' });  
+                  } else {
+                      ons.notification.toast('SUCCESS! Price set successfully!', { timeout: 5000, animation: 'fall' });                      
+                  }
+                } else {
+                   ons.notification.toast('Oops.. something went wrong! Try again...', { timeout: 5000, animation: 'ascend' });
+                }
+                document.getElementById('content').load('templates/global.html').then(document.getElementById('content').load('templates/my_nfts.html'));
+            });            
+        }, 3500, event.detail.hash);       
     }, { once: true });    
     
 }
@@ -595,7 +633,7 @@ window.dapp.mint_nft = function(nft_id_string, price_value) {
     
     window.addEventListener("AERGO_SEND_TX_RESULT", function(event) {
       if ('error' in event.detail) {
-         ons.notification.toast('Opss... Aergo Connection failed! Try again!', { timeout: 5000, animation: 'fall' });
+         ons.notification.toast('Opss... Aergo Connection failed! Try again!', { timeout: 5000, animation: 'ascend' });
          window.dapp.load('templates/my_nfts.html');
       } else {
         setTimeout(function(h){
