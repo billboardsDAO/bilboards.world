@@ -116,8 +116,10 @@
                   });
 
                   window.addEventListener("AERGO_SEND_TX_RESULT", function(event) {
+                    document.querySelector('ons-modal').show();
                     console.log(event);
                     window.dapp.load('templates/my_nfts.html');
+                    document.querySelector('ons-modal').hide();
                   }, { once: true });               
 
             } else {alert("Requires 1000 claimable!!!")}
