@@ -77,7 +77,7 @@
 
             for(i=0;i<marketplace_list.length;i++) {
               if (!document.getElementById("nft-"+marketplace_list[i]))
-                window.dapp.create_nft_div(marketplace_list[i], document.getElementById("nft-container"), applied_chart());
+                window.dapp.create_nft_div(marketplace_list[i], document.getElementById("nft-container"), await applied_chart());
             }          
 
             current_item += 50;
@@ -125,7 +125,7 @@
                   document.querySelector('ons-modal').show();
                   const nft_table = await aergo.queryContract(window.dapp.contract.get_NFT_table(input.toString()));                
                   try {
-                    window.dapp.create_nft_div(nft_table.id_string, document.getElementById("nft-container"), applied_chart()).scrollIntoView();                    
+                    window.dapp.create_nft_div(nft_table.id_string, document.getElementById("nft-container"), await applied_chart()).scrollIntoView();                    
                     document.querySelector('ons-modal').hide();                      
                     ons.notification.toast('SUCCESS! NFT found and added to the end of the list!', { timeout: 5000, animation: 'fall' });   
                     return;
