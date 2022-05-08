@@ -62,11 +62,15 @@
         }else {applied_chart = undefined}} else {applied_chart = undefined};
 
         loading = true;
-        document.getElementById("marketplace_loadmore_button").setAttribute("disabled",true);
-        document.getElementById("marketplace_loadmore_button").innerHTML = "<ons-icon size='20px' spin icon='md-spinner'></ons-icon>&nbsp;Please wait, loading...";
       
+        if (document.getElementById("marketplace_loadmore_button")) {
+          document.getElementById("marketplace_loadmore_button").setAttribute("disabled",true);
+          document.getElementById("marketplace_loadmore_button").innerHTML = "<ons-icon size='20px' spin icon='md-spinner'></ons-icon>&nbsp;Please wait, loading...";
+        }
+          
         const marketplace_list = await aergo.queryContract(window.dapp.contract.get_marketplace_list(cur_item.toString()));
       
+        if (document.getElementById("nft-container")) {
         if (marketplace_list.length>0) {
 
             for(i=0;i<marketplace_list.length;i++) {
@@ -75,10 +79,18 @@
 
             current_item += 50;
 
-            document.getElementById("marketplace_loadmore_button").removeAttribute("disabled");     
-            document.getElementById("marketplace_loadmore_button").innerHTML = "Load More";
+            if (document.getElementById("marketplace_loadmore_button")) {
+              document.getElementById("marketplace_loadmore_button").removeAttribute("disabled");     
+              document.getElementById("marketplace_loadmore_button").innerHTML = "Load More";
+            }
             
-         } else document.getElementById("marketplace_loadmore_button").innerHTML = "Sorry, no more items in marketplace!";
+         } else  {
+           if (document.getElementById("marketplace_loadmore_button")) {
+              document.getElementById("marketplace_loadmore_button").innerHTML = "Sorry, no more items in marketplace!";
+           }
+         }
+          
+        }
 
       loading = false;        
 
