@@ -120,6 +120,7 @@
               if(Number.isInteger(Number(input))) {if(Number(input)>0){                  
                 if (document.getElementById("nft-"+input)) {
                   document.getElementById("nft-"+input).scrollIntoView();
+                  return;
                 } else {
                   document.querySelector('ons-modal').show();
                   const nft_table = await aergo.queryContract(window.dapp.contract.get_NFT_table(input.toString()));                
