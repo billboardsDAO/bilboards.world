@@ -116,7 +116,7 @@
           defaultValue: "",
           inputType: 'number',
           buttonLabels: ['Search']
-       }).then(function(input) {    
+       }).then(async function(input) {    
           if (input) {
               if(Number.isInteger(Number(input))) {if(Number(input)>0){
                   document.querySelector('ons-modal').show();                
