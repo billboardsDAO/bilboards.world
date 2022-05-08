@@ -2,6 +2,9 @@
   <ons-toolbar>
     <div class="left"><ons-back-button>Back</ons-back-button></div>
     <div class="center" id="marketplace_title">Billboards NFTs Marketplace</div>
+    <div class="right">
+      <ons-toolbar-button onclick="search_nft();"><ons-icon icon="md-search"></ons-icon></ons-toolbar-button>
+    </div>
   </ons-toolbar>
 
   <div class="content nft-container" id="nft-container">    
@@ -36,17 +39,14 @@
       window.dapp.load('templates/global.html')
     };
     
-    var query_marketplace = async function(cur_item) {
-      
-        if (loading) return;
-      
-        const applied = await localforage.getItem('applied');      
-        if (!isNaN(applied)) {if (Number(applied)>0){
+    async function applied_chart() {
+         const applied = await localforage.getItem('applied');      
+         if (!isNaN(applied)) {if (Number(applied)>0){
           let extras = window.dapp.get_nft_attr(applied);    
           function map(x, in_min, in_max, out_min, out_max) {
             return Math.floor((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
           }
-          applied_chart = {
+          return {
               label: 'Applied NFT #'+applied,
               data: [map(extras.extra_coupon_expires,1*3*60,16*3*60,0,100),
                      map(extras.extra_event_expires,1,16,0,100), 
@@ -59,8 +59,12 @@
               pointHoverBackgroundColor: '#fff',
               pointHoverBorderColor: 'rgb(200, 254, 200)'
             }
-        }else {applied_chart = undefined}} else {applied_chart = undefined};
-
+        }else {return undefined}} else {return undefined};
+    }
+    
+    var query_marketplace = async function(cur_item) {
+      
+        if (loading) return;
         loading = true;
       
         if (document.getElementById("marketplace_loadmore_button")) {
@@ -74,7 +78,7 @@
         if (marketplace_list.length>0) {
 
             for(i=0;i<marketplace_list.length;i++) {
-              window.dapp.create_nft_div(marketplace_list[i], document.getElementById("nft-container"), applied_chart);
+              window.dapp.create_nft_div(marketplace_list[i], document.getElementById("nft-container"), applied_chart());
             }          
 
             current_item += 50;
@@ -103,6 +107,34 @@
     ons.getScriptPage().onHide = function() {
       current_item = 1;
       loading = false;
+    }
+    
+    function search_nft() {
+      
+      ons.notification.prompt('Enter the NFT #id number:', {
+          cancelable: true,
+          defaultValue: "",
+          inputType: 'number',
+          buttonLabels: ['Search']
+       }).then(function(input) {    
+          if (input) {
+              if(Number.isInteger(Number(input))) {if(Number(input)>0){
+                  document.querySelector('ons-modal').show();                
+                  const nft_table = await aergo.queryContract(window.dapp.contract.get_NFT_table(input.toString()));                
+                  try {
+                    window.dapp.create_nft_div(nft_table.id_string, document.getElementById("nft-container"), applied_chart()).scrollIntoView();                    
+                    document.querySelector('ons-modal').hide();                      
+                    ons.notification.toast('SUCCESS! NFT found and added to the end of the list!', { timeout: 5000, animation: 'fall' });   
+                    return;
+                  } catch(ex) {}
+                  document.querySelector('ons-modal').hide(); 
+                  ons.notification.toast('FAIL! NFT not found!', { timeout: 5000, animation: 'ascend' });
+                  return;
+              }}
+              ons.notification.alert('Invalid NFT id, the operation was cancelled.');
+          }
+       });
+      
     }
     
     
