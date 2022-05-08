@@ -121,10 +121,10 @@
                 if (document.getElementById("nft-"+input)) {
                   document.getElementById("nft-"+input).scrollIntoView();
                   return;
-                } else {
+                } else {                  
                   document.querySelector('ons-modal').show();
-                  const nft_table = await aergo.queryContract(window.dapp.contract.get_NFT_table(input.toString()));                
                   try {
+                    const nft_table = await aergo.queryContract(window.dapp.contract.get_NFT_table(input.toString())); 
                     window.dapp.create_nft_div(nft_table.id_string, document.getElementById("nft-container"), await applied_chart()).scrollIntoView();                    
                     document.querySelector('ons-modal').hide();                      
                     ons.notification.toast('SUCCESS! NFT found and added to the end of the list!', { timeout: 5000, animation: 'fall' });   
