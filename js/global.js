@@ -100,17 +100,20 @@ window.dapp.global = function() {
                     localforage.getItem('claimable').then(function(value) {
                         if(value == null) localforage.setItem('claimable', 0);
                         
-                        if (!document.querySelector("#claimable>span")) {
+                        if (!document.querySelector("#claimable>span")) {                            
                             document.querySelector("#claimable").innerHTML = "<img alt='Aergo' width='20px' draggable='false' src='img/aergo_logomark.svg'>&nbsp;<span>&nbsp;</span>"
                         }
                         document.querySelector("#claimable>span").innerHTML = (new herajs.Amount(state.balance.value.toString(), "aer", "aergo")).toString().replace(/ aergo/, "").replace(/^(\d+[\.,]\d{5}).*$/, "$1") +
                         "&nbsp;<b>CLAIMABLE</b>:&nbsp;" + ((value == null)?"0":value.toString()); 
+                        
+                        document.querySelector("#claimable").style.display = "block";
                                               
                     });
                 })
        
         } else {
             
+            document.querySelector("#claimable").style.display = "none";
             document.getElementById("claimable").innerHTML = document.getElementById("claimable").getAttribute("data-placeholder");
             
         }
