@@ -106,14 +106,14 @@ window.dapp.global = function() {
                         document.querySelector("#claimable>span").innerHTML = (new herajs.Amount(state.balance.value.toString(), "aer", "aergo")).toString().replace(/ aergo/, "").replace(/^(\d+[\.,]\d{5}).*$/, "$1") +
                         "&nbsp;<b>CLAIMABLE</b>:&nbsp;" + ((value == null)?"0":value.toString()); 
                         
-                        document.querySelector("#claimable").style.display = "block";
+                        document.querySelector("#claimable").style.visibility = "visible";
                                               
                     });
                 })
        
         } else {
             
-            document.querySelector("#claimable").style.display = "none";
+            document.querySelector("#claimable").style.visibility = "hidden";
             document.getElementById("claimable").innerHTML = document.getElementById("claimable").getAttribute("data-placeholder");
             
         }
