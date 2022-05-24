@@ -136,7 +136,7 @@
               if (!respjson.parse.title) throw "!";
               
               if (!window.profanity(respjson.parse.title)) {
-                document.getElementById("wiki-article").innerHTML = window.escapeHtml(match[1]);
+                document.getElementById("wiki-article").innerHTML = window.escapeHtml(respjson.parse.title);
                 document.getElementById("wiki-example").style.display = "block";
                 document.getElementById("wiki-invalid").style.display = "none";
                 document.getElementById("wiki-notfound").style.display = "none";
