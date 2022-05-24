@@ -889,9 +889,10 @@ window.escapeHtml = function(unsafe)
          .replace(/"/g, "&quot;")
          .replace(/'/g, "&#039;");
  }
+
 window.profanity = function(ctn) {
     for (const bw of window.badwords) {
-        if ctn.includes(bw) return true;
+        if (ctn.includes(bw)) return true;
     }
     return false;
 }
