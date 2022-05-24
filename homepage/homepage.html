@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Billboards</title>
+
+    <link rel="icon" type="image/png" href="img/favicon.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+
+    <div id="pageloader" class="pageloader is-left-to-right is-theme"></div>
+    <div id="infraloader" class="infraloader is-active"></div>
+    <div class="dark-wrapper">
+        <!-- Landing page Hero -->
+        <section class="hero is-fullheight is-transparent">
+            <div class="hero-head">
+
+                <!-- Cloned navbar -->
+                <!-- Cloned navbar that comes in on scroll -->
+                <nav x-data="initNavbar()"  x-on:scroll.window="scroll()" id="navbar-clone" class="navbar is-fixed is-dark" :class="{
+                        'is-active': scrolled,
+                        '': !scrolled
+                    }">
+                    <div class="container">
+                        <!-- Brand -->
+                        <div class="navbar-brand">
+                            <a href="index.html" class="navbar-item">
+                                <img class="rotating" src="img/logo/krypton-gradient.svg" alt="">
+                                <span class="brand-name">Billboards</span>
+                            </a>
+                            <!-- Responsive toggle -->
+                            <div class="navbar-burger" @click="openMobileMenu()">
+                                <div class="menu-toggle">
+                                    <span class="icon-box-toggle" :class="{
+                                            'active': mobileOpen,
+                                            '': !mobileOpen
+                                        }">
+                                        <span class="rotate">
+                                            <i class="icon-line-top"></i>
+                                            <i class="icon-line-center"></i>
+                                            <i class="icon-line-bottom"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Menu -->
+                        <div id="cloneNavbarMenu" class="navbar-menu" :class="{
+                                'is-active': mobileOpen,
+                                '': !mobileOpen
+                            }">
+                            <div class="navbar-end">
+                                <!-- Menu item -->
+                                <div class="navbar-item is-nav-link">
+                                    <a target="_blank" class="is-centered-responsive" href="https://www.aergo.io">Aergo</a>
+                                </div>
+                                <!-- Menu item -->
+                                <div class="navbar-item is-nav-link">
+                                    <a class="is-centered-responsive" href="#" target="_blank">
+                                        <img class="telegram" src="img/logo/telegram.svg" alt="">
+                                        Telegram
+                                    </a>
+                                </div>
+                                <!-- Sign up -->
+                                <div class="navbar-item is-nav-link">
+                                    <a href="#" class="button k-button k-primary raised has-gradient slanted">
+                                        <span class="text">Enter <strong>Play-To-Earn</strong> App</span>
+                                        <span class="front-gradient"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <!-- /Cloned navbar -->
+                <!-- Static navbar -->
+                <!-- Static navbar -->
+                <nav x-data="initNavbar()" class="navbar is-light" :class="{
+                        'is-dark-mobile': mobileOpen,
+                        '': !mobileOpen
+                    }">
+                    <div class="container">
+                        <!-- Brand -->
+                        <div class="navbar-brand">
+                            <a href="index.html" class="navbar-item">
+                                <img class="rotating" src="img/logo/krypton.svg" alt="">
+                                <span class="brand-name">Billboards</span>
+                            </a>
+                            <!-- Responsive toggle -->
+                            <div class="navbar-burger" @click="openMobileMenu()">
+                                <div class="menu-toggle">
+                                    <span class="icon-box-toggle" :class="{
+                                            'active': mobileOpen,
+                                            '': !mobileOpen
+                                        }">
+                                        <span class="rotate">
+                                            <i class="icon-line-top"></i>
+                                            <i class="icon-line-center"></i>
+                                            <i class="icon-line-bottom"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Menu -->
+                        <div id="navbarMenu" class="navbar-menu light-menu" :class="{
+                                'is-active': mobileOpen,
+                                '': !mobileOpen
+                            }">
+                            <div class="navbar-end">
+                                <!-- Menu item -->
+                                <div class="navbar-item is-nav-link">
+                                    <a target="_blank" class="is-centered-responsive" href="https://www.aergo.io">Aergo</a>
+                                </div>
+                                <!-- Menu item -->
+                                <div class="navbar-item is-nav-link">
+                                    <a class="is-centered-responsive" href="#" target="_blank">
+                                        <img class="telegram" src="img/logo/telegram.svg" alt="">
+                                        Telegram
+                                    </a>
+                                </div>
+                                <!-- Sign up -->
+                                <div class="navbar-item">
+                                    <a href="#" class="button k-button k-primary raised has-gradient slanted">
+                                        <span class="text">Enter <strong>Play-To-Earn</strong> App</span>
+                                        <span class="front-gradient"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <!-- /Static navbar -->
+            </div>
+
+            <!-- Animated particles -->
+            <div x-data="initHero()" x-init="initParticles()" id="particles-js"></div>
+
+            <!-- Hero Image and Title -->
+            <div class="hero-body">
+                <div class="container">
+                    <div class="article" style="display: inline-block;position: absolute;right: 0;background: #fff;font-size: 24px;bottom: 0;padding: 15px;border-radius: 3px;width: 300px;z-index: 95;"><a href="#ways">10 ways to make money with Billboards <img src="img/bg/arrow.png" /></a></div>
+                    <style>
+                      .article a img {
+                        transition: padding-left .2s ease-in;
+                      }
+                      .article a, .article a:hover, .article a:visited{
+                        color: #039be5;
+                      }
+                      .article a:hover img{
+                        padding-left: 5px;
+                      }
+                    </style>
+                    <div class="columns is-vcentered">
+
+                        <!-- Landing page Title -->
+                        <div class="column is-5 landing-caption">
+                            <h1 class="title is-1 is-light is-semibold is-spaced main-title">The first and biggest Decentralized Marketing network of the World.</h1>
+                            <h2 class="subtitle is-5 is-light is-thin">
+                                <ul style="list-style:url(img/bg/item.png);">
+                                    <li>Play-to-Earn</li>
+                                    <li>Low-fee gas</li>
+                                    <li>Fully autonomous and decentralized application</li>
+                                    <li>No human and/or bot governance</li>
+                                    <li>Impossible to hack, cheat, or go offline</li>
+                                    <li>Free market float</li>
+                                    <li>No built-in token and/or developer interference</li>
+                                  </ul>
+                            </h2>
+                            <!-- CTA -->
+                            <p class="buttons">
+                                <a href="#start" class="button k-button k-primary raised has-gradient is-fat is-bold">
+                                    <span class="text">Learn more</span>
+                                    <span class="front-gradient"></span>
+                                </a>
+                                <!--a href="#" class="button k-button k-primary raised has-gradient is-fat is-bold">
+                                    <span class="text">Getting Started</span>
+                                    <span class="front-gradient"></span>
+                                </a-->
+                            </p>
+
+                        </div>
+                        <!-- Hero image -->
+                        <div class="column is-7">
+                            <figure class="image">
+                                <img src="img/illustrations/buildings.svg" alt="">
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero footer -->
+            <div class="hero-foot">
+                <div class="container">
+                    <div class="tabs is-centered" style="justify-content: space-around;">
+                        <a href="https://medium.com/aergo/announcement-of-the-1st-dapp-contest-winners-b418842ea3" target="_blank" style="text-transform: uppercase;font-weight: bold;font-size: 36px;color: #634c8a;opacity: .8;">Rewarded on 1<sup>st</sup>&nbsp;Aergo Dapp Contest</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /Landing page Hero -->
+
+        <!-- Icon Features section -->
+        <section id="start" class="section is-transparent is-relative">
+            <!-- Container -->
+            <div class="container">
+
+                <div class="has-text-centered">
+                    <a class="button k-button k-secondary raised has-gradient is-fat is-bold rounded">
+                        <span class="text">Enter <strong>Play-to-Earn</strong> App</span>
+                        <span class="front-gradient"></span>
+                    </a>
+                  </div>
+
+                </div>
+                <!-- Content wrapper -->
+            </div>
+            <!-- /Container -->
+        </section>
+        <!-- /Icon Features section -->
+
+        <!-- Company section -->
+        <section class="section is-medium has-big-dark-gradient">
+            <!-- Container -->
+            <div class="container">
+
+                <!-- Content wrapper -->
+                <div class="content-wrapper is-large">
+
+                    <!-- Spaced divider -->
+                    <div class="divider is-centered is-spacer"></div>
+                    <!-- Title & subtitle -->
+                    <a name="ways"></a><h2 class="title is-light is-semibold has-text-centered is-spaced">10 ways to make money with Billboards</h2>
+
+                    <style>
+                    .blog-post .content .post-title .blog-date:before {
+                        display: none;
+                    }
+                    .blog-post .content .post-title .blog-date:after {
+                        content: "|";
+                        color: #2bb673;
+                        font-size: 25px;
+                        top: auto;
+                        position: relative;
+                        margin-left: 10px;
+                    }
+                    .blog-post .content .post-title .blog-date {
+                        font-size: 12px;
+                        margin-right: 20px;
+                        color: #fff;
+                        font-family: "Cabin",sans-serif;
+                    }
+                    </style>
+
+                    <!-- Content wrapper -->
+                    <div class="content-wrapper is-large">
+                        <div class="columns">
+                            <!-- Media section -->
+                            <div class="column is-10 is-offset-1">
+
+                              <!-- Post -->
+                              <div class="blog-post">
+                                      <!-- Content -->
+                                      <div class="content">
+                                          <div class="post-title"><span class="blog-date">01</span> Find and redeem coupons from users' billboards</div>
+                                      </div>
+                              </div>
+
+                              <!-- Post -->
+                              <div class="blog-post">
+                                      <!-- Content -->
+                                      <div class="content">
+                                          <div class="post-title"><span class="blog-date">02</span> Share affiliate links</div>
+                                      </div>
+                              </div>
+
+                              <!-- Post -->
+                              <div class="blog-post">
+                                      <!-- Content -->
+                                      <div class="content">
+                                          <div class="post-title"><span class="blog-date">03</span> Sell products or services on your billboards</div>
+                                      </div>
+                              </div>
+
+                              <!-- Post -->
+                              <div class="blog-post">
+                                      <!-- Content -->
+                                      <div class="content">
+                                          <div class="post-title"><span class="blog-date">04</span> Sell rewarded NFTs</div>
+                                      </div>
+                              </div>
+
+                              <!-- Post -->
+                              <div class="blog-post">
+                                      <!-- Content -->
+                                      <div class="content">
+                                          <div class="post-title"><span class="blog-date">05</span> Create world events</div>
+                                      </div>
+                              </div>
+
+                              <!-- Post -->
+                              <div class="blog-post">
+                                      <!-- Content -->
+                                      <div class="content">
+                                          <div class="post-title"><span class="blog-date">06</span> Develop new user experience</div>
+                                      </div>
+                              </div>
+
+                              <!-- Post -->
+                              <div class="blog-post">
+                                      <!-- Content -->
+                                      <div class="content">
+                                          <div class="post-title"><span class="blog-date">07</span> Share Youtube videos and make views</div>
+                                      </div>
+                              </div>
+
+                              <!-- Post -->
+                              <div class="blog-post">
+                                      <!-- Content -->
+                                      <div class="content">
+                                          <div class="post-title"><span class="blog-date">08</span> Share Instagram posts and make likes</div>
+                                      </div>
+                              </div>
+
+                              <!-- Post -->
+                              <div class="blog-post">
+                                      <!-- Content -->
+                                      <div class="content">
+                                          <div class="post-title"><span class="blog-date">09</span> Trade NFTs on marketplace</div>
+                                      </div>
+                              </div>
+
+                              <!-- Post -->
+                              <div class="blog-post">
+                                      <!-- Content -->
+                                      <div class="content">
+                                          <div class="post-title"><span class="blog-date">10</span> Get real world discounts by claiming coupons</div>
+                                      </div>
+                              </div>
+
+                            </div>
+                            <!-- /Media section -->
+                        </div>
+
+
+
+                    </div>
+                    <!-- /Content wrapper -->
+
+                </div>
+                <!-- /Content wrapper -->
+            </div>
+        </section>
+        <!-- /Company section -->
+
+    </div>
+
+    <footer class="krypton-footer" style="height:500px">
+        <div class="container">
+
+            <!-- Copyright -->
+            <p class="k-copyright">© 2021-2022 | Billboards. All Rights Reserved</p>
+            <br>
+            <!-- Made by -->
+            <p class="coded-by">Designed and Coded by <a href="https://cssninja.io" target="_blank">Css Ninja</a></p>
+        </div>
+
+        <!-- Absolute image -->
+        <img class="solar-system" src="img/bg/solar.svg" alt="">
+    </footer>    <!-- Back To Top Button -->
+    <div x-data="initBackToTop()" x-on:scroll.window="scroll($event)" @click="goTop($event)" id="backtotop"><a href="javascript:" :class="{
+        'visible': scrolled,
+        '': !scrolled
+    }"></a></div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="./js/bundle.js"></script>
+
+</body>
+
+</html>
