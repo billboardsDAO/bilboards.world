@@ -13,6 +13,15 @@
   
   <ons-list>
     
+     <ons-list-item>
+      <div class="left">
+        <img class="list-item__thumbnail" src="img/wikipedia_w.svg">
+      </div>
+      <div class="center">
+        <span class="list-item__title">Cutest kitty</span><span class="list-item__subtitle">On the Internet</span>
+      </div>
+    </ons-list-item>
+    
     <p>
       How many <b>BOARDS token</b> do you want to invest in your event <b>per hour</b>?
     </p>   
@@ -113,42 +122,28 @@
       }
     
       async function wiki(ctn) {       
-        
-        var myRegexp = new RegExp("^https\:\/\/en\.wikipedia\.org\/wiki\/([_A-Za-z0-9\.\,\-\(\)]+)", "g");
-        var match = myRegexp.exec(ctn);
-        
-        if (match.length>0) { // valid
+       
+        let match = /^https\:\/\/en\.wikipedia\.org\/wiki\/([\_A-Za-z0-9\.\,\-\(\)]+)/g.exec(ctn);
+        if (match) { // valid         
           
-          let b64 = btoa(match[0])
-          
-          
+          if (!window.profanity(match[1])) {
+
+            let b64 = btoa(match[1]);
+
+            const resp = await fetch('https://en.wikipedia.org/w/api.php?'+window.encodeQueryData({"action":"parse","format":"json","origin":"*","prop":"text","formatversion":2,"page":decodeURIComponent(escape(window.atob(b64)))}));
+            const respjson = await resp.json();
+            
+            //window.escapeHtml(respjson.parse.title)
+            
+          } else { // show invalid
+            
+          }
+
         } else { // invalid
         
         
         }
-         const resp = await fetch('https://en.wikipedia.org/w/api.php?'+window.encodeQueryData({"action":"parse","format":"json","origin":"*","prop":"text","formatversion":2,"page":decodeURIComponent(escape(window.atob(events_list[i].media_base64)))}));
-         const respjson = await resp.json();
 
-        try {
-
-          var litem = document.createElement('ons-list-item');
-          litem.setAttribute("tappable", "tappable");
-          litem.setAttribute("modifier", "longdivider");
-          litem.setAttribute("style", "text-overflow:ellipsis;width:226px;overflow:hidden;");
-          litem.setAttribute("data-value_per_hour", events_list[i].value_per_hour_ns.toString());
-          litem.innerHTML = `Wikipedia:&nbsp;${window.escapeHtml(respjson.parse.title)}`;
-
-           document.getElementById("events-list").insertBefore(litem);
-
-           let litemx = document.getElementById("events-list").querySelectorAll("ons-list-item");
-
-            let sorted = Array.from(litemx).sort(function(a, b){return b.dataset.value_per_hour-a.dataset.value_per_hour});
-
-            document.getElementById("events-list").innerHTML = '<ons-list-header class="list-header">Current Events</ons-list-header>';
-            sorted.forEach(e => document.getElementById("events-list").appendChild(e));
-
-         } catch(ex){console.log("invalid wikipedia article")}   
-        
       }
     
     
