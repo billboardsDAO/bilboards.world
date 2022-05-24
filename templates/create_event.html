@@ -34,7 +34,7 @@
     </ons-list-item>
     
     <p>
-      How many <b>BOARDS token</b> do you want to invest in your event <b>per hour</b>?
+      How many <b>AERGO</b> do you want to invest in your event <b>per hour</b>?
     </p>   
 
     <ons-list-item tappable>
@@ -68,13 +68,7 @@
         <span id='hours'>3 hours</span>        
       </ons-col>
     </ons-row>
-    
-    <p>
-      
-      
-      
-    </p>
-    
+       
     <p>
       Total investment:&nbsp;<b>40.48855 BOARDS</b>
     </p>
@@ -106,7 +100,7 @@
      localforage.getItem('cfactor').then(function(value) {
         if(typeof(value) == "number") {
            ons.notification.prompt({
-            message: 'Enter how many BOARDS token you want to invest per hour in your event:',
+            message: 'Enter how many AERGO you want to invest per hour in your event:',
             inputType: 'number',
              title: 'Enter value',
              cancelable: true,
@@ -116,7 +110,7 @@
               if (v<value) {
                 ons.notification.alert('Value must be greater than or equal to ' + value);
                 document.getElementById("radio-1").checked = true;
-              } else document.getElementById("other-value").innerHTML = v + "&nbsp;BOARDS<b>/hr</b>";
+              } else document.getElementById("other-value").innerHTML = v + "&nbsp;AERGO<b>/hr</b>";
           });
         } else {
           ons.notification.alert('Current value out of date.');
