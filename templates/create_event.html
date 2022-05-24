@@ -13,7 +13,10 @@
   
   <ons-list>
     
-     <ons-list-item id="wiki-example" style="display:none;">
+    <ons-list-item id="wiki-required" style="display:none;color:red;">
+        <span class="list-item__title" id="wiki-article">Paste Wikipedia Article link above</span>
+    </ons-list-item>
+    <ons-list-item id="wiki-example" style="display:none;color:green;">
         <span class="list-item__title" id="wiki-article"></span><span class="list-item__subtitle">English Wikipedia</span>
     </ons-list-item>
     <ons-list-item id="wiki-notfound" style="display:none;">
@@ -137,6 +140,7 @@
                 document.getElementById("wiki-example").style.display = "block";
                 document.getElementById("wiki-invalid").style.display = "none";
                 document.getElementById("wiki-notfound").style.display = "none";
+                document.getElementById("wiki-required").style.display = "none";
                 
                 document.getElementById("submit-event").disabled = false;
               } else {
@@ -144,6 +148,7 @@
                 document.getElementById("wiki-example").style.display = "none";
                 document.getElementById("wiki-invalid").style.display = "block";
                 document.getElementById("wiki-notfound").style.display = "none";
+                document.getElementById("wiki-required").style.display = "none";
                 document.getElementById("submit-event").disabled = true;
               }
               
@@ -152,6 +157,7 @@
               document.getElementById("wiki-example").style.display = "none";
               document.getElementById("wiki-invalid").style.display = "none";
               document.getElementById("wiki-notfound").style.display = "block";
+              document.getElementById("wiki-required").style.display = "none";
               document.getElementById("submit-event").disabled = true;
            }
             
@@ -160,6 +166,7 @@
             document.getElementById("wiki-example").style.display = "none";
             document.getElementById("wiki-invalid").style.display = "block";
             document.getElementById("wiki-notfound").style.display = "none";
+            document.getElementById("wiki-required").style.display = "none";
             document.getElementById("submit-event").disabled = true;
             
           }
@@ -169,6 +176,7 @@
             document.getElementById("wiki-example").style.display = "none";
             document.getElementById("wiki-invalid").style.display = "none";
             document.getElementById("wiki-notfound").style.display = "none";
+            document.getElementById("wiki-required").style.display = "block";
             document.getElementById("submit-event").disabled = true;
         
         }
