@@ -9,17 +9,28 @@
     Past the Wikipedia article link relating to the event you want to create:
    </p>
    
-   <ons-input type="url" id="event-media" placeholder="Wikipedia Article link" oninput="wiki(this.value)" style="width: 100%"></ons-input>
+   <ons-input type="url" placeholder="Wikipedia Article link" oninput="wiki(this.value)" style="width: 100%"></ons-input>
   
   <ons-list>
     
-     <ons-list-item>
+     <ons-list-item id="wiki-example" style="display:none;">
       <div class="left">
         <img class="list-item__thumbnail" src="img/wikipedia_w.svg">
       </div>
       <div class="center">
-        <span class="list-item__title">Cutest kitty</span><span class="list-item__subtitle">On the Internet</span>
+        <span class="list-item__title" id="wiki-article"></span><span class="list-item__subtitle">English Wikipedia</span>
       </div>
+    </ons-list-item>
+    <ons-list-item id="wiki-notfound" style="display:none;">
+      <div class="left">
+        <img class="list-item__thumbnail" src="img/wikipedia_w.svg">
+      </div>
+      <div class="center">
+        <span class="list-item__title" id="wiki-article" style="color:red">Article Not Found!</span><span class="list-item__subtitle">English Wikipedia</span>
+      </div>
+    </ons-list-item>
+    <ons-list-item id="wiki-invalid" style="display:none;color:red;">
+      Invalid article content
     </ons-list-item>
     
     <p>
@@ -68,7 +79,7 @@
       Total investment:&nbsp;<b>40.48855 BOARDS</b>
     </p>
     
-    <ons-button modifier="large">SUBMIT EVENT</ons-button>
+    <ons-button modifier="large--quiet" id="submit-event" disabled>SUBMIT EVENT</ons-button>
   
     </ons-card>
   
@@ -133,14 +144,48 @@
             const resp = await fetch('https://en.wikipedia.org/w/api.php?'+window.encodeQueryData({"action":"parse","format":"json","origin":"*","prop":"text","formatversion":2,"page":decodeURIComponent(escape(window.atob(b64)))}));
             const respjson = await resp.json();
             
-            //window.escapeHtml(respjson.parse.title)
+            try {
+            
+              if (!respjson.parse.title) throw "!";
+              
+              if (!window.profanity(respjson.parse.title)) {
+                document.getElementById("wiki-article").innerHTML = window.escapeHtml(match[1]);
+                document.getElementById("wiki-example").style.display = "block";
+                document.getElementById("wiki-invalid").style.display = "none";
+                document.getElementById("wiki-notfound").style.display = "none";
+                
+                document.getElementById("submit-event").disabled = false;
+              } else {
+                
+                document.getElementById("wiki-example").style.display = "none";
+                document.getElementById("wiki-invalid").style.display = "block";
+                document.getElementById("wiki-notfound").style.display = "none";
+                document.getElementById("submit-event").disabled = true;
+              }
+              
+            } catch(ex) {
+            
+              document.getElementById("wiki-example").style.display = "none";
+              document.getElementById("wiki-invalid").style.display = "none";
+              document.getElementById("wiki-notfound").style.display = "block";
+              document.getElementById("submit-event").disabled = true;
+           }
             
           } else { // show invalid
             
+            document.getElementById("wiki-example").style.display = "none";
+            document.getElementById("wiki-invalid").style.display = "block";
+            document.getElementById("wiki-notfound").style.display = "none";
+            document.getElementById("submit-event").disabled = true;
+            
           }
 
-        } else { // invalid
+        } else { // invalid wiki link
         
+            document.getElementById("wiki-example").style.display = "none";
+            document.getElementById("wiki-invalid").style.display = "none";
+            document.getElementById("wiki-notfound").style.display = "none";
+            document.getElementById("submit-event").disabled = true;
         
         }
 
