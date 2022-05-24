@@ -9,7 +9,7 @@
     Past the Wikipedia article link relating to the event you want to create:
    </p>
    
-   <ons-input type="url" id="event-media" placeholder="Wikipedia Article link" oninput="" style="width: 100%"></ons-input>
+   <ons-input type="url" id="event-media" placeholder="Wikipedia Article link" oninput="wiki(this.value)" style="width: 100%"></ons-input>
   
   <ons-list>
     
@@ -72,7 +72,7 @@
      </ons-row>
     </ons-bottom-toolbar>
 
-    <div class="toolbar--material bottom-corner bottom:0!important;" id="claimable" data-placeholder="..." style="visibility:hidden;" ></div>
+    <div class="toolbar--material bottom-corner" id="claimable" data-placeholder="..." style="visibility:hidden;bottom:0!important;" ></div>
   
   
   <script>
@@ -109,6 +109,45 @@
      function span_hours(){
         
          document.getElementById("hours").innerHTML = document.getElementById("event-token").value + '&nbsp;hours';
+        
+      }
+    
+      async function wiki(ctn) {       
+        
+        var myRegexp = new RegExp("^https\:\/\/en\.wikipedia\.org\/wiki\/([_A-Za-z0-9\.\,\-\(\)]+)", "g");
+        var match = myRegexp.exec(ctn);
+        
+        if (match.length>0) { // valid
+          
+          let b64 = btoa(match[0])
+          
+          
+        } else { // invalid
+        
+        
+        }
+         const resp = await fetch('https://en.wikipedia.org/w/api.php?'+window.encodeQueryData({"action":"parse","format":"json","origin":"*","prop":"text","formatversion":2,"page":decodeURIComponent(escape(window.atob(events_list[i].media_base64)))}));
+         const respjson = await resp.json();
+
+        try {
+
+          var litem = document.createElement('ons-list-item');
+          litem.setAttribute("tappable", "tappable");
+          litem.setAttribute("modifier", "longdivider");
+          litem.setAttribute("style", "text-overflow:ellipsis;width:226px;overflow:hidden;");
+          litem.setAttribute("data-value_per_hour", events_list[i].value_per_hour_ns.toString());
+          litem.innerHTML = `Wikipedia:&nbsp;${window.escapeHtml(respjson.parse.title)}`;
+
+           document.getElementById("events-list").insertBefore(litem);
+
+           let litemx = document.getElementById("events-list").querySelectorAll("ons-list-item");
+
+            let sorted = Array.from(litemx).sort(function(a, b){return b.dataset.value_per_hour-a.dataset.value_per_hour});
+
+            document.getElementById("events-list").innerHTML = '<ons-list-header class="list-header">Current Events</ons-list-header>';
+            sorted.forEach(e => document.getElementById("events-list").appendChild(e));
+
+         } catch(ex){console.log("invalid wikipedia article")}   
         
       }
     
